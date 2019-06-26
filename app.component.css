@@ -1,0 +1,15 @@
+.tb {
+  background-color: black;
+}
+.spacer {
+  flex: 1 1 auto;
+}
+
+.txt2 {
+  text-decoration: none;
+  color: navajowhite;
+  font-size: 25px;
+}
+.mat-icon {
+  color: navajowhite;
+}
