@@ -1,0 +1,73 @@
+<div class="container">
+
+  <div class="card card-container">
+    <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+
+    <span class="txt1"><b>REGISTER</b></span>
+    <p id="profile-name" class="profile-name-card"></p>
+
+    <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+
+      <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
+
+      <span id="reauth-email" class="reauth-email"></span>
+
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+        <mat-form-field  class="full-width">
+        <mat-label for="username">Username</mat-label>
+        <input matInput placeholder="Enter username"type="text" class="form-control" name="username" id="username" [(ngModel)]="user.username" #username="ngModel" required />
+        <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+        <mat-form-field class="full-width">
+        <mat-label for="email">Email</mat-label>
+
+        <input matInput placeholder="Enter your email" type="email" class="form-control" name="email" id="email" pattern="[^ @]*@[^ @]*" [(ngModel)]="user.email" #username="ngModel" required />
+
+        <div *ngIf="f.submitted && !username.valid" class="help-block">
+
+          <div *ngIf="username.errors.required">
+            Email is required.
+          </div>
+        </div>
+      </mat-form-field>
+          <div *ngIf="username.errors.pattern">
+            A valid email address is required
+          </div>
+
+        </div>
+
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+        <mat-form-field class="full-width">
+        <mat-label for="password">Password</mat-label>
+
+        <input matInput placeholder="Enter a password" type="password" class="form-control" name="password" id="password"[(ngModel)]="user.password" #password="ngModel" required minlength="4" />
+
+        <div *ngIf="f.submitted && !password.valid" class="help-block">
+
+          <div *ngIf="password.errors.required">
+            Password is required.
+          </div>
+
+          <div *ngIf="password.errors.minlength">
+            Password must be at least 4 characters long.
+          </div>
+
+        </div>
+        </mat-form-field>
+
+      </div>
+
+      <button mat-raised-button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Register</button>
+      &nbsp;
+      &nbsp;
+      <button mat-raised-button [routerLink]="['/login']" class="btn btn-lg btn-danger btn-block btn-cancel" type="button">Cancel</button>
+
+    </form>
+
+  </div>
+
+</div>
+
