@@ -70,23 +70,6 @@ body, html {
   min-height: 1em;
 }
 
-.reauth-email {
-  display: block;
-  color: #404040;
-  line-height: 2;
-  margin-bottom: 10px;
-  font-size: 14px;
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-
-
 .btn.btn-signin,.btn-cancel {
   /*background-color: #4d90fe; */
   background-color: black;
@@ -122,14 +105,4 @@ body, html {
 .btn.btn-signin:active,
 .btn.btn-signin:focus {
   background-color: crimson;
-}
-
-.forgot-password {
-  color: rgb(104, 145, 162);
-}
-
-.forgot-password:hover,
-.forgot-password:active,
-.forgot-password:focus{
-  color: crimson;
 }
