@@ -2,27 +2,22 @@
   <div class="container-fluid">
 
     <ul class="nav navbar-nav">
-      <li class="active"  ><a>Home</a></li>
+      <li class="active"  ><button mat-raised-button class="home-btn">Home</button></li>
 
     </ul>
     <ul class="nav navbar-nav navbar-right">
 
-      <li><a href="#"><span class="glyphicon glyphicon-log-in" (click)="logOut()"></span> LogOut</a></li>
+      <li><button mat-raised-button class="logout-btn" [routerLink]="['/']" (click)="logOut()">Log out</button></li>
     </ul>
   </div>
 </nav>
 
 <div class="container">
 
-  <!-- Jumbotron Header -->
   <header class="jumbotron my-4">
-    <h1 class="display-3">  <strong>{{currentUser.username}}</strong>, Welcome </h1>
-    <p class="lead"> Welcome to your profile
-    </p>
+    <h1 class="h1"> Welcome</h1>
+    <p class="lead"> Welcome to your profile, <strong> {{currentUser.username}} </strong> </p>
     <div class="row">
-
-
-
 
     </div>
   </header>

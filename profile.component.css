@@ -1,5 +1,11 @@
-body { padding: 2em; }
+body { padding: 0em; }
 
+.h1 {
+  text-align: center;
+}
+.lead {
+  text-align: center;
+}
 .logout-btn {
   background-color: black;
   color: navajowhite;
@@ -48,6 +54,5 @@ body { padding: 2em; }
 body, html {
   height: 100%;
   background-repeat: no-repeat;
-  background-image:none;
-  padding: 0;
+  background-image: linear-gradient(navajowhite, black);
 }
