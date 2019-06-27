@@ -10,23 +10,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
   encapsulation: ViewEncapsulation.None
 })
+
+
 export class LoginComponent implements OnInit {
   user: User = new User();
   errorMessage: string;
+
   constructor(private authService: AuthService, private router: Router) { }
 
 
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  login() {
+  login(): void {
     this.authService.logIn(this.user)
-      .subscribe(data => {
-          this.router.navigate(['/profile'])
-         ;
+      .subscribe(
+        data => {
+          this.router.navigate(['/profile']);
         }, err => {
-          this.errorMessage = 'Error :  Username or password is incorrect';
+
+          alert('Error :  Username or password is incorrect!');
         }
       );
   }

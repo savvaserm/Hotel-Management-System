@@ -7,7 +7,10 @@ import { NgModule } from '@angular/core';
 
 
 const appRoutes: Routes = [
-  { path: 'profile', component: ProfileComponent , canActivate: [UrlPermission] },
+
+  // den kanei navigate me to urlpermission  sto path:profile
+
+  { path: 'profile', component: ProfileComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 

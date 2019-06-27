@@ -1,13 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class UrlPermission implements CanActivate {
 
-  constructor(private router: Router) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+//   canActivate(): boolean {
+//     if (!this.authService.isAuthenticated()) {
+//       this.router.navigate(['login']);
+//       return false;
+//     }
+//     return true;
+//   }
+// }
+
+  //////////////////////////////////////////////////////////////////////
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (localStorage.getItem('currentUser')) {
+
       // logged in so return true
       return true;
     }
