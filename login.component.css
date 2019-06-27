@@ -34,6 +34,8 @@ body, html {
 /*
  * Card component
  */
+
+
 .card {
   background-color: #F7F7F7;
   /* just in case there no content*/
@@ -62,55 +64,14 @@ body, html {
 /*
  * Form styles
  */
+
+
 .profile-name-card {
   font-size: 16px;
   font-weight: bold;
   text-align: center;
   margin: 10px 0 0;
   min-height: 1em;
-}
-
-.reauth-email {
-  display: block;
-  color: #404040;
-  line-height: 2;
-  margin-bottom: 10px;
-  font-size: 14px;
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.form-signin #inputUsername,
-.form-signin #inputPassword {
-  direction: ltr;
-  height: 44px;
-  font-size: 16px;
-}
-
-.form-signin input[type=email],
-.form-signin input[type=password],
-.form-signin input[type=text],
-.form-signin button {
-  width: 100%;
-  display: block;
-  margin-bottom: 10px;
-  z-index: 1;
-  position: relative;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.form-signin .form-control:focus {
-  border-color: rgb(104, 145, 162);
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
 }
 
 .btn.btn-signin {
@@ -139,15 +100,6 @@ body, html {
   background-color: crimson;
 }
 
-.forgot-password {
-  color: rgb(104, 145, 162);
-}
-
-.forgot-password:hover,
-.forgot-password:active,
-.forgot-password:focus{
-  color: crimson;
-}
 .btn.btn-link {
   bottom: 51px;
   left: 200px;
