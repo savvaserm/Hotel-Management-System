@@ -4,7 +4,7 @@
     <span class="example-fill-remaining-space"></span>
     <span class="spacer"></span>
     <span class="align-center"></span>
-    <a href="/"><button mat-button><mat-icon>home</mat-icon></button></a>
+    <a href="/"><button mat-button class="icon0"><mat-icon>home</mat-icon></button></a>
     <button mat-icon-button [matMenuTriggerFor]="menu1">
       <mat-icon>info</mat-icon>
     </button>
@@ -17,15 +17,15 @@
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
+        <mat-icon class="icon1"> dialpad</mat-icon>
         <span>Redial</span>
       </button>
       <button mat-menu-item disabled>
-        <mat-icon>voicemail</mat-icon>
+        <mat-icon class="icon2">voicemail</mat-icon>
         <span>Check voicemail</span>
       </button>
       <button mat-menu-item>
-        <mat-icon>notifications_off</mat-icon>
+        <mat-icon class="icon3">notifications_off</mat-icon>
         <span>Disable alerts</span>
       </button>
     </mat-menu>
