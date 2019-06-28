@@ -7,7 +7,7 @@
     <span class="txt"><b>LOGIN</b></span>
     <p id="profile-name" class="profile-name-card"></p>
 
-    <form name="form-signin" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+    <form name="form-signin" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
 
       <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
 
@@ -20,6 +20,7 @@
         <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
         </mat-form-field>
       </div>
+
       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
         <mat-form-field class="full-width">
 
@@ -29,9 +30,8 @@
 
         </mat-form-field>
       </div>
-                    <!-- (click)="login()" stelnei 2 get requests-->
 
-      <button mat-raised-button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+      <button mat-raised-button (click)="login()" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
     </form>
     <br>
     <p class="text">Are you a new user ?</p> <button mat-raised-button [routerLink]="['/register']" class="btn btn-link">Register here!</button>
