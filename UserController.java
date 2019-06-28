@@ -3,8 +3,6 @@ package com.app.controller;
 import java.security.Principal;
 import java.util.List;
 
-import com.app.dao.UserRepository;
-import com.app.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.app.util.CustomErrorType;
 import com.app.entities.User;
+import com.app.dao.UserRepository;
+import com.app.services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -64,21 +64,26 @@ public class UserController {
 
     // request method to create a new account by a guest
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> createUser(@RequestBody User newUser) {
 
-        if (userService.find(newUser.getUsername()) != null)
-        {
-            logger.error("username already exist " + newUser.getUsername());
-            return new ResponseEntity<>(
-                    new CustomErrorType("user with username " + newUser.getUsername() + "already exist "),
-                    HttpStatus.CONFLICT);
-        }
+    // metafora sto UserService -------------------------
 
-        newUser.setRole("USER");
 
-        return new ResponseEntity<User>(userService.save(newUser), HttpStatus.CREATED);
-    }
+//    @RequestMapping(value = "/register", method = RequestMethod.POST)
+//    public ResponseEntity<?> createUser(@RequestBody User newUser) {
+//
+//        if (userService.find(newUser.getUsername()) != null)
+//        {
+//            logger.error("username already exist " + newUser.getUsername());
+//            return new ResponseEntity<>(
+//                    new CustomErrorType("user with username " + newUser.getUsername() + "already exist "),
+//                    HttpStatus.CONFLICT);
+//        }
+//
+//        newUser.setRole("USER");
+//
+//        return new ResponseEntity<User>(userService.save(newUser), HttpStatus.CREATED);
+//    }
+
 
 
     // this is the login api/service
