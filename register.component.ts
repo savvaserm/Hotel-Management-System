@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   user = new User();
   errorMessage: string;
+  successMessage: string;
+
   constructor(public accountService: AccountService, public router: Router) {
   }
 
@@ -20,10 +22,10 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.accountService.createAccount(this.user).subscribe(data => {
-        this.router.navigate(['/users/login']);
+        this.router.navigate(['/login']);
+        alert('User created');
       }, err => {
-        console.log(err);
-        this.errorMessage = 'username already exist';
+        this.errorMessage = 'The username you have entered already exists';
       }
   );
   }
