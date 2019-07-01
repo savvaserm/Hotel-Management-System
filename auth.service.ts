@@ -3,15 +3,15 @@ import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {User} from '../model/model.user';
 import {map} from 'rxjs/operators';
 import {AppComponent} from '../app.component';
-import {JwtHelperService} from '@auth0/angular-jwt';
+import {Router} from '@angular/router';
 
 
 @Injectable()
 export class AuthService {
-  public jwtHelper: JwtHelperService;
 
-  constructor(public http: HttpClient) {
-  }
+  errorMessage: string;
+
+  constructor(public http: HttpClient, public router: Router) {}
 
   // ----------------------------------------------------------------------------------------
   //
@@ -37,17 +37,31 @@ export class AuthService {
         Authorization: 'Basic ' + btoa(user.username + ':' + user.password)
       }
     })
-    // tslint:disable-next-line:no-shadowed-variable
-    .pipe(map((response: any) => {
-      console.log(response);
-      // tslint:disable-next-line:no-shadowed-variable
-      const user = response.json().principal; // the returned user object is a principal object
-
-      // store user details in local storage to keep user logged in between page refreshes
-      localStorage.setItem('currentUser', JSON.stringify(user));
-      return user;
-    }));
+      // .subscribe(data => {
+      //   this.router.navigate(['profile']);
+      // }, err => {
+      //   this.errorMessage = 'Error: Username or password is incorrect';
+      // })
+      .pipe(map((response: any) => {
+          // tslint:disable-next-line:no-shadowed-variable
+          const user = response.json().principal; // the returned user object is a principal object
+          return user;
+        // localStorage.setItem('currentUser', JSON.stringify(user));
+        //   return localStorage.getItem('currentUser');
+        }
+      ));
   }
+
+
+  // // tslint:disable-next-line:no-shadowed-variable
+  // .pipe(map((response: any) => {
+  //           console.log(response);
+  //           // tslint:disable-next-line:no-shadowed-variable
+  //           const user = response.json().principal; // the returned user object is a principal object
+  //
+  //           // store user details in local storage to keep user logged in between page refreshes
+  //           localStorage.setItem('currentUser', JSON.stringify(user));
+  //         }));
 
   // ------------------------------------------------------------------------------------
 
