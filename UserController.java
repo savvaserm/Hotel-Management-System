@@ -3,6 +3,7 @@ package com.app.controller;
 import java.security.Principal;
 import java.util.List;
 
+import com.app.dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,9 +104,9 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @RequestMapping(value="/create", method = RequestMethod.POST)
-    public void create(@RequestBody User user){
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userService.save(user);
+    @RequestMapping(value="/register", method = RequestMethod.POST)
+    public void register(@RequestBody UserDto userDto){
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userService.registerAccount(userDto);
     }
 }

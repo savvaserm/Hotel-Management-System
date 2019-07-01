@@ -68,7 +68,7 @@ public class UserService {
         newUser.setUsername(accountDto.getUsername());
         newUser.setEmail(accountDto.getEmail());
         newUser.setPassword(encoder().encode(accountDto.getPassword()));
-        accountDto.setRole("USER");
+        newUser.setRole("USER");
 
         return userRepository.saveAndFlush(newUser);
     }
