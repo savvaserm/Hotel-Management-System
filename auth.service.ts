@@ -1,16 +1,17 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
-import { User } from '../model/model.user';
-import { map } from 'rxjs/operators';
-import { AppComponent } from '../app.component';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {User} from '../model/model.user';
+import {map} from 'rxjs/operators';
+import {AppComponent} from '../app.component';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 
 @Injectable()
 export class AuthService {
   public jwtHelper: JwtHelperService;
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient) {
+  }
 
   // ----------------------------------------------------------------------------------------
   //
@@ -31,33 +32,29 @@ export class AuthService {
   public logIn(user: User) {
 
     return this.http.get(AppComponent.API_URL + '/users/login', {
-      headers : {
+      headers: {
         'Content-Type': 'application/json',
         Authorization: 'Basic ' + btoa(user.username + ':' + user.password)
       }
     })
+    // tslint:disable-next-line:no-shadowed-variable
+    .pipe(map((response: any) => {
+      console.log(response);
+      // tslint:disable-next-line:no-shadowed-variable
+      const user = response.json().principal; // the returned user object is a principal object
 
-    // ------------------------------------------------------------------------------------
+      // store user details in local storage to keep user logged in between page refreshes
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      return user;
+    }));
+  }
 
-   // tslint:disable-next-line:no-shadowed-variable
-      .pipe(map((response: any) => {
-
-        // tslint:disable-next-line:no-shadowed-variable
-        const user = response.json().principal; // the returned user object is a principal object
-        if (user) {
-          // store user details in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          return localStorage.getItem('currentUser');
-        }
-      }));
-    }
-
-   // ------------------------------------------------------------------------------------
+  // ------------------------------------------------------------------------------------
 
   logOut() {
 
     // remove user from local storage to log user out
-    return this.http.post(AppComponent.API_URL + 'logout', {} )
+    return this.http.post(AppComponent.API_URL + 'logout', {})
       .pipe(map((response: any) => {
         localStorage.removeItem('currentUser');
       }));
