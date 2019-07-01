@@ -5,27 +5,30 @@ import { map } from 'rxjs/operators';
 import { AppComponent } from '../app.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
+
 @Injectable()
 export class AuthService {
-
   public jwtHelper: JwtHelperService;
+
   constructor(public http: HttpClient) { }
 
   // ----------------------------------------------------------------------------------------
+  //
+  // public isAuthenticated(): boolean {
+  //   const token = localStorage.getItem('currentUser');
+  //
+  //   // Check whether the token is expired and return true or false
+  //   if (token == null) {
+  //     return false;
+  //   } else {
+  //     return !this.jwtHelper.isTokenExpired(token);
+  //   }
+  // }
 
-  public isAuthenticated(): boolean {
-    const token = localStorage.getItem('currentUser');
-
-    // Check whether the token is expired and return true or false
-    return !this.jwtHelper.isTokenExpired(token);
-  }
 
   // ----------------------------------------------------------------------------------------
 
   public logIn(user: User) {
-
-    const headers = new HttpHeaders();
-    const response = new HttpResponse();
 
     return this.http.get(AppComponent.API_URL + '/users/login', {
       headers : {
@@ -41,10 +44,10 @@ export class AuthService {
 
         // tslint:disable-next-line:no-shadowed-variable
         const user = response.json().principal; // the returned user object is a principal object
-        if (user && user.token) {
+        if (user) {
           // store user details in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
-          return user;
+          return localStorage.getItem('currentUser');
         }
       }));
     }

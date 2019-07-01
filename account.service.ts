@@ -9,7 +9,7 @@ export class AccountService {
   constructor(public http: HttpClient) { }
 
   createAccount(user: User) {
-    return this.http.post(AppComponent.API_URL + '/register', user)
+    return this.http.post(AppComponent.API_URL + '/users/register', user)
       .pipe(map(resp => console.log(resp)));
   }
 }
