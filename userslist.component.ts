@@ -7,7 +7,7 @@ import {ListService} from '../../services/list-service.service';
   styleUrls: ['./userslist.component.css']
 })
 export class UserslistComponent implements OnInit {
-  users = [];
+  users: any;
   noUsersMessage: string;
   errorMessage: string;
 
@@ -23,7 +23,7 @@ export class UserslistComponent implements OnInit {
   getUsers() {
     this.listService.getUsers()
       .subscribe(data => {
-        if (data.length) {
+        if (data) {
 
           this.users = data;
 
