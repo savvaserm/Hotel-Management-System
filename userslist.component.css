@@ -1,4 +1,8 @@
-body { padding: 0em; }
+body, html {
+  height: 100%;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(navajowhite, black);
+}
 
 .a {
   color: black;
@@ -7,8 +11,14 @@ body { padding: 0em; }
 .a:link:active {
   text-decoration: none;
 }
-body {
-  height: 100%;
-  background-repeat: no-repeat;
-  background-image: linear-gradient(navajowhite, black);
+
+.table-striped {
+  margin: 50px auto;
+}
+
+.back-btn{
+  background-color: black;
+  color: navajowhite;
+  font-family: Calibri, sans-serif;
+  font-size: 16px;
 }

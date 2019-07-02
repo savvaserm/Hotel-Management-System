@@ -11,9 +11,10 @@ import { AccountService } from './services/account.service';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AppRoutingModule } from './app.routing';
 import { FacebookModule} from 'ngx-facebook';
-import { UrlPermission } from './urlPermission/url.permission';
+// import { AuthGuardService } from './services/auth-guard.service';
 import { CustomMaterialModule} from './material.module';
-
+import { UserslistComponent } from './components/userslist/userslist.component';
+import { ListService } from './services/list-service.service';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { CustomMaterialModule} from './material.module';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
+    UserslistComponent
 
   ],
   imports: [
@@ -29,7 +31,7 @@ import { CustomMaterialModule} from './material.module';
   exports: [
     AppRoutingModule,
   ],
-  providers: [AuthService, AccountService, UrlPermission],
+  providers: [AuthService, AccountService, ListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -31,5 +31,6 @@ export class ProfileComponent implements OnInit {
         error => {
 
         });
+    localStorage.removeItem('currentUser');
   }
 }
