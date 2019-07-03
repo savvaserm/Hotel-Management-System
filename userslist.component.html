@@ -16,9 +16,33 @@
   }
 </style>
 
+<mat-sidenav-container class="example-container">
 
-<div class="container">
-  <table class="table table-striped table-bordered">
+
+  <mat-sidenav class="side" mode="side" [(opened)]="opened">
+
+    <div class="container-fluid">
+
+      <mat-list class="navbar">
+        <mat-list-item class="item1"><a style="color: black" href="/list"><span class="users-btn">See customers</span></a>
+        </mat-list-item>
+
+        <mat-list-item class="item2"><a style="color: black" href="/employees"><span class="users-btn">Our employees</span></a>
+        </mat-list-item>
+
+        <mat-list-item class="item3"><a style="color: black" href="/reservations"><span
+          class="users-btn">Make a reservation</span></a></mat-list-item>
+
+      </mat-list>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+    <p>
+      <mat-checkbox [(ngModel)]="opened">Sidenav opened</mat-checkbox>
+    </p>
+
+    <table class="table table-striped table-bordered">
     <thead>
 
     <tr>
@@ -51,6 +75,7 @@
     <span class="help-block error">{{errorMessage}}</span>
 
   </div>
-  <a style="color: black" href="http://localhost:4200/profile"> <button mat-raised-button class="back-btn">Go back to profile</button></a>
+    <a style="color: black" href="http://localhost:4200/profile"> <button mat-raised-button class="back-btn">Go back to profile</button></a>
+  </mat-sidenav-content>
 
-</div>
+</mat-sidenav-container>

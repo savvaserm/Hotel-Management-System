@@ -10,6 +10,7 @@ export class UserslistComponent implements OnInit {
   users: any;
   noUsersMessage: string;
   errorMessage: string;
+  opened: boolean;
 
   constructor(private listService: ListService) {
   }

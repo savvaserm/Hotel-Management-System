@@ -4,6 +4,29 @@ body, html {
   background-image: linear-gradient(navajowhite, black);
 }
 
+.item1:hover {
+  background-color: lightgray;
+}
+.item2:hover {
+  background-color: lightgray;
+}
+.item3:hover {
+  background-color: lightgray;
+}
+.mat-checkbox{
+  color: black;
+}
+
+.side{
+  width: 300px;
+  height: auto;
+}
+
+.example-container {
+  height: 100%;
+}
+
+
 .a {
   color: black;
   text-decoration: none;
@@ -16,9 +39,13 @@ body, html {
   margin: 50px auto;
 }
 
-.back-btn{
+.back-btn {
   background-color: black;
   color: navajowhite;
   font-family: Calibri, sans-serif;
   font-size: 16px;
+}
+
+.back-btn:hover {
+  background-color: crimson;
 }
