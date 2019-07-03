@@ -19,7 +19,7 @@
 <mat-sidenav-container class="example-container">
 
 
-  <mat-sidenav class="side" mode="side" [(opened)]="opened">
+  <mat-sidenav #sidenav class="side" mode="side" [(opened)]="opened">
 
     <div class="container-fluid">
 
@@ -39,7 +39,7 @@
 
   <mat-sidenav-content class="content">
     <p>
-      <mat-checkbox [(ngModel)]="opened">Sidenav opened</mat-checkbox>
+      <button mat-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
     </p>
 
     <table class="table table-striped table-bordered">
