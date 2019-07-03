@@ -5,6 +5,9 @@ import { MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModul
 import { CommonModule } from '@angular/common';
 import { MatNativeDateModule, MatFormFieldModule, MatListModule} from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSidenavModule} from '@angular/material';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   imports: [
@@ -20,7 +23,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatProgressSpinnerModule,
     MatButtonModule, MatCheckboxModule,
     MatNativeDateModule, MatDatepickerModule,
-    MatFormFieldModule, MatListModule,
+    MatFormFieldModule, MatListModule, MatSidenavModule,
+    MatSliderModule, MatSlideToggleModule
 
   ],
   exports: [
@@ -36,7 +40,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatIconModule,
     MatProgressSpinnerModule,
     MatNativeDateModule, MatDatepickerModule,
-    MatFormFieldModule, MatListModule
+    MatFormFieldModule, MatListModule, MatSidenavModule,
+    MatSliderModule, MatSlideToggleModule
   ],
 })
 export class CustomMaterialModule { }

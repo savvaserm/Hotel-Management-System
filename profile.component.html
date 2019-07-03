@@ -1,26 +1,42 @@
-<nav  class="navbar navbar-inverse">
+<mat-sidenav-container class="example-container">
+
+
+  <mat-sidenav class="side" mode="side" [(opened)]="opened">
+
   <div class="container-fluid">
 
     <ul class="nav navbar-nav">
-      <li> <a style="color: black" href="/list"><span class="users-btn">Users List</span></a></li>
-
+      <li><a style="color: black" href="/list"><span class="users-btn">See customers</span></a></li>
     </ul>
-    <ul class="nav navbar-nav navbar-right">
 
-      <li> <a style="color: black" href="/"><span class="logout-btn"(click)="logOut()">Log out</span></a></li>
+    <ul class="nav navbar-nav">
+      <li><a style="color: black" href="/employees"><span class="users-btn">Our employees</span></a></li>
     </ul>
+
+    <ul class="nav navbar-nav">
+      <li><a style="color: black" href="/reservations"><span class="users-btn">Make a reservation</span></a></li>
+    </ul>
+
   </div>
-</nav>
 
-<div class="container">
+  </mat-sidenav>
 
-  <header class="jumbotron my-4">
-    <h1 class="h1"> User's Profile </h1>
-    <p class="lead"> Welcome to your profile, <strong> {{currentUser.username}} </strong> </p>
-    <div class="row">
+  <mat-sidenav-content class="content">
+    <div class="btn-top-right">
 
+      <a style="color: black" href="/"><button mat-button class="logout-btn" (click)="logOut()">Log out</button></a>
     </div>
-  </header>
 
-</div>
+    <p><mat-checkbox [(ngModel)]="opened">Sidenav opened</mat-checkbox> </p>
 
+    <header class="jumbotron my-4">
+      <h1 class="h1"> User's Profile </h1>
+      <p class="lead"> Welcome to your profile, <strong> {{currentUser.username}} </strong> .</p>
+      <div class="row">
+      </div>
+    </header>
+
+  </mat-sidenav-content>
+
+
+</mat-sidenav-container>

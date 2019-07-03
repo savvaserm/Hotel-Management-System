@@ -1,5 +1,26 @@
 body { padding: 0em; }
 
+.mat-checkbox{
+  color: black;
+}
+
+.btn-top-right {
+  position: absolute;
+  top: 0;
+  right: 10px;
+}
+.side{
+  width: 300px;
+  height: auto;
+}
+
+.content {
+}
+
+.example-container {
+  height: 100%;
+}
+
 .h1 {
   text-align: center;
 }
@@ -16,7 +37,9 @@ body { padding: 0em; }
 }
 
 .logout-btn {
-  color: black;
+  top: 20px;
+  color: navajowhite;
+  background-color: black;
   font-family: Calibri, sans-serif;
   padding: 0px;
   font-weight: 700;
@@ -52,9 +75,14 @@ body { padding: 0em; }
   -webkit-transition: all 0.218s;
   transition: all 0.218s;
 }
-
-body, html {
-  height: 100%;
-  background-repeat: no-repeat;
-  background-image: linear-gradient(navajowhite, black);
+.logout-btn:hover {
+  background-color: crimson;
+}
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
 }
