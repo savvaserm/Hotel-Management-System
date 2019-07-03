@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   currentUser: User;
-  events: string[] = [];
   opened: boolean;
 
   constructor(public authService: AuthService, public router: Router) {

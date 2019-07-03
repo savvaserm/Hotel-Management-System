@@ -3,12 +3,15 @@ body { padding: 0em; }
 .item1:hover {
   background-color: lightgray;
 }
+
 .item2:hover {
   background-color: lightgray;
 }
+
 .item3:hover {
   background-color: lightgray;
 }
+
 .mat-checkbox{
   color: black;
 }
@@ -19,7 +22,7 @@ body { padding: 0em; }
   right: 10px;
 }
 .side{
-  width: 300px;
+  width: 250px;
   height: auto;
 }
 
@@ -49,7 +52,6 @@ body { padding: 0em; }
   top: 20px;
   color: navajowhite;
   background-color: black;
-  font-family: Calibri, sans-serif;
   padding: 0px;
   font-weight: 700;
   font-size: 16px;
@@ -65,25 +67,6 @@ body { padding: 0em; }
   transition: all 0.218s;
 }
 
-
-.users-btn {
-  color: black;
-  text-decoration: none;
-  font-family: Calibri, sans-serif;
-  padding: 0px;
-  font-weight: 700;
-  font-size: 16px;
-  width: 120px;
-  height: 36px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  border: none;
-  -o-transition: all 0.218s;
-  -moz-transition: all 0.218s;
-  -webkit-transition: all 0.218s;
-  transition: all 0.218s;
-}
 .logout-btn:hover {
   background-color: crimson;
 }
