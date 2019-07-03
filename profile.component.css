@@ -1,5 +1,14 @@
 body { padding: 0em; }
 
+.item1:hover {
+  background-color: lightgray;
+}
+.item2:hover {
+  background-color: lightgray;
+}
+.item3:hover {
+  background-color: lightgray;
+}
 .mat-checkbox{
   color: black;
 }

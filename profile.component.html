@@ -3,31 +3,34 @@
 
   <mat-sidenav class="side" mode="side" [(opened)]="opened">
 
-  <div class="container-fluid">
+    <div class="container-fluid">
 
-    <ul class="nav navbar-nav">
-      <li><a style="color: black" href="/list"><span class="users-btn">See customers</span></a></li>
-    </ul>
+      <mat-list class="navbar">
+         <mat-list-item class="item1"><a style="color: black" href="/list"><span class="users-btn">See customers</span></a>
+         </mat-list-item>
 
-    <ul class="nav navbar-nav">
-      <li><a style="color: black" href="/employees"><span class="users-btn">Our employees</span></a></li>
-    </ul>
+         <mat-list-item class="item2"><a style="color: black" href="/employees"><span class="users-btn">Our employees</span></a>
+         </mat-list-item>
 
-    <ul class="nav navbar-nav">
-      <li><a style="color: black" href="/reservations"><span class="users-btn">Make a reservation</span></a></li>
-    </ul>
+          <mat-list-item class="item3"><a style="color: black" href="/reservations"><span
+           class="users-btn">Make a reservation</span></a></mat-list-item>
 
-  </div>
+      </mat-list>
+    </div>
 
   </mat-sidenav>
 
   <mat-sidenav-content class="content">
     <div class="btn-top-right">
 
-      <a style="color: black" href="/"><button mat-button class="logout-btn" (click)="logOut()">Log out</button></a>
+      <a style="color: black" href="/">
+        <button mat-button class="logout-btn" (click)="logOut()">Log out</button>
+      </a>
     </div>
 
-    <p><mat-checkbox [(ngModel)]="opened">Sidenav opened</mat-checkbox> </p>
+    <p>
+      <mat-checkbox [(ngModel)]="opened">Sidenav opened</mat-checkbox>
+    </p>
 
     <header class="jumbotron my-4">
       <h1 class="h1"> User's Profile </h1>
