@@ -10,18 +10,15 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.app.services.AppUserDetailsService;
 
-import java.util.Arrays;
+
 
 @Configurable
 @EnableWebSecurity
@@ -70,16 +67,6 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-//        auth.inMemoryAuthentication()
-//                .withUser("savvas")
-//                .password("$2y$04$FabZeFug7u6ecntqY8LlL.WRjNVuoGYmFSMVAEseabNsTHyS3EdYC")
-//                .roles("USER");
-//    }
-
-
     // This method is used for override HttpSecurity of the web Application.
     // We can specify our authorization criteria inside this method.
 
@@ -93,7 +80,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 
                 // ignoring the guest's urls "
 
-                .antMatchers("/users/list", "/users/register", "/users/login", "/users/logout", "/users/create").permitAll()
+                .antMatchers("/users/list", "/users/register", "/users/login", "/users/logout", "/users/create", "/users/profile", "/users/employees").permitAll()
 
                 // authenticate all remaining URLS
 

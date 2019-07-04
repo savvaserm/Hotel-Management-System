@@ -9,6 +9,8 @@ import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AccountService } from './services/account.service';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ReservationComponent } from './components/reservation/reservation.component';
+import { EmployeesComponent } from './components/employees/employees.component';
 import { AppRoutingModule } from './app.routing';
 import { FacebookModule} from 'ngx-facebook';
 // import { AuthGuardService } from './services/auth-guard.service';
@@ -22,7 +24,9 @@ import { ListService } from './services/list-service.service';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    UserslistComponent
+    UserslistComponent,
+    ReservationComponent,
+    EmployeesComponent
 
   ],
   imports: [
