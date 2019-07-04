@@ -1,0 +1,55 @@
+<mat-sidenav-container class="example-container">
+
+
+  <mat-sidenav #sidenav class="side" mode="side" [(opened)]="opened">
+
+    <div class="container-fluid">
+
+      <mat-list class="navbar">
+        <a style="color: black" href="/list"><mat-list-item class="item1">See customers</mat-list-item></a>
+
+        <a style="color: black" href="/employees"> <mat-list-item class="item2">Our employees</mat-list-item></a>
+
+        <a style="color: black" href="/reservations"> <mat-list-item class="item3">Make a reservation</mat-list-item></a>
+
+      </mat-list>
+    </div>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+
+    <p>
+      <button mat-button class="btn1" (click)="sidenav.toggle()"><mat-icon class="icon1">menu</mat-icon></button>
+    </p>
+
+    <form class="form">
+      <h4>Hotels</h4>
+      <mat-form-field>
+        <mat-label>Choose a hotel</mat-label>
+        <mat-select [(ngModel)]="selectedValue" name="hotel">
+          <mat-option>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p> Selected hotel: </p>
+    </form>
+
+    <form class="form2">
+      <h4>Room type</h4>
+      <mat-form-field>
+        <mat-label>Choose room type</mat-label>
+        <mat-select [(ngModel)]="selectedValue" name="roomtype">
+          <mat-option>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p> Selected room type: </p>
+    </form>
+
+
+    <a style="color: black" href="http://localhost:4200/rooms"> <button mat-raised-button class="btn">Check available rooms</button></a>
+  </mat-sidenav-content>
+
+
+</mat-sidenav-container>
