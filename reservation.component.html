@@ -29,17 +29,22 @@
         <mat-label>Choose a hotel</mat-label>
         <mat-select [(ngModel)]="selectedValue" name="hotel">
           <mat-option>
+            -
           </mat-option>
+          <mat-option *ngFor="let hotel of hotels" [value]="hotels">
+            {{hotel.hotelName}}
+          </mat-option>
+
         </mat-select>
       </mat-form-field>
-      <p> Selected hotel: </p>
+      <p> Selected hotel: {{selectedValue}}</p>
     </form>
 
     <form class="form2">
       <h4>Room type</h4>
       <mat-form-field>
         <mat-label>Choose room type</mat-label>
-        <mat-select [(ngModel)]="selectedValue" name="roomtype">
+        <mat-select [(ngModel)]="selectedValue2" name="roomtype">
           <mat-option>
           </mat-option>
         </mat-select>

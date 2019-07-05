@@ -13,7 +13,6 @@ import { ReservationComponent } from './components/reservation/reservation.compo
 import { EmployeesComponent } from './components/employees/employees.component';
 import { AppRoutingModule } from './app.routing';
 import { FacebookModule} from 'ngx-facebook';
-// import { AuthGuardService } from './services/auth-guard.service';
 import { CustomMaterialModule} from './material.module';
 import { UserslistComponent } from './components/userslist/userslist.component';
 import { ListService } from './services/list-service.service';

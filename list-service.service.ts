@@ -26,4 +26,10 @@ export class ListService {
 
   }
 
+  getHotels() {
+    const  hotelsUrl = AppComponent.API_URL + '/users/hotels';
+    return this.http.get(hotelsUrl)
+      .pipe(map(res => res));
+  }
+
 }
