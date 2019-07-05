@@ -18,6 +18,10 @@ public class UserDto {
 
     public static enum Role{ USER, ADMIN }
 
+    private String Firstname;
+
+    private String Lastname;
+
     @NotNull
     private String username ;
 
@@ -61,6 +65,22 @@ public class UserDto {
 //
 ////////////////////////////////////////////////////////////////
 
+    public String getFirstname() {
+        return Firstname;
+    }
+
+    public void setFirstname(String Firstname){
+        this.Firstname = Firstname;
+    }
+
+    public String getLastname(){
+        return Lastname;
+    }
+
+    public void setLastname(String Lastname){
+        this.Lastname = Lastname;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -98,7 +118,7 @@ public class UserDto {
 
     @Override
     public String toString() {
-        return "User [username=" + username + ", password=" + password + ", role=" + role +
+        return "User [username=" + username + ", password=" + password + ", role=" + role + ", firstname=" + Firstname + ", lastname=" + Lastname +
                 ",]";
     }
 

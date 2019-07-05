@@ -20,7 +20,7 @@ export class ListService {
   }
 
   getEmployees() {
-    const employeesUrl = AppComponent.API_URL + '/employees';
+    const employeesUrl = AppComponent.API_URL + '/users/employees';
     return this.http.get(employeesUrl)
     .pipe(map( res => res));
 

@@ -61,10 +61,13 @@ public class UserService {
         if (find(accountDto.getUsername()) != null)
         {
             throw new UserAlreadyExistsException("Username already exists:" + accountDto.getUsername());
+
         }
 
         User newUser = new User();
 
+        newUser.setFirstname(accountDto.getFirstname());
+        newUser.setLastname(accountDto.getLastname());
         newUser.setUsername(accountDto.getUsername());
         newUser.setEmail(accountDto.getEmail());
         newUser.setPassword(encoder().encode(accountDto.getPassword()));

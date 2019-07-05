@@ -4,8 +4,6 @@ import java.security.Principal;
 import java.util.List;
 
 import com.app.dto.UserDto;
-import com.app.entities.Employee;
-import com.app.services.EmployeeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +19,6 @@ import com.app.util.CustomErrorType;
 import com.app.entities.User;
 import com.app.dao.UserRepository;
 import com.app.services.UserService;
-import com.app.services.EmployeeService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,7 +32,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    private EmployeeService employeeService;
 
     @Autowired
     private UserRepository userRepository;
@@ -68,13 +64,6 @@ public class UserController {
         return userService.getUsers();
     }
 
-
-    // ta emfanizei sto localhost:8080/employees
-
-    @RequestMapping(value = "/employees", method = RequestMethod.GET)
-    public List<Employee> getEmployees() {
-        return employeeService.getEmployees();
-    }
 
     // request method to create a new account by a guest
 

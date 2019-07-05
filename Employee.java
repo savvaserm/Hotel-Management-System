@@ -85,6 +85,10 @@ public class Employee{
         this.endShift = endShift;
     }
 
+    public void setId(Long EmployeeID){
+        this.EmployeeID = EmployeeID;
+    }
+
     public Long getId() {
         return EmployeeID;
     }

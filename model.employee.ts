@@ -2,7 +2,7 @@ export class Employee {
 
     employeeID: string;
     firstname: string;
-    lastmame: string;
+    lastname: string;
     position: string;
     startShift: string;
     endShift: string;

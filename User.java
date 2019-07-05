@@ -14,15 +14,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
-@Table(name="user")
+@Table(name = "customer")
+public class User implements UserDetails {
 
-public class User implements UserDetails{
-
-    public static enum Role{ USER }
+    public static enum Role{ USER, ADMIN }
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id ;
+    private Long CustomerID ;
+
+    private String Firstname;
+
+    private String Lastname;
+
 
     @Column(unique = true)
     private String username ;
@@ -38,7 +42,9 @@ public class User implements UserDetails{
 
     }
 
-    public User(String username,String password,String email){
+    public User(String Firstname, String Lastname, String username, String password, String email){
+        this.setFirstname(Firstname);
+        this.setLastname(Lastname);
         this.setUsername(username);
         this.setPassword(password);
         this.setEmail(email);
@@ -78,8 +84,24 @@ public class User implements UserDetails{
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role +
+        return "User [id=" + CustomerID + ", username=" + username + ", password=" + password + ", role=" + role +
                 ",]";
+    }
+
+    public String getFirstname() {
+        return Firstname;
+    }
+
+    public void setFirstname(String Firstname){
+        this.Firstname = Firstname;
+    }
+
+    public String getLastname(){
+        return Lastname;
+    }
+
+    public void setLastname(String Lastname){
+        this.Lastname = Lastname;
     }
 
     @Override
@@ -117,7 +139,7 @@ public class User implements UserDetails{
     }
 
     public Long getId() {
-        return id;
+        return CustomerID;
     }
 
 
