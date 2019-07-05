@@ -80,7 +80,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 
                 // ignoring the guest's urls "
 
-                .antMatchers("/users/list", "/users/register", "/users/login", "/users/logout", "/users/create", "/users/profile", "/users/employees").permitAll()
+                .antMatchers("/users/hotels", "/users/list", "/users/register", "/users/login", "/users/logout", "/users/create", "/users/profile", "/users/employees").permitAll()
 
                 // authenticate all remaining URLS
 
