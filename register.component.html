@@ -12,6 +12,23 @@
 
       <span id="reauth-email" class="reauth-email"></span>
 
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted}">
+        <mat-form-field  class="full-width">
+          <mat-label for="firstname">Firstname</mat-label>
+          <input matInput placeholder="Enter firstname"type="text" class="form-control" name="firstname" id="firstname" [(ngModel)]="user.firstname" #firstname="ngModel" required />
+          <div *ngIf="f.submitted && firstname.valid" class="help-block">Firstname is required</div>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted }">
+        <mat-form-field  class="full-width">
+          <mat-label for="lastname">Lastname</mat-label>
+          <input matInput placeholder="Enter Lastname"type="text" class="form-control" name="lastname" id="lastname" [(ngModel)]="user.lastname" #lastname="ngModel" required />
+          <div *ngIf="f.submitted && !lastname.valid" class="help-block">Lastname is required</div>
+        </mat-form-field>
+      </div>
+
+
       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
         <mat-form-field  class="full-width">
         <mat-label for="username">Username</mat-label>
