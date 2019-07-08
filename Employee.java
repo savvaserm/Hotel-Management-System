@@ -21,6 +21,8 @@ public class Employee{
 
     private String Position;
 
+    private Integer emp_HotelID;
+
     private String startShift;
     private String endShift;
 

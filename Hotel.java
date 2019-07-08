@@ -13,7 +13,7 @@ public class Hotel{
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long HotelID ;
+    private Integer HotelID ;
 
     private String hotelName;
 
@@ -41,11 +41,11 @@ public class Hotel{
         this.hotelName = hotelName;
     }
 
-    public void setId(Long HotelID){
+    public void setId(Integer HotelID){
         this.HotelID = HotelID;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return HotelID;
     }
 

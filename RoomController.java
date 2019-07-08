@@ -1,12 +1,10 @@
 package com.app.controller;
 
 
-import java.security.Principal;
-import java.util.List;
+import com.app.entities.Room;
 
-
-import com.app.entities.Hotel;
-import com.app.services.HotelService;
+import com.app.services.RoomService;
+import com.app.services.RoomtypeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +14,16 @@ import org.springframework.web.bind.annotation.*;
 
 import com.app.util.CustomErrorType;
 
+import java.util.List;
 
 @RestController
-@RequestMapping(value = "/users", method = RequestMethod.GET)
-public class HotelController {
+@RequestMapping(value = "/users/hotels", method = RequestMethod.GET)
+public class RoomController {
 
     @Autowired
-    private HotelService hotelService;
+    RoomService roomService;
 
-    @GetMapping("/hotels")
-    public List<Hotel> getHotels() {
-        return hotelService.getHotels();
-    }
+    @GetMapping("/rooms")
+    public List<Room> getRooms(){ return roomService.getRooms(); }
+
 }
