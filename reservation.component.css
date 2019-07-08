@@ -73,3 +73,8 @@ body, html {
 .btn:hover {
   background-color: crimson;
 }
+
+.date {
+  padding: 50px;
+}
+

@@ -32,4 +32,10 @@ export class ListService {
       .pipe(map(res => res));
   }
 
+  getRoomtypes() {
+    const roomtypeUrl = AppComponent.API_URL + '/users/hotels/roomtypes';
+    return this.http.get(roomtypeUrl)
+      .pipe(map(res => res));
+  }
+
 }

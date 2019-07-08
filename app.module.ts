@@ -16,6 +16,7 @@ import { FacebookModule} from 'ngx-facebook';
 import { CustomMaterialModule} from './material.module';
 import { UserslistComponent } from './components/userslist/userslist.component';
 import { ListService } from './services/list-service.service';
+import { AaDatepickerModule } from 'ngx-animating-datepicker';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ListService } from './services/list-service.service';
 
   ],
   imports: [
-    BrowserModule, BrowserAnimationsModule, HttpClientModule, FormsModule, AppRoutingModule, CustomMaterialModule, FacebookModule.forRoot(),
+    BrowserModule, AaDatepickerModule,
+    BrowserAnimationsModule, HttpClientModule, FormsModule, AppRoutingModule, CustomMaterialModule, FacebookModule.forRoot(),
   ],
   exports: [
     AppRoutingModule,

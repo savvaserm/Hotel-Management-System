@@ -17,6 +17,7 @@
 
   </mat-sidenav>
 
+
   <mat-sidenav-content class="content">
 
     <p>
@@ -31,13 +32,13 @@
           <mat-option>
             -
           </mat-option>
-          <mat-option *ngFor="let hotel of hotels" [value]="hotels">
+          <mat-option *ngFor="let hotel of hotels" value="Hotel 1">
             {{hotel.hotelName}}
           </mat-option>
 
         </mat-select>
       </mat-form-field>
-      <p> Selected hotel: {{selectedValue}}</p>
+      <p> Selected hotel: {{selectedValue}} </p>
     </form>
 
     <form class="form2">
@@ -46,12 +47,23 @@
         <mat-label>Choose room type</mat-label>
         <mat-select [(ngModel)]="selectedValue2" name="roomtype">
           <mat-option>
+            -
           </mat-option>
+<!--          <mat-option *ngFor="let roomtype of roomtypes" [value]="roomtypes">-->
+<!--            {{roomtype}}-->
+<!--          </mat-option>-->
+          <mat-option value="Single Room">Single Room</mat-option>
+          <mat-option value="Double Room">Double Room</mat-option>
+          <mat-option value="Family Room">Family Room</mat-option>
+          <mat-option value="Suite">Suite</mat-option>
         </mat-select>
       </mat-form-field>
-      <p> Selected room type: </p>
+      <p> Selected room type: {{selectedValue2}}</p>
     </form>
 
+    <aa-animatepicker class="date"
+                      [options]="datepickerOptions"
+                      [(selectedDates)]="dates"></aa-animatepicker>
 
     <a style="color: black" href="http://localhost:4200/rooms"> <button mat-raised-button class="btn">Check available rooms</button></a>
     <a style="color: black" href="http://localhost:4200/profile"> <button mat-raised-button class="btn2">Cancel</button></a>
