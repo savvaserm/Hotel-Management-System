@@ -9,19 +9,35 @@ public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer RoomID;
+    private Integer roomId;
 
-    private Integer roomNumber;
-    private Integer room_roomTypeID;
-    private Integer room_hotelID;
+    private Integer room_number;
 
-    public Room(){}
+//    @ManyToOne
+//    @JoinColumn(columnDefinition = "room_room_typeid")
+    private Integer room_type;
 
-    public Room(Integer roomNumber, Integer room_roomTypeID, Integer room_hotelID){
-        this.roomNumber = roomNumber;
-        this.room_roomTypeID = room_roomTypeID;
-        this.room_hotelID = room_hotelID;
+//    @ManyToOne
+//    @JoinColumn(columnDefinition = "room_hotelId")
+    private Integer room_hotelid;
+
+    public Integer getRoomID() {
+        return roomId;
     }
+
+    public void setRoomID(Integer roomId){
+        this.roomId = roomId;
+    }
+
+    public Integer getRoomNumber() {
+        return room_number;
+    }
+
+    public void setRoomNumber(Integer room_number) {
+        this.room_number = room_number;
+    }
+
+
 
 
 }

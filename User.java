@@ -21,11 +21,11 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long CustomerID ;
+    private Integer customerId ;
 
-    private String Firstname;
+    private String firstname;
 
-    private String Lastname;
+    private String lastname;
 
 
     @Column(unique = true)
@@ -42,9 +42,9 @@ public class User implements UserDetails {
 
     }
 
-    public User(String Firstname, String Lastname, String username, String password, String email){
-        this.setFirstname(Firstname);
-        this.setLastname(Lastname);
+    public User(String firstname, String lastname, String username, String password, String email){
+        this.setFirstname(firstname);
+        this.setLastname(lastname);
         this.setUsername(username);
         this.setPassword(password);
         this.setEmail(email);
@@ -84,24 +84,24 @@ public class User implements UserDetails {
 
     @Override
     public String toString() {
-        return "User [id=" + CustomerID + ", username=" + username + ", password=" + password + ", role=" + role +
+        return "User [id=" + customerId + ", username=" + username + ", password=" + password + ", role=" + role +
                 ",]";
     }
 
     public String getFirstname() {
-        return Firstname;
+        return firstname;
     }
 
-    public void setFirstname(String Firstname){
-        this.Firstname = Firstname;
+    public void setFirstname(String firstname){
+        this.firstname = firstname;
     }
 
     public String getLastname(){
-        return Lastname;
+        return lastname;
     }
 
-    public void setLastname(String Lastname){
-        this.Lastname = Lastname;
+    public void setLastname(String lastname){
+        this.lastname = lastname;
     }
 
     @Override
@@ -138,9 +138,14 @@ public class User implements UserDetails {
         this.role = role;
     }
 
-    public Long getId() {
-        return CustomerID;
+    public Integer getId() {
+        return customerId;
     }
+
+    public void setId(Integer customerId) {
+        this.customerId = customerId;
+    }
+
 
 
 

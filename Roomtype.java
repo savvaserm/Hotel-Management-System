@@ -8,22 +8,22 @@ public class Roomtype {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer RoomTypeID ;
+    private Integer room_typeId ;
 
-    private String roomType;
+    private String room_type;
 
     private Integer price;
 
     public Roomtype(){}
 
-    public Roomtype(String roomType, Integer price){
-        this.roomType = roomType;
+    public Roomtype(String room_type, Integer price){
+        this.room_type = room_type;
         this.price = price;
     }
 
     @Override
     public String toString() {
-        return "Roomtype [id = " + RoomTypeID + ", roomtype = " + roomType + "]";
+        return "Roomtype [id = " + room_typeId + ", roomtype = " + room_type + "]";
     }
 
     public Integer getPrice(){
@@ -35,19 +35,19 @@ public class Roomtype {
     }
 
     public String getRoomType(){
-        return roomType;
+        return room_type;
     }
 
-    public void setRoomType(String roomType){
-        this.roomType = roomType;
+    public void setRoomType(String room_type){
+        this.room_type = room_type;
     }
 
-    public void setRoomTypeID(Integer RoomTypeID){
-        this.RoomTypeID = RoomTypeID;
+    public void setRoomTypeID(Integer room_typeid){
+        this.room_typeId = room_typeid;
     }
 
     public Integer getRoomTypeID(){
-        return RoomTypeID;
+        return room_typeId;
     }
 
 

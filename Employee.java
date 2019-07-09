@@ -13,86 +13,86 @@ public class Employee{
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long EmployeeID ;
+    private Integer employeeId;
 
-    private String Firstname;
+    private String firstname;
 
-    private String Lastname;
+    private String lastname;
 
-    private String Position;
+    private String position;
 
-    private Integer emp_HotelID;
+    private Integer emp_hotelId;
 
-    private String startShift;
-    private String endShift;
+    private String start_shift;
+    private String end_shift;
 
 
     public Employee(){
 
     }
 
-    public Employee(String Firstname, String Lastname, String Position, String startShift, String endShift){
-        this.setFirstname(Firstname);
-        this.setLastname(Lastname);
-        this.setPosition(Position);
-        this.setStartShift(startShift);
-        this.setEndShift(endShift);
+    public Employee(String firstname, String lastname, String position, String start_shift, String end_shift){
+        this.setFirstname(firstname);
+        this.setLastname(lastname);
+        this.setPosition(position);
+        this.setStartShift(start_shift);
+        this.setEndShift(end_shift);
     }
 
     @Override
     public String toString() {
-        return "Employee [id=" + EmployeeID + ", firstname=" + Firstname + ", lastname=" + Lastname + ", position=" + Position + ", start time=" + startShift + ", end time=" + endShift +
+        return "Employee [id=" + employeeId + ", first name=" + firstname + ", last name=" + lastname + ", position=" + position + ", start time=" + start_shift + ", end time=" + end_shift +
                 ",]";
     }
 
     public String getFirstname() {
-        return Firstname;
+        return firstname;
     }
 
-    public void setFirstname(String Firstname){
-        this.Firstname = Firstname;
+    public void setFirstname(String firstname){
+        this.firstname = firstname;
     }
 
     public String getLastname(){
-        return Lastname;
+        return lastname;
     }
 
-    public void setLastname(String Lastname){
-        this.Lastname = Lastname;
+    public void setLastname(String lastname){
+        this.lastname = lastname;
     }
 
 
     public String getPosition() {
-        return Position;
+        return position;
     }
 
-    public void setPosition(String Position) {
-        this.Position = Position;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
 
     public String getStartShift() {
-        return startShift;
+        return start_shift;
     }
 
     public void setStartShift(String startShift) {
-        this.startShift = startShift;
+        this.start_shift = startShift;
     }
 
     public String getEndShift() {
-        return endShift;
+        return end_shift;
     }
 
     public void setEndShift(String endShift) {
-        this.endShift = endShift;
+        this.end_shift = endShift;
     }
 
-    public void setId(Long EmployeeID){
-        this.EmployeeID = EmployeeID;
+    public void setId(Integer employeeId){
+        this.employeeId = employeeId;
     }
 
-    public Long getId() {
-        return EmployeeID;
+    public Integer getId() {
+        return employeeId;
     }
 
 
