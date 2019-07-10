@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Hotel{
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer hotelId ;
 
     private String hotel_name;
@@ -22,8 +22,8 @@ public class Hotel{
 
     }
 
-    public Hotel(String hotelName){
-        this.hotel_name = hotelName;
+    public Hotel(String hotel_name){
+        this.hotel_name = hotel_name;
     }
 
 
@@ -37,8 +37,8 @@ public class Hotel{
         return hotel_name;
     }
 
-    public void setHotelName(String hotelName){
-        this.hotel_name = hotelName;
+    public void setHotelName(String hotel_name){
+        this.hotel_name = hotel_name;
     }
 
     public void setId(Integer HotelID){

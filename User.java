@@ -21,7 +21,7 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer customerId ;
+    private Integer customerId;
 
     private String firstname;
 
@@ -29,10 +29,10 @@ public class User implements UserDetails {
 
 
     @Column(unique = true)
-    private String username ;
+    private String username;
 
     @JsonProperty(access = Access.READ_WRITE)
-    private String password ;
+    private String password;
 
     private String  role;
 
