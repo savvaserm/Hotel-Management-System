@@ -17,5 +17,4 @@ public class RatingService {
         return ratingRepository.findAll();
     }
 
-
 }

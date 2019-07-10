@@ -10,13 +10,13 @@ public class Roomtype {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer room_typeId ;
 
-    private String room_type;
+    private Enum room_type;
 
     private Integer price;
 
     public Roomtype(){}
 
-    public Roomtype(String room_type, Integer price){
+    public Roomtype(Enum room_type, Integer price){
         this.room_type = room_type;
         this.price = price;
     }
@@ -34,11 +34,11 @@ public class Roomtype {
         this.price = price;
     }
 
-    public String getRoomType(){
+    public Enum getRoomType(){
         return room_type;
     }
 
-    public void setRoomType(String room_type){
+    public void setRoomType(Enum room_type){
         this.room_type = room_type;
     }
 

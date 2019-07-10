@@ -21,7 +21,9 @@ public class Employee{
 
     private String position;
 
-    private Integer emp_hotelId;
+    @ManyToOne
+    @JoinColumn(name = "emp_hotelId", referencedColumnName = "hotelId")
+    private Hotel emp_hotelId;
 
     private String start_shift;
     private String end_shift;
@@ -95,6 +97,13 @@ public class Employee{
         return employeeId;
     }
 
+    public Hotel getEmp_hotelId() {
+        return emp_hotelId;
+    }
+
+    public void setEmp_hotelId(Hotel emp_hotelId) {
+        this.emp_hotelId = emp_hotelId;
+    }
 
 
 }

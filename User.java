@@ -38,8 +38,8 @@ public class User implements UserDetails {
 
     private String email;
 
-    public User(){
 
+    public User(){
     }
 
     public User(String firstname, String lastname, String username, String password, String email){

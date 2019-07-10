@@ -10,26 +10,33 @@ public class Rating {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer room_ratingId;
+    private Integer roomratingId;
 
     private Double rating;
     private Date start_date;
     private Date end_date;
 
-    private Integer rating_roomId;
+    @ManyToOne
+    @JoinColumn(name = "roomrating_roomId", referencedColumnName = "roomId")
+    private Room roomrating_roomId;
+
+    @ManyToOne
+    @JoinColumn(name = "roomrating_customerId", referencedColumnName = "customerId")
+    private User roomrating_customerId;
+
 
     @Override
     public String toString() {
-        return "Rating [id=" + room_ratingId + ", rating: " + rating + ", start date = "
+        return "Rating [id=" + roomratingId + ", rating: " + rating + ", start date = "
                 + start_date + ", end date = " + end_date + "]";
     }
 
     public Integer getRoom_ratingId() {
-        return room_ratingId;
+        return roomratingId;
     }
 
-    public void setRoom_ratingId(Integer room_ratingId) {
-        this.room_ratingId = room_ratingId;
+    public void setRoom_ratingId(Integer roomratingId) {
+        this.roomratingId = roomratingId;
     }
 
     public Double getRating() {
@@ -56,6 +63,21 @@ public class Rating {
         this.end_date = end_date;
     }
 
+    public Room getRoomrating_roomId() {
+        return roomrating_roomId;
+    }
+
+    public void setRoomrating_roomId(Room roomrating_roomId) {
+        this.roomrating_roomId = roomrating_roomId;
+    }
+
+    public User getRoomrating_customerId() {
+        return roomrating_customerId;
+    }
+
+    public void setRoomrating_customerId(User roomrating_customerId) {
+        this.roomrating_customerId = roomrating_customerId;
+    }
 
 
 }

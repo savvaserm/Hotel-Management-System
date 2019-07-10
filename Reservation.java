@@ -18,9 +18,13 @@ public class Reservation {
     private Date start_date;
     private Date end_date;
 
-    private Integer reservation_roomId;
+    @ManyToOne
+    @JoinColumn(name = "reservation_roomId", referencedColumnName = "roomId")
+    private Room reservation_roomId;
 
-    private Integer reservation_customerId;
+    @ManyToOne
+    @JoinColumn(name = "reservation_customerId", referencedColumnName = "customerId")
+    private User reservation_customerId;
 
     @Override
     public String toString(){
@@ -66,6 +70,22 @@ public class Reservation {
 
     public void setEnd_date(Date end_date) {
         this.end_date = end_date;
+    }
+
+    public Room getReservation_roomId() {
+        return reservation_roomId;
+    }
+
+    public void setReservation_roomId(Room reservation_roomId) {
+        this.reservation_roomId =reservation_roomId;
+    }
+
+    public User getReservation_customerId() {
+        return reservation_customerId;
+    }
+
+    public void setReservation_customerId(User reservation_customerId) {
+        this.reservation_customerId = reservation_customerId;
     }
 
 }
