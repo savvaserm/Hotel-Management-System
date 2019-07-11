@@ -6,11 +6,17 @@
     <div class="container-fluid">
 
       <mat-list class="navbar">
-        <a style="color: black" href="/list"><mat-list-item class="item1">See customers</mat-list-item></a>
+        <a style="color: black" href="/list">
+          <mat-list-item class="item1">See customers</mat-list-item>
+        </a>
 
-        <a style="color: black" href="/employees"> <mat-list-item class="item2">Our employees</mat-list-item></a>
+        <a style="color: black" href="/employees">
+          <mat-list-item class="item2">Our employees</mat-list-item>
+        </a>
 
-        <a style="color: black" href="/reservations"> <mat-list-item class="item3">Make a reservation</mat-list-item></a>
+        <a style="color: black" href="/reservations">
+          <mat-list-item class="item3">Make a reservation</mat-list-item>
+        </a>
 
       </mat-list>
     </div>
@@ -21,10 +27,33 @@
   <mat-sidenav-content class="content">
 
     <p>
-      <button mat-button class="btn1" (click)="sidenav.toggle()"><mat-icon class="icon1">menu</mat-icon></button>
+      <button mat-button class="btn1" (click)="sidenav.toggle()">
+        <mat-icon class="icon1">menu</mat-icon>
+      </button>
     </p>
+    <div class="form0">
+    <form (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+      <mat-form-field class="f0">
 
-    <form class="form">
+        <mat-label for="Last name">Last name</mat-label>
+        <input matInput placeholder="Enter Last name" type="text" class="form-control" id="lastname" name="lastname"
+               [(ngModel)]="user.lastname" #lastname="ngModel" required/>
+        <div *ngIf="f.submitted" class="help-block">Last name is required</div>
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field class="f1">
+
+        <mat-label for="First name">First name</mat-label>
+        <input matInput placeholder="Enter First name" type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="user.firstname" #firstname="ngModel" required />
+        <div *ngIf="f.submitted" class="help-block">First name is required</div>
+      </mat-form-field>
+    </form>
+    </div>
+
+
+
+    <div class="form">
+    <form>
       <h4>Hotels</h4>
       <mat-form-field>
         <mat-label>Choose a hotel</mat-label>
@@ -38,35 +67,40 @@
 
         </mat-select>
       </mat-form-field>
-      <p> Selected hotel: {{selectedValue}} </p>
-    </form>
-
-    <form class="form2">
-      <h4>Room type</h4>
+&nbsp;
+&nbsp;
+&nbsp;
       <mat-form-field>
         <mat-label>Choose room type</mat-label>
         <mat-select [(ngModel)]="selectedValue2" name="roomtype">
           <mat-option>
             -
           </mat-option>
-<!--          <mat-option *ngFor="let roomtype of roomtypes" [value]="roomtypes">-->
-<!--            {{roomtype}}-->
-<!--          </mat-option>-->
+          <!--          <mat-option *ngFor="let roomtype of roomtypes" [value]="roomtypes">-->
+          <!--            {{roomtype}}-->
+          <!--          </mat-option>-->
           <mat-option value="Single Room">Single Room</mat-option>
           <mat-option value="Double Room">Double Room</mat-option>
           <mat-option value="Family Room">Family Room</mat-option>
           <mat-option value="Suite">Suite</mat-option>
         </mat-select>
       </mat-form-field>
-      <p> Selected room type: {{selectedValue2}}</p>
     </form>
+    </div>
 
-    <aa-animatepicker class="date"
-                      [options]="datepickerOptions"
-                      [(selectedDates)]="dates"></aa-animatepicker>
+    <div class="datepicker">
+      <p><strong>Select Dates:</strong></p>
+      <aa-animatepicker class="date"
+                        [options]="datepickerOptions"
+                        [(selectedDates)]="dates"></aa-animatepicker>
+    </div>
 
-    <a style="color: black" href="http://localhost:4200/rooms"> <button mat-raised-button class="btn">Check available rooms</button></a>
-    <a style="color: black" href="http://localhost:4200/profile"> <button mat-raised-button class="btn2">Cancel</button></a>
+    <a style="color: black" href="http://localhost:4200/rooms">
+      <button mat-raised-button class="btn">Complete reservation</button>
+    </a>
+    <a style="color: black" href="http://localhost:4200/profile">
+      <button mat-raised-button class="btn2">Cancel</button>
+    </a>
   </mat-sidenav-content>
 
 

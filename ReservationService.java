@@ -20,6 +20,8 @@ public class ReservationService {
 
     private static final Logger logger = LoggerFactory.getLogger(ReservationService.class);
 
+    private Room room = new Room();
+
     @Autowired
     ReservationRepository reservationRepository;
 
@@ -43,7 +45,7 @@ public class ReservationService {
         reservation.setCheckin(checkin);
         reservation.setCheckout(checkout);
         reservation.setReservation_customerId(reservation_customerId);
-
+        room.setAvailability(false);
         return reservationRepository.save(reservation);
     }
 }

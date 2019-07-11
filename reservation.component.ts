@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListService } from '../../services/list-service.service';
 import { Options } from 'ngx-animating-datepicker';
+import {User} from '../../model/model.user';
 
 
 @Component({
@@ -33,6 +34,8 @@ export class ReservationComponent implements OnInit {
   errorMessage: string;
   noHotelsMessage: string;
   noRoomtypesMessage: string;
+  dates: Date;
+  user: User = new User();
 
   constructor(private listService: ListService) { }
 
