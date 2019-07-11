@@ -12,12 +12,12 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "", method = RequestMethod.GET)
+@RequestMapping(value = "/users/hotels/rooms", method = RequestMethod.GET)
 public class RatingController {
 
     @Autowired
     RatingService ratingService;
 
-    @GetMapping("/")
+    @GetMapping("/rating")
     public List<Rating> getRatings() { return ratingService.getRatings(); }
 }

@@ -3,6 +3,7 @@ package com.app.entities;
 import javax.persistence.*;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -15,8 +16,8 @@ public class Reservation {
 
     private Double total;
     private String reservation_details;
-    private Date start_date;
-    private Date end_date;
+    private LocalDate checkin;
+    private LocalDate checkout;
 
     @ManyToOne
     @JoinColumn(name = "reservation_roomId", referencedColumnName = "roomId")
@@ -28,7 +29,7 @@ public class Reservation {
 
     @Override
     public String toString(){
-        return "Reservation [id = " + room_reservationId + ", start date: " + start_date + ", end date: " + end_date
+        return "Reservation [id = " + room_reservationId + ", checkin: " + checkin + ", checkout: " + checkout
                 + ", reservation details = " + reservation_details + ", total = " + total + "]";
     }
 
@@ -56,20 +57,20 @@ public class Reservation {
         this.reservation_details = reservation_details;
     }
 
-    public Date getStart_date() {
-        return start_date;
+    public LocalDate getCheckin() {
+        return checkin;
     }
 
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
+    public void setCheckin(LocalDate checkin) {
+        this.checkin = checkin;
     }
 
-    public Date getEnd_date() {
-        return end_date;
+    public LocalDate getCheckout() {
+        return checkout;
     }
 
-    public void setEnd_date(Date end_date) {
-        this.end_date = end_date;
+    public void setCheckout(LocalDate checkout) {
+        this.checkout = checkout;
     }
 
     public Room getReservation_roomId() {

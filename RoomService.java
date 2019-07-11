@@ -12,6 +12,5 @@ public class RoomService {
 
     @Autowired
     RoomRepository roomRepository;
-
     public List<Room> getRooms(){ return roomRepository.findAll(); }
 }

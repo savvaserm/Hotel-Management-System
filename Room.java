@@ -12,6 +12,7 @@ public class Room {
     private Integer roomId;
 
     private Integer room_number;
+    private Boolean available;
 
     @ManyToOne
     @JoinColumn(name = "room_roomtypeId", referencedColumnName = "room_typeId")
@@ -51,6 +52,14 @@ public class Room {
 
     public void setRoom_hotelId(Hotel room_hotelId) {
         this.room_hotelId = room_hotelId;
+    }
+
+    public boolean getAvailability() {
+        return available;
+    }
+
+    public void setAvailability(Boolean available) {
+        this.available = available;
     }
 
 }
