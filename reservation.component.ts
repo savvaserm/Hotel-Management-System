@@ -36,6 +36,11 @@ export class ReservationComponent implements OnInit {
   noRoomtypesMessage: string;
   dates: Date;
   user: User = new User();
+  showVar: boolean;
+
+  toggleChild() {
+    this.showVar = !this.showVar;
+  }
 
   constructor(private listService: ListService) { }
 

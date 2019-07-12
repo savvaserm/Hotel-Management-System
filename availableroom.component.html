@@ -1,0 +1,23 @@
+<div class="rooms" *ngIf = "showMePartially">
+
+
+  <table class="table table-striped table-bordered">
+    <thead>
+
+    <tr>
+      <th>Room</th>
+      <th>Available</th>
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+  <tr *ngFor="let room of rooms">
+    <td>{{ room }}</td>
+
+  </tr>
+
+  </tbody>
+  </table>
+</div>

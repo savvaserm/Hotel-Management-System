@@ -17,6 +17,7 @@ import { CustomMaterialModule} from './material.module';
 import { UserslistComponent } from './components/userslist/userslist.component';
 import { ListService } from './services/list-service.service';
 import { AaDatepickerModule } from 'ngx-animating-datepicker';
+import { AvailableroomComponent } from './components/availableroom/availableroom.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AaDatepickerModule } from 'ngx-animating-datepicker';
     ProfileComponent,
     UserslistComponent,
     ReservationComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    AvailableroomComponent
 
   ],
   imports: [

@@ -11,7 +11,7 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer roomId;
 
-    private Integer room_number;
+    private String room_number;
     private Boolean available;
 
     @ManyToOne
@@ -30,11 +30,11 @@ public class Room {
         this.roomId = roomId;
     }
 
-    public Integer getRoomNumber() {
+    public String getRoomNumber() {
         return room_number;
     }
 
-    public void setRoomNumber(Integer room_number) {
+    public void setRoomNumber(String room_number) {
         this.room_number = room_number;
     }
 

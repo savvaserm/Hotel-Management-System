@@ -16,7 +16,7 @@ body, html {
   height: 50px;
   font-size: 40px;
 }
-.f0 {
+.form0 {
   padding: 20px;
 }
 
@@ -26,6 +26,9 @@ body, html {
 
 }
 
+.rooms {
+
+}
 .datepicker {
   padding: 20px;
 }
@@ -75,6 +78,13 @@ body, html {
   width: 100px;
   left: 25%;
   top: 60px;
+}
+
+.btn3 {
+  background-color: black;
+  color: navajowhite;
+  margin: 20px;
+
 }
 
 .btn:hover {
