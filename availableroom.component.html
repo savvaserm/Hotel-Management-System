@@ -13,7 +13,6 @@
     </thead>
 
     <tbody>
-
   <tr *ngFor="let room of rooms">
     <td>{{room.roomNumber}}</td>
     &nbsp;
@@ -26,9 +25,11 @@
     &nbsp;
     &nbsp;
     <td>{{room.availability}}</td>
+    <td><input type="button" value="Select" (click) = "roomSelected(room)" /></td>
 
   </tr>
 
   </tbody>
   </table>
+<strong><div [innerHTML]="this.selectedRoom | jsonprint"></div></strong>
 </div>

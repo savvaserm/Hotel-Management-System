@@ -59,9 +59,9 @@ public class ReservationService {
 
     public Reservation reserveRoom(ReservationDto reservationDto) {
 
-        if(!reservationDto.getReservation_roomId().getAvailability()) {
-            throw new NoAvailableRoomsException("Room not available!");
-        }
+//        if(!reservationDto.getReservation_roomId().getAvailability()) {
+//            throw new NoAvailableRoomsException("Room not available!");
+//        }
 
         Reservation reservation = new Reservation();
 
@@ -69,7 +69,18 @@ public class ReservationService {
         reservation.setReservation_customerId(reservationDto.getReservation_customerId());
         reservation.setCheckin(reservationDto.getCheckin());
         reservation.setCheckout(reservationDto.getCheckout());
+//        reservation.getReservation_roomId().setAvailability(false);
 
-        return reservationRepository.saveAndFlush(reservation);
+
+        return reservationRepository.save(reservation);
     }
+
+    public List<Reservation> getAllReservations() {
+        return reservationRepository.findAll();
+    }
+
+    private List<Reservation> checkIfAvailable(Room roomId, LocalDate checkin, LocalDate checkout) {
+        return reservationRepository.findByRoomAndDate(roomId, checkin, checkout);
+    }
+
 }

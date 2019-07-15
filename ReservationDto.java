@@ -23,6 +23,9 @@ public class ReservationDto {
 
     private LocalDate checkin;
     private LocalDate checkout;
+    private String reservation_details;
+    private Double total;
+
 
     public LocalDate getCheckin() {
         return checkin;
@@ -40,12 +43,12 @@ public class ReservationDto {
         this.checkout = checkout;
     }
 
-    public Room getReservation_roomId() {
+    public  Room getReservation_roomId() {
         return reservation_roomId;
     }
 
     public void setReservation_roomId(Room reservation_roomId) {
-        this.reservation_roomId =reservation_roomId;
+        this.reservation_roomId = reservation_roomId;
     }
 
     public User getReservation_customerId() {
@@ -55,6 +58,23 @@ public class ReservationDto {
     public void setReservation_customerId(User reservation_customerId) {
         this.reservation_customerId = reservation_customerId;
     }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
+    public String getReservation_details() {
+        return reservation_details;
+    }
+
+    public void setReservation_details(String reservation_details) {
+        this.reservation_details = reservation_details;
+    }
+
 
     @Override
     public String toString() {

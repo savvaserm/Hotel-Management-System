@@ -1,6 +1,7 @@
 package com.app.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -14,11 +15,14 @@ public class Room {
     private String room_number;
     private Boolean available;
 
-    @ManyToOne
+//    @OneToMany(mappedBy = "reservation_roomId", cascade = CascadeType.ALL)
+//    private List<Reservation> reservations;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "room_roomtypeId", referencedColumnName = "room_typeId")
     private Roomtype room_roomtypeId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "room_hotelId", referencedColumnName = "hotelId")
     private Hotel room_hotelId;
 
@@ -60,6 +64,10 @@ public class Room {
 
     public void setAvailability(Boolean available) {
         this.available = available;
+    }
+
+    public String toString() {
+        return "Room [id = " + roomId + ", room number = " + room_number + ", availability = " + available + "]";
     }
 
 }

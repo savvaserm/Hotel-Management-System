@@ -15,7 +15,7 @@ export class RoomListService {
   constructor(private http: HttpClient) {}
 
     getRooms() {
-      const roomsUrl = AppComponent.API_URL + 'users/hotels//rooms';
+      const roomsUrl = AppComponent.API_URL + '/users/hotels/rooms';
       return this.http.get(roomsUrl)
         .pipe(map(res => res));
     }

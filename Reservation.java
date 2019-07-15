@@ -33,6 +33,19 @@ public class Reservation {
                 + ", reservation details = " + reservation_details + ", total = " + total + "]";
     }
 
+    public Reservation(){}
+
+    public Reservation(Integer room_reservationId, Double total, String reservation_details, LocalDate checkin, LocalDate checkout, Room reservation_roomId,
+                       User reservation_customerId ){
+        this.setRoom_reservationId(room_reservationId);
+        this.setTotal(total);
+        this.setReservation_details(reservation_details);
+        this.setCheckin(checkin);
+        this.setCheckout(checkout);
+        this.setReservation_roomId(reservation_roomId);
+        this.setReservation_customerId(reservation_customerId);
+    }
+
     public Integer getRoom_reservationId() {
         return room_reservationId;
     }

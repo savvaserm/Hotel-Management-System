@@ -1,11 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RoomListService } from '../../services/room-list.service';
 import { Room } from '../../model/model.room';
+import {JsonPrint} from './pipe';
+
 
 @Component({
   selector: 'app-availableroom',
   templateUrl: './availableroom.component.html',
-  styleUrls: ['./availableroom.component.css']
+  styleUrls: ['./availableroom.component.css'],
 })
 export class AvailableroomComponent implements OnInit {
   rooms: any;
@@ -13,7 +15,16 @@ export class AvailableroomComponent implements OnInit {
   errorMessage: string;
   noRoomsMessage: string;
 
-  constructor(private roomListService: RoomListService) { }
+  constructor(private roomListService: RoomListService) {
+  }
+
+  selectedRoom = {
+    room_hotelId: '{id: , hotelName: }' + '<br/>',
+    availability: '' + '<br/>',
+    roomtype: '{price: , roomtype: , roomtypeId: }' + '<br/>',
+    roomId: '' + '<br/>',
+    roomNumber: ''
+  }
 
   ngOnInit() {
     this.getRooms();
@@ -32,10 +43,13 @@ export class AvailableroomComponent implements OnInit {
           this.noRoomsMessage = 'No rooms available';
         }
       }, error => {
-      this.errorMessage = error;
-    });
+        this.errorMessage = error;
+      });
+  }
 
 
+  roomSelected(room) {
+    this.selectedRoom = room;
   }
 
 }
