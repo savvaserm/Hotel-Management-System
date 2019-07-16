@@ -1,6 +1,5 @@
 export class Room {
   roomId: string;
-  roomTypeId: string;
-  roomNumber: string;
-  availability: boolean;
+  roomnumber: string;
+  available: boolean;
 }

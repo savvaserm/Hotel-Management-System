@@ -19,12 +19,12 @@ export class AvailableroomComponent implements OnInit {
   }
 
   selectedRoom = {
-    room_hotelId: '{id: , hotelName: }' + '<br/>',
-    availability: '' + '<br/>',
-    roomtype: '{price: , roomtype: , roomtypeId: }' + '<br/>',
-    roomId: '' + '<br/>',
-    roomNumber: ''
-  }
+    room_hotelId: '{id: , hotel name: }',
+    availability: '' ,
+    roomtype: '{price: , roomtype: }',
+    roomId: '' ,
+    roomNumber: ','
+  };
 
   ngOnInit() {
     this.getRooms();

@@ -19,11 +19,11 @@ public class Reservation {
     private LocalDate checkin;
     private LocalDate checkout;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "reservation_roomId", referencedColumnName = "roomId")
     private Room reservation_roomId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "reservation_customerId", referencedColumnName = "customerId")
     private User reservation_customerId;
 

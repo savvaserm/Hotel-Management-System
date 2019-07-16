@@ -1,4 +1,3 @@
 export class Hotel {
-  HotelID: string;
-  hotelName: string;
+  hotelname: string;
 }

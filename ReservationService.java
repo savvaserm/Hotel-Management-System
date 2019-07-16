@@ -69,7 +69,7 @@ public class ReservationService {
         reservation.setReservation_customerId(reservationDto.getReservation_customerId());
         reservation.setCheckin(reservationDto.getCheckin());
         reservation.setCheckout(reservationDto.getCheckout());
-//        reservation.getReservation_roomId().setAvailability(false);
+//      reservation.getReservation_roomId().setAvailability(false);
 
 
         return reservationRepository.save(reservation);

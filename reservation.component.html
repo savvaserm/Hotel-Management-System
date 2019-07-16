@@ -74,13 +74,9 @@
           <mat-option>
             -
           </mat-option>
-          <!--          <mat-option *ngFor="let roomtype of roomtypes" [value]="roomtypes">-->
-          <!--            {{roomtype}}-->
-          <!--          </mat-option>-->
-          <mat-option value="Single Room">Single Room</mat-option>
-          <mat-option value="Double Room">Double Room</mat-option>
-          <mat-option value="Family Room">Family Room</mat-option>
-          <mat-option value="Suite">Suite</mat-option>
+                    <mat-option *ngFor="let roomtype of roomtypes" [value]="roomtypes">
+                      {{roomtype.roomType}}
+                    </mat-option>
         </mat-select>
       </mat-form-field>
     </form>
@@ -108,24 +104,8 @@
     &nbsp;
     &nbsp;
     &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    <a style="color: black" href="http://localhost:4200/rooms">
+
+    <a style="color: black" href="http://localhost:4200/completed">
       <button mat-raised-button class="btn">Complete reservation</button>
     </a>
 

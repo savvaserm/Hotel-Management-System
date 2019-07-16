@@ -3,6 +3,7 @@ package com.app.entities;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -29,7 +30,7 @@ public class User implements UserDetails {
     private String lastname;
 
 //    @OneToMany(mappedBy = "reservation_customerId", cascade = CascadeType.ALL)
-//    private List<Reservation> reservations;
+//    public Collection<Reservation> reservations;
 
     @Column(unique = true)
     private String username;

@@ -1,6 +1,7 @@
 package com.app.entities;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -16,7 +17,7 @@ public class Room {
     private Boolean available;
 
 //    @OneToMany(mappedBy = "reservation_roomId", cascade = CascadeType.ALL)
-//    private List<Reservation> reservations;
+//    private Collection<Reservation> reservations;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "room_roomtypeId", referencedColumnName = "room_typeId")
@@ -58,7 +59,8 @@ public class Room {
         this.room_hotelId = room_hotelId;
     }
 
-    public boolean getAvailability() {
+
+    public Boolean getAvailability() {
         return available;
     }
 
@@ -67,7 +69,7 @@ public class Room {
     }
 
     public String toString() {
-        return "Room [id = " + roomId + ", room number = " + room_number + ", availability = " + available + "]";
+        return "Room [id = " + roomId + ", room number = " + room_number + "]";
     }
 
 }
