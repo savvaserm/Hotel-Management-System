@@ -93,3 +93,21 @@ body, html {
   padding: 50px;
 }
 
+.table{
+  padding: 20px;
+}
+.pre{
+  text-align: left;
+  font-size: 18px;
+}
+.card{
+  position: relative;
+  left: 50%;
+  bottom: 500px;
+  width: 600px;
+  background-color: lightgray;
+}
+.header{
+  font-size: 18px;
+}
+

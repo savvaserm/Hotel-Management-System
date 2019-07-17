@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ListService } from '../../services/list-service.service';
 import { Options } from 'ngx-animating-datepicker';
-import {User} from '../../model/model.user';
+import { User } from '../../model/model.user';
+import { RoomListService } from '../../services/room-list.service';
+import {formatDate} from '@angular/common';
+import DateTimeFormat = Intl.DateTimeFormat;
+
 
 
 @Component({
@@ -26,6 +30,8 @@ export class ReservationComponent implements OnInit {
     weekStart: 'monday' // Set the week start day
   };
 
+  rooms: any;
+  @Input() showMePartially: boolean;
   roomtypes: any;
   hotels: any;
   selectedValue: string;
@@ -34,19 +40,29 @@ export class ReservationComponent implements OnInit {
   errorMessage: string;
   noHotelsMessage: string;
   noRoomtypesMessage: string;
+  noRoomsMessage: string;
   dates: Date;
   user: User = new User();
   showVar: boolean;
-
+  selectedRoom = {
+    room_hotelId: '{id: , hotel name: }',
+    availability: '' ,
+    roomtype: '{price: , roomtype: }',
+    roomId: '' ,
+    roomNumber: ','
+  };
   toggleChild() {
     this.showVar = !this.showVar;
   }
 
-  constructor(private listService: ListService) { }
+
+
+  constructor(private listService: ListService, private roomListService: RoomListService) { }
 
   ngOnInit() {
     this.getHotels();
     this.getRoomtypes();
+    this.getRooms();
   }
 
   getHotels() {
@@ -78,4 +94,29 @@ export class ReservationComponent implements OnInit {
           this.errorMessage = error;
       });
     }
+
+
+  getRooms() {
+    this.roomListService.getRooms()
+      .subscribe(data => {
+
+        if (data) {
+
+          this.rooms = data;
+
+        } else {
+
+          this.noRoomsMessage = 'No rooms available';
+        }
+      }, error => {
+        this.errorMessage = error;
+      });
+  }
+
+
+  roomSelected(room) {
+    this.selectedRoom = room;
+  }
+
+
 }
