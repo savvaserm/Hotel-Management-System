@@ -27,7 +27,7 @@ public class Reservation {
     @Override
     public String toString(){
         return "Reservation [id = " + room_reservationId + ", checkin: " + checkin + ", checkout: " + checkout
-                + ", reservationRoom details = " + reservation_details + ", total = " + total + "]";
+                + ", reservation details = " + reservation_details + ", total = " + total + "]";
     }
 
     public Reservation(){}
