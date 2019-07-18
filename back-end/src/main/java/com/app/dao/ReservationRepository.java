@@ -16,7 +16,7 @@ import java.util.List;
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
 
     @Query(value = "SELECT r FROM Reservation r " +
-            "WHERE r.reservation_roomId.id = :roomId AND " +
+            "WHERE r.room.id = :roomId AND " +
             "(:checkin BETWEEN r.checkin AND r.checkout) OR " +
             "(:checkout BETWEEN r.checkin AND r.checkout) OR " +
             "(:checkin <= r.checkin AND :checkout >= r.checkout)")

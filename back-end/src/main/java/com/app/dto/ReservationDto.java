@@ -1,25 +1,15 @@
 package com.app.dto;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
-
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
-import com.app.entities.Room;
-import com.app.entities.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import java.time.LocalDate;
 
 public class ReservationDto {
 
     @NotNull
-    private Room reservation_roomId;
+    private long roomId;
 
     @NotNull
-    private User reservation_customerId;
+    private long customerId;
 
     private LocalDate checkin;
     private LocalDate checkout;
@@ -43,20 +33,20 @@ public class ReservationDto {
         this.checkout = checkout;
     }
 
-    public  Room getReservation_roomId() {
-        return reservation_roomId;
+    public long getRoomId() {
+        return roomId;
     }
 
-    public void setReservation_roomId(Room reservation_roomId) {
-        this.reservation_roomId = reservation_roomId;
+    public void setRoomId(long roomId) {
+        this.roomId = roomId;
     }
 
-    public User getReservation_customerId() {
-        return reservation_customerId;
+    public long getCustomerId() {
+        return customerId;
     }
 
-    public void setReservation_customerId(User reservation_customerId) {
-        this.reservation_customerId = reservation_customerId;
+    public void setCustomerId(long customerId) {
+        this.customerId = customerId;
     }
 
     public Double getTotal() {
@@ -78,7 +68,13 @@ public class ReservationDto {
 
     @Override
     public String toString() {
-        return "Reservation [room id=" + reservation_roomId + ", customer id =" + reservation_customerId + ", checkin =" + checkin + ", checkout =" + checkout +
-                ",]";
+        return "ReservationDto{" +
+                "roomId=" + roomId +
+                ", customerId=" + customerId +
+                ", checkin=" + checkin +
+                ", checkout=" + checkout +
+                ", reservation_details='" + reservation_details + '\'' +
+                ", total=" + total +
+                '}';
     }
 }

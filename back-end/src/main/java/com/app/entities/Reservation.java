@@ -9,7 +9,7 @@ public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer room_reservationId;
+    private Integer id;
 
     private Double total;
     private String reservation_details;
@@ -18,37 +18,37 @@ public class Reservation {
 
     @ManyToOne
     @JoinColumn(name = "reservation_roomId", referencedColumnName = "roomId")
-    private Room reservation_roomId;
+    private Room room;
 
     @ManyToOne
     @JoinColumn(name = "reservation_customerId", referencedColumnName = "customerId")
-    private User reservation_customerId;
+    private User customer;
 
     @Override
     public String toString(){
-        return "Reservation [id = " + room_reservationId + ", checkin: " + checkin + ", checkout: " + checkout
+        return "Reservation [id = " + id + ", checkin: " + checkin + ", checkout: " + checkout
                 + ", reservation details = " + reservation_details + ", total = " + total + "]";
     }
 
     public Reservation(){}
 
-    public Reservation(Integer room_reservationId, Double total, String reservation_details, LocalDate checkin, LocalDate checkout, Room reservation_roomId,
-                       User reservation_customerId ){
-        this.setRoom_reservationId(room_reservationId);
+    public Reservation(Integer id, Double total, String reservation_details, LocalDate checkin, LocalDate checkout, Room room,
+                       User customer){
+        this.setId(id);
         this.setTotal(total);
         this.setReservation_details(reservation_details);
         this.setCheckin(checkin);
         this.setCheckout(checkout);
-        this.setReservation_roomId(reservation_roomId);
-        this.setReservation_customerId(reservation_customerId);
+        this.setRoom(room);
+        this.setCustomer(customer);
     }
 
-    public Integer getRoom_reservationId() {
-        return room_reservationId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setRoom_reservationId(Integer room_reservationId) {
-        this.room_reservationId = room_reservationId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Double getTotal() {
@@ -83,20 +83,20 @@ public class Reservation {
         this.checkout = checkout;
     }
 
-    public Room getReservation_roomId() {
-        return reservation_roomId;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setReservation_roomId(Room reservation_roomId) {
-        this.reservation_roomId = reservation_roomId;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
-    public User getReservation_customerId() {
-        return reservation_customerId;
+    public User getCustomer() {
+        return customer;
     }
 
-    public void setReservation_customerId(User reservation_customerId) {
-        this.reservation_customerId = reservation_customerId;
+    public void setCustomer(User customer) {
+        this.customer = customer;
     }
 
 }

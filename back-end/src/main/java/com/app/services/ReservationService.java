@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Id;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -48,10 +47,10 @@ public class ReservationService {
 //
 //            Reservation reservation = new Reservation();
 //
-//            reservation.setReservation_roomId(reservation.getReservation_roomId());
+//            reservation.setRoom(reservation.getRoom());
 //            reservation.setCheckin(reservation.getCheckin());
 //            reservation.setCheckout(reservation.getCheckout());
-//            reservation.setReservation_customerId(reservation.getReservation_customerId());
+//            reservation.setCustomer(reservation.getCustomer());
 //            reservation_roomId.setAvailability(false);
 //            return reservationRepository.save(reservation);
 //
@@ -60,24 +59,24 @@ public class ReservationService {
     @Transactional
     public Reservation reserveRoom(ReservationDto reservationDto) {
 
-//        if(!reservationDto.getReservation_roomId().getAvailability()) {
+//        if(!reservationDto.getRoom().getAvailability()) {
 //            throw new NoAvailableRoomsException("Room not available!");
 //        }
 
         Reservation reservation = new Reservation();
 
 
-        Optional<Room> optRoom = roomRepository.findById(reservationDto.getReservation_roomId().getRoomID());
+        Optional<Room> optRoom = roomRepository.findById((int) reservationDto.getRoomId());
         Room room = optRoom.get();
 
-        Optional<User> optCustomer = userRepository.findById(reservationDto.getReservation_customerId().getId());
+        Optional<User> optCustomer = userRepository.findById((int)reservationDto.getCustomerId());
         User customer = optCustomer.get();
 
-        reservation.setReservation_roomId(room);
-        reservation.setReservation_customerId(customer);
+        reservation.setRoom(room);
+        reservation.setCustomer(customer);
         reservation.setCheckin(reservationDto.getCheckin());
         reservation.setCheckout(reservationDto.getCheckout());
-//      reservation.getReservation_roomId().setAvailability(false);
+//      reservation.getRoom().setAvailability(false);
 
 
         return reservationRepository.save(reservation);
@@ -89,6 +88,7 @@ public class ReservationService {
 
     private List<Reservation> checkIfAvailable(Room roomId, LocalDate checkin, LocalDate checkout) {
         return reservationRepository.findByRoomAndDate(roomId, checkin, checkout);
+
     }
 
 }
