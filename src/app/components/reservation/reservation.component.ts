@@ -36,14 +36,18 @@ export class ReservationComponent implements OnInit {
   hotels: any;
   selectedValue: string;
   selectedValue2: string;
+  selectedPayment: string;
   opened: boolean;
   errorMessage: string;
   noHotelsMessage: string;
   noRoomtypesMessage: string;
   noRoomsMessage: string;
   dates: Date;
+  show: boolean;
   user: User = new User();
   showVar: boolean;
+  total: string;
+  showCard: boolean;
   selectedRoom = {
     room_hotelId: '{id: , hotel name: }',
     availability: '' ,
@@ -53,6 +57,13 @@ export class ReservationComponent implements OnInit {
   };
   toggleChild() {
     this.showVar = !this.showVar;
+  }
+  toggleChild2() {
+    this.show = true;
+  }
+
+  toggleFalse() {
+    this.show = false;
   }
 
 
@@ -116,6 +127,7 @@ export class ReservationComponent implements OnInit {
 
   roomSelected(room) {
     this.selectedRoom = room;
+    this.showCard = true;
   }
 
 

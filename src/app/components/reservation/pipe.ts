@@ -7,13 +7,13 @@ export class JsonPrint implements PipeTransform {
 
   transform(value: any, ...args): any {
     return JSON.stringify(value, null, 2)
-      .replace('room_hotelId', 'Hotel info')
+      .replace('room_hotelId', 'Hotel')
       .replace('hotelName', 'hotel name')
+      .replace('roomType', 'room type')
+      .replace('room TypeID', 'room type id')
       .replace('roomID', 'Room id')
       .replace('roomNumber', 'Room number')
-      .replace('room_roomtype', 'Room info')
-      .replace('roomType', 'room type')
-      .replace('roomTypeID', 'room type id')
+      .replace('room_roomtype', 'Room')
       .replace('availability', 'Available')
       .replace('180', '180 $')
       .replace('60', '60 $')

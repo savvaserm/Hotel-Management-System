@@ -31,6 +31,10 @@
         <mat-icon class="icon1">menu</mat-icon>
       </button>
     </p>
+    <mat-vertical-stepper>
+
+      <mat-step>
+        <ng-template matStepLabel>Personal information</ng-template>
     <div class="form0">
       <h4>Guest Info</h4>
     <form (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
@@ -81,14 +85,18 @@
       </mat-form-field>
     </form>
     </div>
+      </mat-step>
 
+    <mat-step>
+      <ng-template matStepLabel>Dates and Reservation Summary</ng-template>
     <div class="datepicker">
-      <p><strong>Select Dates:</strong></p>
+      <p><strong>Select Dates :</strong></p>
 
       <aa-animatepicker class="date"
                         [options]="datepickerOptions"
                         [(selectedDates)]="dates"></aa-animatepicker>
     </div>
+
 
     <button mat-raised-button class="btn3" (click)="toggleChild()">Show available rooms</button>
     <div class="rooms" *ngIf = "showVar">
@@ -121,25 +129,100 @@
           &nbsp;
           &nbsp;
           &nbsp;
-          <td><input type="button" value="Select" (click) = "roomSelected(room)" /></td>
+          <td><input type="button" value="Select" (click) = "roomSelected(room)"/></td>
 
         </tr>
 
         </tbody>
 
       </table>
-      <mat-card class="card">
-        <mat-card-title>Reservation Summary</mat-card-title>
+
+
+      <mat-card class="card" *ngIf="showCard">
+        <mat-card-title>Room Info</mat-card-title>
+
         &nbsp;
-        <mat-card-header class="header"><strong>Guest info:</strong></mat-card-header>
-        <pre class="pre"><strong>  First name: {{ user.firstname }}</strong></pre>
-        <pre class="pre"><strong>  Last name: {{ user.lastname }}</strong></pre>
-        <pre class="pre"><strong>{{this.selectedRoom | jsonprint }}</strong></pre>
-        <mat-card-header class="header"><strong>Dates:</strong></mat-card-header>
-        <pre class="pre"><strong>{{ this.dates | jsonprint }}</strong></pre>
+        <mat-card-header class="header"><strong>Hotel/Room :</strong></mat-card-header>
+
+          <pre class="pre"><strong>{{this.selectedRoom | jsonprint }}</strong></pre>
+
       </mat-card>
     </div>
 
+    </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Payment</ng-template>
+    <div class="payment">
+      <p><strong>Payment :</strong></p>
+
+      <form>
+      <mat-form-field>
+        <mat-label>Choose payment type</mat-label>
+      <mat-select [(ngModel)]="selectedPayment" name="payment">
+
+        <mat-option (click) = toggleFalse()>
+          -
+        </mat-option>
+        <mat-option value="Credit Card" (click) = toggleChild2()>
+          Credit Card
+        </mat-option>
+        <mat-option value="Cash" (click) = toggleFalse()>
+          Cash
+        </mat-option>
+
+      </mat-select>
+      </mat-form-field>
+      </form>
+    </div>
+
+
+    <div class="creditcard" *ngIf="show">
+      <mat-form-field>
+        <input matInput placeholder="Card number" required>
+      </mat-form-field>
+
+      &nbsp;
+      &nbsp;
+
+      <mat-form-field>
+          <input matInput placeholder="CVV" ngModel maxlength="3" required>
+      </mat-form-field>
+
+      &nbsp;
+      &nbsp;
+
+      <mat-form-field>
+        <input matInput placeholder="Expiration date" ngModel pattern="([0-9]{2}[/]?){2}" required>
+      </mat-form-field>
+    </div>
+        <mat-card class="card2">
+          <mat-card-title>Reservation Summary</mat-card-title>
+          &nbsp;
+          <mat-card-header class="header"><strong>Guest info :</strong></mat-card-header>
+
+          <pre class="pre"><strong>  First name: {{ user.firstname }}</strong></pre>
+          <pre class="pre"><strong>  Last name: {{ user.lastname }}</strong></pre>
+          &nbsp;
+          <mat-card-header class="header"><strong>Hotel/Room info :</strong></mat-card-header>
+
+          <pre class="pre"><strong>{{ this.selectedRoom | jsonprint }}</strong></pre>
+
+          <mat-card-header class="header"><strong>Dates :</strong></mat-card-header>
+
+          <pre class="pre"><strong>{{ this.dates | jsonprint }}</strong></pre>
+
+          <mat-card-header class="header"><strong>Total :</strong></mat-card-header>
+          <pre class="pre"><strong></strong></pre>
+
+        </mat-card>
+
+        <a style="color: black" href="http://localhost:4200/completed">
+        <button mat-raised-button class="btn">Complete reservation</button>
+      </a>
+
+      </mat-step>
+
     &nbsp;
     &nbsp;
     &nbsp;
@@ -147,15 +230,10 @@
     &nbsp;
     &nbsp;
 
-    <a style="color: black" href="http://localhost:4200/completed">
-      <button mat-raised-button class="btn">Complete reservation</button>
-    </a>
-
-
+  </mat-vertical-stepper>
     <a style="color: black" href="http://localhost:4200/profile">
       <button mat-raised-button class="btn2">Cancel</button>
     </a>
+
   </mat-sidenav-content>
-
-
 </mat-sidenav-container>

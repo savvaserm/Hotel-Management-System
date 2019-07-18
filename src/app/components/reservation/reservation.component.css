@@ -23,13 +23,20 @@ body, html {
 .form {
   padding: 20px;
   display: inline-block;
+}
 
+.creditcard {
+  padding: 20px;
 }
 
 .rooms {
 
 }
 .datepicker {
+  padding: 20px;
+}
+
+.payment {
   padding: 20px;
 }
 
@@ -65,9 +72,7 @@ body, html {
   color: navajowhite;
   font-family: Calibri, sans-serif;
   font-size: 16px;
-  left: 20%;
-  top: 60px;
-
+  left: 30%;
 }
 
 .btn2 {
@@ -75,9 +80,9 @@ body, html {
   color: navajowhite;
   font-family: Calibri, sans-serif;
   font-size: 16px;
-  width: 100px;
-  left: 25%;
-  top: 60px;
+  width: 200px;
+  left: 50%;
+  margin: 20px;
 }
 
 .btn3 {
@@ -101,9 +106,19 @@ body, html {
   font-size: 18px;
 }
 .card{
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   position: relative;
   left: 50%;
   bottom: 500px;
+  width: 600px;
+  background-color: lightgray;
+}
+
+.card2{
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  position: relative;
+  left: 50%;
+  bottom: 100px;
   width: 600px;
   background-color: lightgray;
 }
@@ -111,3 +126,8 @@ body, html {
   font-size: 18px;
 }
 
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done,
+.mat-step-header .mat-step-icon-state-edit {
+  background-color: black !important;
+  color: black !important;
+}

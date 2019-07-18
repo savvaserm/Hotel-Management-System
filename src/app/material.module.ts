@@ -10,6 +10,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material';
 import { MatOptionModule } from '@angular/material';
+import { MatStepperModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -27,7 +28,7 @@ import { MatOptionModule } from '@angular/material';
     MatNativeDateModule, MatDatepickerModule,
     MatFormFieldModule, MatListModule, MatSidenavModule,
     MatSliderModule, MatSlideToggleModule,
-    MatSelectModule, MatOptionModule
+    MatSelectModule, MatOptionModule, MatStepperModule
 
   ],
   exports: [
@@ -44,7 +45,7 @@ import { MatOptionModule } from '@angular/material';
     MatProgressSpinnerModule,
     MatNativeDateModule, MatDatepickerModule,
     MatFormFieldModule, MatListModule, MatSidenavModule,
-    MatSliderModule, MatSelectModule, MatOptionModule
+    MatSliderModule, MatSelectModule, MatOptionModule, MatStepperModule
   ],
 })
 export class CustomMaterialModule { }
