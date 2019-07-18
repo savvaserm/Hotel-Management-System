@@ -10,4 +10,9 @@ body { margin: 0; font-family: 'Helvetica', sans-serif; }
 .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done,
 .mat-step-header .mat-step-icon-state-edit {
   background-color: black !important;
+  color: navajowhite;
+}
+
+.mat-step-label{
+  font-size: 18px;
 }

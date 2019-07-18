@@ -30,6 +30,7 @@ export class ReservationComponent implements OnInit {
     weekStart: 'monday' // Set the week start day
   };
 
+  isOptional = true;
   rooms: any;
   @Input() showMePartially: boolean;
   roomtypes: any;
