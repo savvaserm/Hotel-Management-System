@@ -1,12 +1,8 @@
 package com.app.dto;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 

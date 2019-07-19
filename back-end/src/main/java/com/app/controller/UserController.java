@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 
-import com.app.util.CustomErrorType;
 import com.app.entities.User;
 import com.app.dao.UserRepository;
 import com.app.services.UserService;

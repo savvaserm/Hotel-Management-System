@@ -1,10 +1,6 @@
 package com.app.entities;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import javax.persistence.*;
-
 
 
 @Entity

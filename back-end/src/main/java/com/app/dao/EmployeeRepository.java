@@ -7,8 +7,6 @@ import com.app.entities.Employee;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import java.util.List;
-
 
 @Repository
 @CrossOrigin (origins = "http://localhost:4200")

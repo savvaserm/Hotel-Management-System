@@ -1,13 +1,6 @@
 package com.app.entities;
 
-import com.sun.javafx.beans.IDProperty;
-import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.Collection;
-
 import javax.persistence.*;
-
 
 
 @Entity

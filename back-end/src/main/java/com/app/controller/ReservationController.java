@@ -2,18 +2,11 @@ package com.app.controller;
 
 import com.app.dto.ReservationDto;
 import com.app.entities.Reservation;
-import com.app.entities.Room;
-import com.app.entities.User;
 import com.app.services.ReservationService;
 
-import com.app.util.NoAvailableRoomsException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
