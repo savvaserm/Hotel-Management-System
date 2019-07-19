@@ -18,6 +18,7 @@ import { UserslistComponent } from './components/userslist/userslist.component';
 import { ListService } from './services/list-service.service';
 import { AaDatepickerModule } from 'ngx-animating-datepicker';
 import { JsonPrint } from './components/reservation/pipe';
+import { MyreservationsComponent } from './components/myreservations/myreservations.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { JsonPrint } from './components/reservation/pipe';
     UserslistComponent,
     ReservationComponent,
     EmployeesComponent,
+    MyreservationsComponent,
     JsonPrint
 
   ],

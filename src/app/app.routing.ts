@@ -3,9 +3,10 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NgModule } from '@angular/core';
-import {UserslistComponent} from './components/userslist/userslist.component';
-import {EmployeesComponent} from './components/employees/employees.component';
-import {ReservationComponent} from './components/reservation/reservation.component';
+import { UserslistComponent } from './components/userslist/userslist.component';
+import { EmployeesComponent } from './components/employees/employees.component';
+import { ReservationComponent } from './components/reservation/reservation.component';
+import { MyreservationsComponent } from './components/myreservations/myreservations.component';
 
 
 const appRoutes: Routes = [
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
   { path: 'list', component: UserslistComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'myreservations', component: MyreservationsComponent },
 //  { path: 'rooms', component: RoomComponent },
   { path: 'register', component: RegisterComponent },
 

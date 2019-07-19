@@ -38,4 +38,16 @@ export class ListService {
       .pipe(map(res => res));
   }
 
+  getAmenities() {
+    const amenitiesUrl = AppComponent.API_URL + '/users/hotels/rooms/amenities';
+    return this.http.get(amenitiesUrl)
+      .pipe(map(res => res));
+  }
+
+  getReservations() {
+    const reservationsUrl = AppComponent.API_URL + '/users/hotels/rooms/reservations';
+    return this.http.get(reservationsUrl)
+      .pipe(map( res => res));
+  }
+
 }

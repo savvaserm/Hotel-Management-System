@@ -19,7 +19,7 @@
         </a>
 
         <a style="color: black" href="/myreservations">
-          <mat-list-item class="item4"><span class="users-btn">See your reservations</span>
+          <mat-list-item class="item4"><span class="users-btn">My reservations</span>
           </mat-list-item>
         </a>
 
@@ -161,7 +161,16 @@
       <mat-step [optional]="isOptional">
         <ng-template class="label" matStepLabel>Extras</ng-template>
         <div class="extras">
+
           <p><strong>Select extra services :</strong></p>
+          <mat-form-field>
+            <mat-select [multiple]="true">
+              <mat-option *ngFor="let amenity of amenities" [value]="amenities">
+                {{ amenity }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
         </div>
       </mat-step>
 
@@ -236,9 +245,8 @@
 
         </mat-card>
 
-        <a style="color: black" href="http://localhost:4200/completed">
-          <button mat-raised-button class="btn">Complete reservation</button>
-        </a>
+
+          <button mat-raised-button class="btn" (click)="reserveRoom()">Complete reservation</button>
 
       </mat-step>
 

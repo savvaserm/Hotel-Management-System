@@ -29,12 +29,6 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="content">
-    <div class="btn-top-right">
-
-      <a style="color: black" href="/">
-        <button mat-button class="logout-btn" (click)="logOut()">Log out</button>
-      </a>
-    </div>
 
     <p>
       <button mat-button class="btn1" (click)="sidenav.toggle()">
@@ -42,14 +36,31 @@
       </button>
     </p>
 
-    <header class="jumbotron my-4">
-      <h1 class="h1"> User Profile </h1>
-      <p class="lead"> Welcome to your profile, <strong> {{currentUser.username}} </strong> .</p>
-      <div class="row">
-      </div>
-    </header>
+    <div class="h2"><h2><strong>Reservations</strong></h2></div>
+    <table class="table">
+      <thead>
+
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let reservation of reservations">
+        <td>{{ reservation }}</td>
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        <td><button mat-button>Rate</button></td>
+
+      </tr>
+
+      </tbody>
+
+    </table>
 
   </mat-sidenav-content>
-
 
 </mat-sidenav-container>

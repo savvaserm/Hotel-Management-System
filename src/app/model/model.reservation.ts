@@ -1,9 +1,9 @@
 export class Reservation {
   reservationId: string;
-  resRoomId: string;
-  resCustomerId: string;
+  roomId: string;
+  customerId: string;
   checkin: string;
   checkout: string;
-  resDetails: string;
+  details: string;
   total: string;
 }

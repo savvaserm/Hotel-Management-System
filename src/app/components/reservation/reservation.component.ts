@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ListService } from '../../services/list-service.service';
-import { Options } from 'ngx-animating-datepicker';
-import { User } from '../../model/model.user';
-import { RoomListService } from '../../services/room-list.service';
-import {formatDate} from '@angular/common';
-import DateTimeFormat = Intl.DateTimeFormat;
-
+import {Component, Input, OnInit} from '@angular/core';
+import {ListService} from '../../services/list-service.service';
+import {Options} from 'ngx-animating-datepicker';
+import {User} from '../../model/model.user';
+import {RoomListService} from '../../services/room-list.service';
+import { ReservationService } from '../../services/reservation.service';
+import { Router } from '@angular/router';
+import {Reservation} from '../../model/model.reservation';
 
 
 @Component({
@@ -30,6 +30,9 @@ export class ReservationComponent implements OnInit {
     weekStart: 'monday' // Set the week start day
   };
 
+  reservation = new Reservation();
+
+  amenities: any;
   isOptional = true;
   rooms: any;
   @Input() showMePartially: boolean;
@@ -43,7 +46,7 @@ export class ReservationComponent implements OnInit {
   noHotelsMessage: string;
   noRoomtypesMessage: string;
   noRoomsMessage: string;
-  dates: Date;
+  dates: Date[];
   show: boolean;
   user: User = new User();
   showVar: boolean;
@@ -51,14 +54,16 @@ export class ReservationComponent implements OnInit {
   showCard: boolean;
   selectedRoom = {
     room_hotelId: '{id: , hotel name: }',
-    availability: '' ,
+    availability: '',
     roomtype: '{price: , roomtype: }',
-    roomId: '' ,
+    roomId: '',
     roomNumber: ','
   };
+
   toggleChild() {
     this.showVar = !this.showVar;
   }
+
   toggleChild2() {
     this.show = true;
   }
@@ -68,57 +73,37 @@ export class ReservationComponent implements OnInit {
   }
 
 
-
-  constructor(private listService: ListService, private roomListService: RoomListService) { }
+  constructor(private listService: ListService, private roomListService: RoomListService,
+              private reservationService: ReservationService, private router: Router) {
+  }
 
   ngOnInit() {
     this.getHotels();
     this.getRoomtypes();
     this.getRooms();
+    this.getAmenities();
   }
 
   getHotels() {
     this.listService.getHotels()
       .subscribe(data => {
         if (data) {
-
           this.hotels = data;
-
         } else {
-
           this.noHotelsMessage = 'No hotels found';
-
-        }}, error => {
-
+        }
+      }, error => {
         this.errorMessage = error;
-
       });
   }
 
   getRoomtypes() {
     this.listService.getRoomtypes()
-      .subscribe( data => {
+      .subscribe(data => {
         if (data) {
           this.roomtypes = data;
         } else {
           this.noRoomtypesMessage = 'No roomtypes found';
-        }}, error => {
-          this.errorMessage = error;
-      });
-    }
-
-
-  getRooms() {
-    this.roomListService.getRooms()
-      .subscribe(data => {
-
-        if (data) {
-
-          this.rooms = data;
-
-        } else {
-
-          this.noRoomsMessage = 'No rooms available';
         }
       }, error => {
         this.errorMessage = error;
@@ -126,10 +111,46 @@ export class ReservationComponent implements OnInit {
   }
 
 
+  getRooms() {
+    this.roomListService.getRooms()
+      .subscribe(data => {
+        if (data) {
+          this.rooms = data;
+        } else {
+          this.noRoomsMessage = 'No rooms available';
+        }
+      }, error => {
+        this.errorMessage = error;
+      });
+  }
+
+  getAmenities() {
+    this.listService.getAmenities()
+      .subscribe(data => {
+        if (data) {
+          this.amenities = data;
+        }
+      }, error => {
+        this.errorMessage = error;
+      });
+  }
+
   roomSelected(room) {
     this.selectedRoom = room;
     this.showCard = true;
   }
 
+  reserveRoom() {
+    this.reservationService.createReservation(this.reservation)
+      .subscribe( data => {
+        this.router.navigate(['/profile']);
+        alert('Room(s) booked' + this.reservation.details);
+        }, error => {
+          alert('Reservation failed');
+        }
+      );
+
+
+  }
 
 }

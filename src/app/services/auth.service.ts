@@ -38,18 +38,13 @@ export class AuthService {
         Authorization: 'Basic ' + btoa(user.username + ':' + user.password)
       }
     })
-    // .subscribe(data => {
-    //   this.router.navigate(['profile']);
-    // }, err => {
-    //   this.errorMessage = 'Error: Username or password is incorrect';
-    // })
+
       .pipe(map((response: any) => {
           this.router.navigate(['profile']);
           // tslint:disable-next-line:no-shadowed-variable
           const user = response.json().principal; // the returned user object is a principal object
           return user;
-          // localStorage.setItem('currentUser', JSON.stringify(user));
-          //   return localStorage.getItem('currentUser');
+
         }
       ));
   }
