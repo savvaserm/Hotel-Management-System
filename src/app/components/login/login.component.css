@@ -35,7 +35,10 @@ body, html {
 /*
  * Card component
  */
-
+.alert{
+  font-size: 20px;
+  color: crimson;
+}
 
 .card {
   background-color: #F7F7F7;

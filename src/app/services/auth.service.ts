@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
-import {User} from '../model/model.user';
-import {map} from 'rxjs/operators';
-import {AppComponent} from '../app.component';
-import {Router} from '@angular/router';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { User } from '../model/model.user';
+import { map } from 'rxjs/operators';
+import { AppComponent } from '../app.component';
+import { Router } from '@angular/router';
 
 
 @Injectable()
@@ -42,7 +42,7 @@ export class AuthService {
       .pipe(map((response: any) => {
           this.router.navigate(['profile']);
           // tslint:disable-next-line:no-shadowed-variable
-          const user = response.json().principal; // the returned user object is a principal object
+          const user = response.json().principal.id; // the returned user object is a principal object
           return user;
 
         }

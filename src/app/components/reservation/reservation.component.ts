@@ -1,12 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ListService} from '../../services/list-service.service';
-import {Options} from 'ngx-animating-datepicker';
-import {User} from '../../model/model.user';
-import {RoomListService} from '../../services/room-list.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { ListService } from '../../services/list-service.service';
+import { Options } from 'ngx-animating-datepicker';
+import { User } from '../../model/model.user';
+import { RoomListService } from '../../services/room-list.service';
 import { ReservationService } from '../../services/reservation.service';
 import { Router } from '@angular/router';
-import {Reservation} from '../../model/model.reservation';
-
+import { Reservation } from '../../model/model.reservation';
+import { Amenities } from '../../model/model.amenities';
 
 @Component({
   selector: 'app-reservation',
@@ -52,6 +52,7 @@ export class ReservationComponent implements OnInit {
   showVar: boolean;
   total: string;
   showCard: boolean;
+  selectedAmenities = [];
   selectedRoom = {
     room_hotelId: '{id: , hotel name: }',
     availability: '',
@@ -59,6 +60,7 @@ export class ReservationComponent implements OnInit {
     roomId: '',
     roomNumber: ','
   };
+
 
   toggleChild() {
     this.showVar = !this.showVar;

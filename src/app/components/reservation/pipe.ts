@@ -28,6 +28,8 @@ export class JsonPrint implements PipeTransform {
       .replace(',', '')
       .replace(',', '')
       .replace(',', '')
+      .replace(',', '')
+      .replace(',', '')
       .replace('"', '')
       .replace('"', '')
       .replace('"', '')
@@ -55,9 +57,28 @@ export class JsonPrint implements PipeTransform {
       .replace('"', '')
       .replace('"', '')
       .replace('"', '')
+      .replace('"', '')
+      .replace('"', '')
+      .replace('"', '')
+      .replace('"', '')
       .replace('}', '')
       .replace('}', '')
       .replace('[', '')
-      .replace(']', '');
+      .replace(']', '')
+      .replace('{', '')
+      .replace('{', '')
+      .replace('}', '')
+      .replace('}', '')
+      .replace('amenityId: 1', '')
+      .replace('amenityId: 2', '')
+      .replace('amenityId: 3', '')
+      .replace('amenityId: 4', '')
+      .replace('amenityId: 5', '')
+      .replace('amenity_name:', '')
+      .replace('amenity_name:', '')
+      .replace('amenity_name:', '')
+      .replace('amenity_name:', '')
+      .replace('amenity_name:', '');
+
   }
 }

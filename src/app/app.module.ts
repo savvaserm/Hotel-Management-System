@@ -30,7 +30,8 @@ import { MyreservationsComponent } from './components/myreservations/myreservati
     ReservationComponent,
     EmployeesComponent,
     MyreservationsComponent,
-    JsonPrint
+    JsonPrint,
+
 
   ],
   imports: [

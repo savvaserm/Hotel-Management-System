@@ -1,9 +1,7 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {User} from '../../model/model.user';
-import {AuthService} from '../../services/auth.service';
-import {Router} from '@angular/router';
-import {map} from 'rxjs/operators';
-import {pipe} from 'rxjs';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { User } from '../../model/model.user';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,6 +24,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+
   login(): string {
     this.authService.logIn(this.user)
       .subscribe(data => {
@@ -34,7 +33,8 @@ export class LoginComponent implements OnInit {
         this.errorMessage = 'Error: Username or password is incorrect';
       });
     localStorage.setItem('currentUser', JSON.stringify(this.user));
-    return localStorage.getItem('currentUser');
+    const userCredentials = JSON.parse(localStorage.getItem('currentUser'));
+    return localStorage.getItem('userCredentials');
   }
 
 

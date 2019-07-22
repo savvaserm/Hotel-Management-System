@@ -164,9 +164,9 @@
 
           <p><strong>Select extra services :</strong></p>
           <mat-form-field>
-            <mat-select [multiple]="true">
-              <mat-option *ngFor="let amenity of amenities" [value]="amenities">
-                {{ amenity }}
+            <mat-select [(ngModel)]="selectedAmenities" [multiple]="true">
+              <mat-option *ngFor="let amenity of amenities" [value]="amenity">
+                {{ amenity.amenity_name }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -228,16 +228,16 @@
           <pre class="pre"><strong>  Last name: {{ user.lastname }}</strong></pre>
           &nbsp;
           <mat-card-header class="header"><strong>Hotel/Room info :</strong></mat-card-header>
-          <pre class="pre"><strong>{{ this.selectedRoom | jsonprint }}</strong></pre>
+          <pre class="pre"><strong> {{ this.selectedRoom | jsonprint }} </strong></pre>
 
           <mat-card-header class="header"><strong>Dates :</strong></mat-card-header>
-          <pre class="pre"><strong>{{ this.dates | jsonprint }}</strong></pre>
+          <pre class="pre"><strong> {{ this.dates | jsonprint }} </strong></pre>
 
           <mat-card-header class="header"><strong>Extras :</strong></mat-card-header>
-          <pre class="pre"><strong></strong></pre>
+          <pre class="pre"><strong> {{ this.selectedAmenities | jsonprint }} </strong></pre>
 
           <mat-card-header class="header"><strong>Payment method :</strong></mat-card-header>
-          <pre class="pre"><strong>  {{ this.selectedPayment }}</strong></pre>
+          <pre class="pre"><strong> {{ this.selectedPayment }} </strong></pre>
 
 
           <mat-card-header class="header"><strong>Total :</strong></mat-card-header>
