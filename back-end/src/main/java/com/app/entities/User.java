@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 @Table(name = "customer")
 public class User implements UserDetails {
 
-    public static enum Role{ USER, ADMIN }
+    public static enum role{ USER, ADMIN }
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

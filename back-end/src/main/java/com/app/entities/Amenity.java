@@ -14,19 +14,19 @@ public class Amenity{
     @Column(name = "amenity_name")
     private String amenity_name;
 
-    public Integer getAmenityID() {
+    public Integer getAmenityId() {
         return amenityId;
     }
 
-    public void setAmenityID(Integer amenityId) {
+    public void setAmenityId(Integer amenityId) {
         this.amenityId = amenityId;
     }
 
-    public String getAmenityName() {
+    public String getAmenity_name() {
         return amenity_name;
     }
 
-    public void setAmenityName(String amenity_name) {
+    public void setAmenity_name(String amenity_name) {
         this.amenity_name = amenity_name;
     }
 

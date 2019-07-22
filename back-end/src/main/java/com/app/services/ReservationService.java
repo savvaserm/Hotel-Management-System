@@ -63,6 +63,7 @@ public class ReservationService {
 //            throw new NoAvailableRoomsException("Room not available!");
 //        }
 
+
         Reservation reservation = new Reservation();
 
 
@@ -76,7 +77,7 @@ public class ReservationService {
         reservation.setCustomer(customer);
         reservation.setCheckin(reservationDto.getCheckin());
         reservation.setCheckout(reservationDto.getCheckout());
-//      reservation.getRoom().setAvailability(false);
+        reservation.getRoom().setAvailability(false);
 
 
         return reservationRepository.save(reservation);
