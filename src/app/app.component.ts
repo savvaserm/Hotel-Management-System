@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   static API_URL = 'http://localhost:8080';
+
+  now: number;
+
+  constructor() {
+    setInterval(() => {
+      this.now = Date.now();
+    }, 1);
+  }
 }

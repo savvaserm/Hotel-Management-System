@@ -31,7 +31,7 @@ export class ReservationComponent implements OnInit {
   };
 
   reservation = new Reservation();
-
+  nights: number;
   amenities: any;
   isOptional = true;
   rooms: any;
@@ -60,7 +60,6 @@ export class ReservationComponent implements OnInit {
     roomId: '',
     roomNumber: ','
   };
-
 
   toggleChild() {
     this.showVar = !this.showVar;
@@ -144,15 +143,14 @@ export class ReservationComponent implements OnInit {
 
   reserveRoom() {
     this.reservationService.createReservation(this.reservation)
-      .subscribe( data => {
-        this.router.navigate(['/profile']);
-        alert('Room(s) booked' + this.reservation.details);
+      .subscribe(data => {
+          this.router.navigate(['/profile']);
+          alert('Room booked' + this.reservation.details);
         }, error => {
-          alert('Reservation failed');
+          alert('Cannot book this room');
         }
       );
-
-
   }
-
 }
+
+

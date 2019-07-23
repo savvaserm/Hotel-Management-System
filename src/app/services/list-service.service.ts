@@ -45,7 +45,7 @@ export class ListService {
   }
 
   getReservations() {
-    const reservationsUrl = AppComponent.API_URL + '/users/hotels/rooms/reservations';
+    const reservationsUrl = AppComponent.API_URL + '/users/hotels/reservations';
     return this.http.get(reservationsUrl)
       .pipe(map( res => res));
   }

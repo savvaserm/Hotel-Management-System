@@ -121,6 +121,8 @@
             </thead>
 
             <tbody>
+
+
             <tr *ngFor="let room of rooms">
               <td>{{room.roomNumber}}</td>
               &nbsp;
@@ -137,7 +139,6 @@
               &nbsp;
               &nbsp;
               <td><input type="button" value="Select" (click)="roomSelected(room)"/></td>
-
             </tr>
 
             </tbody>
@@ -222,25 +223,26 @@
         <mat-card class="card2">
           <mat-card-title>Reservation Summary</mat-card-title>
           &nbsp;
-          <mat-card-header class="header"><strong>Guest info :</strong></mat-card-header>
+          <mat-card-header class="header"><strong>Guest info</strong></mat-card-header>
 
           <pre class="pre"><strong>  First name: {{ user.firstname }}</strong></pre>
           <pre class="pre"><strong>  Last name: {{ user.lastname }}</strong></pre>
           &nbsp;
-          <mat-card-header class="header"><strong>Hotel/Room info :</strong></mat-card-header>
+          <mat-card-header class="header"><strong>Hotel/Room info</strong></mat-card-header>
           <pre class="pre"><strong> {{ this.selectedRoom | jsonprint }} </strong></pre>
 
-          <mat-card-header class="header"><strong>Dates :</strong></mat-card-header>
+          <mat-card-header class="header"><strong>Dates</strong></mat-card-header>
           <pre class="pre"><strong> {{ this.dates | jsonprint }} </strong></pre>
 
-          <mat-card-header class="header"><strong>Extras :</strong></mat-card-header>
+          <mat-card-header class="header"><strong>Extras</strong></mat-card-header>
           <pre class="pre"><strong> {{ this.selectedAmenities | jsonprint }} </strong></pre>
 
-          <mat-card-header class="header"><strong>Payment method :</strong></mat-card-header>
+
+          <mat-card-header class="header"><strong>Payment method</strong></mat-card-header>
           <pre class="pre"><strong> {{ this.selectedPayment }} </strong></pre>
 
 
-          <mat-card-header class="header"><strong>Total :</strong></mat-card-header>
+          <mat-card-header class="header"><strong>Total</strong></mat-card-header>
           <pre class="pre"><strong></strong></pre>
 
         </mat-card>
