@@ -9,7 +9,7 @@ public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Integer room_reservationId;
 
     private Double total;
     private String reservation_details;
@@ -25,17 +25,17 @@ public class Reservation {
     private User customer;
 
     @Override
-    public String toString(){
-        return "Reservation [id = " + id + ", checkin: " + checkin + ", checkout: " + checkout
+    public String toString() {
+        return "Reservation [id = " + room_reservationId + ", checkin: " + checkin + ", checkout: " + checkout
                 + ", reservation details = " + reservation_details + ", total = " + total + "]";
     }
 
-    public Reservation(){}
+    public Reservation() {
+    }
 
-    public Reservation(Integer id, Double total, String reservation_details, LocalDate checkin, LocalDate checkout, Room room,
-                       User customer){
-        this.setId(id);
-        this.setTotal(total);
+    public Reservation(Integer id, String reservation_details, LocalDate checkin, LocalDate checkout, Room room,
+                       User customer) {
+        this.setRoom_reservationId(id);
         this.setReservation_details(reservation_details);
         this.setCheckin(checkin);
         this.setCheckout(checkout);
@@ -43,20 +43,20 @@ public class Reservation {
         this.setCustomer(customer);
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public Double getTotal() {
-        return total;
+        return ((double) room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice() * getNights());
     }
 
-    public void setTotal(Double total) {
-        this.total = total;
+    public int getNights() {
+        return (checkout.getDayOfMonth() - checkin.getDayOfMonth());
+    }
+
+    public Integer getRoom_reservationId() {
+        return room_reservationId;
+    }
+
+    public void setRoom_reservationId(Integer room_reservationId) {
+        this.room_reservationId = room_reservationId;
     }
 
     public String getReservation_details() {

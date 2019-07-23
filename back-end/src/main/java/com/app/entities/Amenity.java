@@ -14,6 +14,16 @@ public class Amenity{
     @Column(name = "amenity_name")
     private String amenity_name;
 
+    public Integer getCost() {
+        return cost;
+    }
+
+    public void setCost(Integer cost) {
+        this.cost = cost;
+    }
+
+    private Integer cost;
+
     public Integer getAmenityId() {
         return amenityId;
     }

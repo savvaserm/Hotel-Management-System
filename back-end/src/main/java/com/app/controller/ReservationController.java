@@ -19,6 +19,8 @@ public class ReservationController {
     @GetMapping("/reservations")
     public List<Reservation> getReservations() { return reservationService.getReservations(); }
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 //    @RequestMapping(value = "/reserveroom", method = RequestMethod.POST)
 //    @ResponseBody
 //    public String roomReservation(@RequestParam(value = "param1") Room reservation_roomId,
@@ -27,6 +29,8 @@ public class ReservationController {
 //        reservationService.roomReservation(reservation_roomId, checkin, checkout, reservation_customerId);
 //        return "OK";
 //    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @RequestMapping(value = "/reserveroom", method = RequestMethod.POST)
     public void reserveRoom(@RequestBody ReservationDto reservationDto) {

@@ -56,6 +56,29 @@ public class ReservationService {
 //
 //    }
 
+    private String checkIfAvailable(Room room, LocalDate checkin, LocalDate checkout) {
+        LocalDate localDate = LocalDate.now();
+        reservationRepository.findByRoomAndDate(room, checkin, checkout);
+        if (!room.getAvailability()) {
+            return "Room is not available";
+        } else if (localDate.isAfter(checkout)) {
+            room.setAvailability(true);
+        }
+        return "";
+
+    }
+
+//-------------------------------------------------------------------------------------------
+
+//        public String checkAvailability() {
+//        Iterable<Reservation> reservations = this.reservationRepository.findByRoomAndDate(room, reservationDto.getCheckin(), reservationDto.getCheckout());
+//        if(!room.getAvailability()) {
+//            return "Room is not available!";
+//        }
+
+// -------------------------------------------------------------------------------------------
+
+
     @Transactional
     public Reservation reserveRoom(ReservationDto reservationDto) {
 
@@ -64,14 +87,13 @@ public class ReservationService {
 //        }
 
 
-        Reservation reservation = new Reservation();
-
-
         Optional<Room> optRoom = roomRepository.findById((int) reservationDto.getRoomId());
         Room room = optRoom.get();
 
-        Optional<User> optCustomer = userRepository.findById((int)reservationDto.getCustomerId());
+        Optional<User> optCustomer = userRepository.findById((int) reservationDto.getCustomerId());
         User customer = optCustomer.get();
+
+        Reservation reservation = new Reservation();
 
         reservation.setRoom(room);
         reservation.setCustomer(customer);
@@ -79,17 +101,11 @@ public class ReservationService {
         reservation.setCheckout(reservationDto.getCheckout());
         reservation.getRoom().setAvailability(false);
 
-
         return reservationRepository.save(reservation);
     }
 
     public List<Reservation> getAllReservations() {
         return reservationRepository.findAll();
-    }
-
-    private List<Reservation> checkIfAvailable(Room roomId, LocalDate checkin, LocalDate checkout) {
-        return reservationRepository.findByRoomAndDate(roomId, checkin, checkout);
-
     }
 
 }
