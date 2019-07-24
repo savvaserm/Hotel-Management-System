@@ -39,22 +39,7 @@ public class ReservationService {
         return reservationRepository.findAll();
     }
 
-
-//    public Reservation roomReservation(Room reservation_roomId, LocalDate checkin, LocalDate checkout, User reservation_customerId) {
-//        if (!reservation_roomId.getAvailability()) {
-//            throw new NoAvailableRoomsException("Room not available!");
-//        }
-//
-//            Reservation reservation = new Reservation();
-//
-//            reservation.setRoom(reservation.getRoom());
-//            reservation.setCheckin(reservation.getCheckin());
-//            reservation.setCheckout(reservation.getCheckout());
-//            reservation.setCustomer(reservation.getCustomer());
-//            reservation_roomId.setAvailability(false);
-//            return reservationRepository.save(reservation);
-//
-//    }
+// -------------------------------------------------------------------------------------------
 
 //    private String checkIfAvailable(Room room, LocalDate checkin, LocalDate checkout) {
 //        LocalDate localDate = LocalDate.now();
@@ -70,22 +55,12 @@ public class ReservationService {
 
 //-------------------------------------------------------------------------------------------
 
-//        public String checkAvailability() {
-//        Iterable<Reservation> reservations = this.reservationRepository.findByRoomAndDate(room, reservationDto.getCheckin(), reservationDto.getCheckout());
-//        if(!room.getAvailability()) {
-//            return "Room is not available!";
-//        }
 
-// -------------------------------------------------------------------------------------------
     LocalDate localDate = LocalDate.now();
     String message;
 
     @Transactional
     public Reservation reserveRoom(ReservationDto reservationDto) {
-
-//        if(!reservationDto.getRoom().getAvailability()) {
-//            throw new NoAvailableRoomsException("Room not available!");
-//        }
 
 
         Optional<Room> optRoom = roomRepository.findById((int) reservationDto.getRoomId());
@@ -99,12 +74,13 @@ public class ReservationService {
 
         Reservation reservation = new Reservation();
 
-        reservationRepository.findByRoomAndDate(room.getRoomID(), checkin, checkout);
+        Reservation res = reservationRepository.findByRoomAndDate(room.getRoomID(), checkin, checkout);
 
-        if (!room.getAvailability()) {
-            message = "Room not available at the moment" ;
+
+        if (checkin.isEqual(res.getCheckin()) && !room.getAvailability()) {
+            message = "Room not available at the moment!" ;
             System.out.println(message);
-        } else {
+        } else if (checkin.isAfter(res.getCheckout())) {
             reservation.setRoom(room);
             reservation.setCustomer(customer);
             reservation.setCheckin(reservationDto.getCheckin());
@@ -116,5 +92,23 @@ public class ReservationService {
         }
         return reservationRepository.save(reservation);
     }
+
+    // AYTO DOULEYEI
+
+//        if (!room.getAvailability()) {
+//            message = "Room not available at the moment!" ;
+//            System.out.println(message);
+//        } else {
+//            reservation.setRoom(room);
+//            reservation.setCustomer(customer);
+//            reservation.setCheckin(reservationDto.getCheckin());
+//            reservation.setCheckout(reservationDto.getCheckout());
+//            reservation.getRoom().setAvailability(false);
+//
+//            message = "Room booked!";
+//            System.out.println(message);
+//        }
+//        return reservationRepository.save(reservation);
+//    }
 
 }
