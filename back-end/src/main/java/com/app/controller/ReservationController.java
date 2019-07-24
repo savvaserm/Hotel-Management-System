@@ -2,11 +2,14 @@ package com.app.controller;
 
 import com.app.dto.ReservationDto;
 import com.app.entities.Reservation;
+import com.app.entities.Room;
 import com.app.services.ReservationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -32,8 +35,12 @@ public class ReservationController {
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+//    public void reserveRoom(@RequestBody ReservationDto reservationDto, Room room, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkin, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkout) {
+
     @RequestMapping(value = "/reserveroom", method = RequestMethod.POST)
     public void reserveRoom(@RequestBody ReservationDto reservationDto) {
+//        reservationService.checkIfAvailable(room, checkin, checkout);
         reservationService.reserveRoom(reservationDto);
     }
 

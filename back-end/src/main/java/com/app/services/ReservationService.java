@@ -56,17 +56,17 @@ public class ReservationService {
 //
 //    }
 
-    private String checkIfAvailable(Room room, LocalDate checkin, LocalDate checkout) {
-        LocalDate localDate = LocalDate.now();
-        reservationRepository.findByRoomAndDate(room, checkin, checkout);
-        if (!room.getAvailability()) {
-            return "Room is not available";
-        } else if (localDate.isAfter(checkout)) {
-            room.setAvailability(true);
-        }
-        return "";
-
-    }
+//    private String checkIfAvailable(Room room, LocalDate checkin, LocalDate checkout) {
+//        LocalDate localDate = LocalDate.now();
+//        reservationRepository.findByRoomAndDate(room, checkin, checkout);
+//        if (!room.getAvailability()) {
+//            return "Room is not available";
+//        } else if (localDate.isAfter(checkout)) {
+//            room.setAvailability(true);
+//        }
+//        return "";
+//
+//    }
 
 //-------------------------------------------------------------------------------------------
 
@@ -77,7 +77,8 @@ public class ReservationService {
 //        }
 
 // -------------------------------------------------------------------------------------------
-
+    LocalDate localDate = LocalDate.now();
+    String message;
 
     @Transactional
     public Reservation reserveRoom(ReservationDto reservationDto) {
@@ -93,19 +94,27 @@ public class ReservationService {
         Optional<User> optCustomer = userRepository.findById((int) reservationDto.getCustomerId());
         User customer = optCustomer.get();
 
+        LocalDate checkin = reservationDto.getCheckin();
+        LocalDate checkout = reservationDto.getCheckout();
+
         Reservation reservation = new Reservation();
 
-        reservation.setRoom(room);
-        reservation.setCustomer(customer);
-        reservation.setCheckin(reservationDto.getCheckin());
-        reservation.setCheckout(reservationDto.getCheckout());
-        reservation.getRoom().setAvailability(false);
+        reservationRepository.findByRoomAndDate(room.getRoomID(), checkin, checkout);
 
+        if (!room.getAvailability()) {
+            message = "Room not available at the moment" ;
+            System.out.println(message);
+        } else {
+            reservation.setRoom(room);
+            reservation.setCustomer(customer);
+            reservation.setCheckin(reservationDto.getCheckin());
+            reservation.setCheckout(reservationDto.getCheckout());
+            reservation.getRoom().setAvailability(false);
+
+            message = "Room booked!";
+            System.out.println(message);
+        }
         return reservationRepository.save(reservation);
-    }
-
-    public List<Reservation> getAllReservations() {
-        return reservationRepository.findAll();
     }
 
 }
