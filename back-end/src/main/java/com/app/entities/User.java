@@ -19,6 +19,8 @@ public class User implements UserDetails {
 
     public static enum role{ USER, ADMIN }
 
+    private String type;
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer customerId;
@@ -148,6 +150,9 @@ public class User implements UserDetails {
         this.customerId = customerId;
     }
 
+    public String getType() { return type; }
+
+    public void setType(String type) { this.type = type; }
 
 
 

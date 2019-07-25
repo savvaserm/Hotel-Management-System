@@ -1,5 +1,6 @@
 package com.app.services;
 
+import com.app.dao.ReservationRepository;
 import com.app.dao.UserRepository;
 import com.app.dto.UserDto;
 import com.app.entities.User;
@@ -26,6 +27,9 @@ public class UserService {
     private BCryptPasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
     }
+
+    @Autowired
+    ReservationRepository reservationRepository;
 
     @Autowired
     UserRepository userRepository;
@@ -75,4 +79,5 @@ public class UserService {
 
         return userRepository.saveAndFlush(newUser);
     }
+
 }

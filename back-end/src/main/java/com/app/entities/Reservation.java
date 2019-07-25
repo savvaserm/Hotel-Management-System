@@ -41,11 +41,18 @@ public class Reservation {
         this.setCheckout(checkout);
         this.setRoom(room);
         this.setCustomer(customer);
+        this.setTotal(total);
     }
+//
+//    public Double getTotal() {
+//        return ((double) room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice() * getNights());
+//    }
 
     public Double getTotal() {
-        return ((double) room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice() * getNights());
+        return total;
     }
+
+    public void setTotal(Double total) { this.total = total;}
 
     public int getNights() {
         return (checkout.getDayOfMonth() - checkin.getDayOfMonth());

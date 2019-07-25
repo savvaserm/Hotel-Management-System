@@ -58,6 +58,7 @@ public class ReservationService {
 
     LocalDate localDate = LocalDate.now();
     String message;
+    Double total, price, discount;
 
     @Transactional
     public Reservation reserveRoom(ReservationDto reservationDto) {
@@ -74,31 +75,22 @@ public class ReservationService {
 
         Reservation reservation = new Reservation();
 
-        Reservation res = reservationRepository.findByRoomAndDate(room.getRoomID(), checkin, checkout);
+//        Reservation res = reservationRepository.findByRoomAndDate(room.getRoomID(), checkin, checkout);
 
-
-        if (checkin.isEqual(res.getCheckin()) && !room.getAvailability()) {
-            message = "Room not available at the moment!" ;
-            System.out.println(message);
-        } else if (checkin.isAfter(res.getCheckout())) {
-            reservation.setRoom(room);
-            reservation.setCustomer(customer);
-            reservation.setCheckin(reservationDto.getCheckin());
-            reservation.setCheckout(reservationDto.getCheckout());
-            reservation.getRoom().setAvailability(false);
-
-            message = "Room booked!";
-            System.out.println(message);
+        //AN O PELATIS EXEI PANW APO 3 RESERVATIONS TOTE EINAI REGULAR
+        List<Reservation> reservations = reservationRepository.findByCustomer(customer);
+        int count = reservations.size() + 1;
+        System.out.println("Reservations made by this user: " + count);
+        if ( count >= 3) {
+            customer.setType("REGULAR");
+        } else {
+            customer.setType("NEW");
         }
-        return reservationRepository.save(reservation);
-    }
 
-    // AYTO DOULEYEI
-
-//        if (!room.getAvailability()) {
-//            message = "Room not available at the moment!" ;
+//        if (checkin.isEqual(res.getCheckin()) && room.getAvailability()) {
+//            message = "Room is not available at the moment!" ;
 //            System.out.println(message);
-//        } else {
+//        } else if (checkin.isAfter(res.getCheckout()) && customer.getType().equals("NEW")) {
 //            reservation.setRoom(room);
 //            reservation.setCustomer(customer);
 //            reservation.setCheckin(reservationDto.getCheckin());
@@ -110,5 +102,49 @@ public class ReservationService {
 //        }
 //        return reservationRepository.save(reservation);
 //    }
+
+    //------------------------------------------------------------------
+
+        if (!room.getAvailability()) {
+            message = "Room not available at the moment!" ;
+            System.out.println(message);
+
+
+            //15% DISCOUNT STOUS REGULAR PELATES
+        } else if (customer.getType().equals("REGULAR")) {
+
+            reservation.setRoom(room);
+            reservation.setCustomer(customer);
+            reservation.setCheckin(reservationDto.getCheckin());
+            reservation.setCheckout(reservationDto.getCheckout());
+            reservation.getRoom().setAvailability(false);
+
+            price = (double)reservation.getNights()*room.getRoom_roomtype().getPrice();
+            discount = 15*price/100;
+            total = price - discount;
+            reservation.setTotal(total);
+
+            message = "Room booked!";
+            System.out.println(message);
+
+
+            //NO DISCOUNT STOUS NEW PELATES
+        } else if (customer.getType().equals("NEW")) {
+
+            reservation.setRoom(room);
+            reservation.setCustomer(customer);
+            reservation.setCheckin(reservationDto.getCheckin());
+            reservation.setCheckout(reservationDto.getCheckout());
+            reservation.getRoom().setAvailability(false);
+
+            total = (double)reservation.getNights()*room.getRoom_roomtype().getPrice();
+            reservation.setTotal(total);
+
+            message = "Room booked!";
+            System.out.println(message);
+
+        }
+        return reservationRepository.save(reservation);
+    }
 
 }
