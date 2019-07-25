@@ -225,8 +225,8 @@
           &nbsp;
           <mat-card-header class="header"><strong>Guest info</strong></mat-card-header>
 
-          <pre class="pre"><strong>  First name: {{ user.firstname }}</strong></pre>
-          <pre class="pre"><strong>  Last name: {{ user.lastname }}</strong></pre>
+          <pre class="pre"><strong>  First name: {{ user.firstname }} </strong></pre>
+          <pre class="pre"><strong>  Last name: {{ user.lastname }} </strong></pre>
           &nbsp;
           <mat-card-header class="header"><strong>Hotel/Room info</strong></mat-card-header>
           <pre class="pre"><strong> {{ this.selectedRoom | jsonprint }} </strong></pre>
@@ -241,9 +241,8 @@
           <mat-card-header class="header"><strong>Payment method</strong></mat-card-header>
           <pre class="pre"><strong> {{ this.selectedPayment }} </strong></pre>
 
-
           <mat-card-header class="header"><strong>Total</strong></mat-card-header>
-          <pre class="pre"><strong></strong></pre>
+          <pre class="pre"><strong>{{ this.total }}</strong></pre>
 
         </mat-card>
 

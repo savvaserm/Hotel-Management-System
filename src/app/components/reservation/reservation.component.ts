@@ -7,6 +7,8 @@ import { ReservationService } from '../../services/reservation.service';
 import { Router } from '@angular/router';
 import { Reservation } from '../../model/model.reservation';
 import { Amenities } from '../../model/model.amenities';
+import { Roomtype } from '../../model/model.roomtype';
+import {Room} from '../../model/model.room';
 
 @Component({
   selector: 'app-reservation',
@@ -32,11 +34,11 @@ export class ReservationComponent implements OnInit {
 
   reservation = new Reservation();
   nights: number;
-  amenities: any;
+  amenities: Amenities;
   isOptional = true;
   rooms: any;
   @Input() showMePartially: boolean;
-  roomtypes: any;
+  roomtypes: Roomtype;
   hotels: any;
   selectedValue: string;
   selectedValue2: string;
@@ -50,16 +52,10 @@ export class ReservationComponent implements OnInit {
   show: boolean;
   user: User = new User();
   showVar: boolean;
-  total: string;
+  total: number;
   showCard: boolean;
   selectedAmenities = [];
-  selectedRoom = {
-    room_hotelId: '{id: , hotel name: }',
-    availability: '',
-    roomtype: '{price: , roomtype: }',
-    roomId: '',
-    roomNumber: ','
-  };
+  selectedRoom: Room;
 
   toggleChild() {
     this.showVar = !this.showVar;
@@ -83,6 +79,7 @@ export class ReservationComponent implements OnInit {
     this.getRoomtypes();
     this.getRooms();
     this.getAmenities();
+    this.getTotal();
   }
 
   getHotels() {
@@ -100,7 +97,7 @@ export class ReservationComponent implements OnInit {
 
   getRoomtypes() {
     this.listService.getRoomtypes()
-      .subscribe(data => {
+      .subscribe((data: Roomtype) => {
         if (data) {
           this.roomtypes = data;
         } else {
@@ -114,7 +111,7 @@ export class ReservationComponent implements OnInit {
 
   getRooms() {
     this.roomListService.getRooms()
-      .subscribe(data => {
+      .subscribe((data: Room) => {
         if (data) {
           this.rooms = data;
         } else {
@@ -127,7 +124,7 @@ export class ReservationComponent implements OnInit {
 
   getAmenities() {
     this.listService.getAmenities()
-      .subscribe(data => {
+      .subscribe((data: Amenities) => {
         if (data) {
           this.amenities = data;
         }
@@ -136,7 +133,7 @@ export class ReservationComponent implements OnInit {
       });
   }
 
-  roomSelected(room) {
+  roomSelected(room: Room) {
     this.selectedRoom = room;
     this.showCard = true;
   }
@@ -150,6 +147,11 @@ export class ReservationComponent implements OnInit {
           alert('Cannot book this room');
         }
       );
+
+    getTotal() {
+      this.total = this.selectedRoom.roomtype.price + this.selectedAmenities;
+
+    }
   }
 }
 
