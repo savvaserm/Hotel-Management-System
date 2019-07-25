@@ -119,7 +119,7 @@ CREATE TABLE `hibernate_sequence` (
 
 LOCK TABLES `hibernate_sequence` WRITE;
 /*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
-INSERT INTO `hibernate_sequence` VALUES (96),(96);
+INSERT INTO `hibernate_sequence` VALUES (121),(121);
 /*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,7 +174,7 @@ CREATE TABLE `room` (
 
 LOCK TABLES `room` WRITE;
 /*!40000 ALTER TABLE `room` DISABLE KEYS */;
-INSERT INTO `room` VALUES (1,'Room 100',1,1,1),(2,'Room 101',1,1,1),(3,'Room 102',1,2,1),(4,'Room 103',1,3,1),(5,'Room 104',1,3,1),(6,'Room 200',1,1,1),(7,'Room 201',1,1,0),(8,'Room 202',1,2,0),(9,'Room 203',1,3,1),(10,'Room 204',1,3,0),(11,'Room 300',1,1,1),(12,'Room 301',1,1,1),(13,'Room 302',1,3,1),(14,'Room 303',1,4,1),(15,'Room 304',1,4,1);
+INSERT INTO `room` VALUES (1,'Room 100',1,1,0),(2,'Room 101',1,1,1),(3,'Room 102',1,2,1),(4,'Room 103',1,3,0),(5,'Room 104',1,3,1),(6,'Room 200',1,1,0),(7,'Room 201',1,1,0),(8,'Room 202',1,2,1),(9,'Room 203',1,3,1),(10,'Room 204',1,3,0),(11,'Room 300',1,1,0),(12,'Room 301',1,1,1),(13,'Room 302',1,3,0),(14,'Room 303',1,4,1),(15,'Room 304',1,4,1);
 /*!40000 ALTER TABLE `room` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,7 +256,7 @@ CREATE TABLE `roomreservation` (
   KEY `fk_reservation_roomId` (`reservation_roomId`),
   CONSTRAINT `fk_reservation_customerId` FOREIGN KEY (`reservation_customerId`) REFERENCES `customer` (`customerId`),
   CONSTRAINT `fk_reservation_roomId` FOREIGN KEY (`reservation_roomId`) REFERENCES `room` (`roomId`)
-) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -265,7 +265,7 @@ CREATE TABLE `roomreservation` (
 
 LOCK TABLES `roomreservation` WRITE;
 /*!40000 ALTER TABLE `roomreservation` DISABLE KEYS */;
-INSERT INTO `roomreservation` VALUES (1,1,'2019-10-10','2019-10-10',NULL,4,NULL),(67,2,'2019-10-10','2019-10-10',NULL,4,NULL),(68,3,'2019-10-11','2019-10-13',NULL,6,NULL),(77,5,'2019-10-14','2019-10-15',NULL,6,NULL),(91,8,'2019-10-15','2019-10-15',NULL,6,NULL),(92,7,'2019-10-15','2019-10-15',NULL,6,NULL),(95,10,'2019-10-15','2019-10-15',NULL,6,NULL);
+INSERT INTO `roomreservation` VALUES (92,7,'2019-10-15','2019-10-15',NULL,6,NULL),(95,10,'2019-10-15','2019-10-15',NULL,6,NULL),(97,11,'2019-10-15','2019-10-17',153.00,6,NULL),(98,1,'2019-10-10','2019-10-11',120.00,4,NULL),(101,4,'2019-10-10','2019-10-11',180.00,5,NULL),(107,13,'2019-10-23','2019-10-23',153.00,6,NULL),(120,6,'2019-10-26','2019-10-26',54.00,4,NULL);
 /*!40000 ALTER TABLE `roomreservation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -304,4 +304,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-25 11:33:40
+-- Dump completed on 2019-07-25 14:57:48
