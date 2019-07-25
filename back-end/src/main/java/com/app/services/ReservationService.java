@@ -55,13 +55,14 @@ public class ReservationService {
 
 //-------------------------------------------------------------------------------------------
 
-
+    private long diffirence;
     LocalDate localDate = LocalDate.now();
-    String message;
-    Double total, price, discount;
+    private String message;
+    private Double total, price, discount, discount2;
 
     @Transactional
     public Reservation reserveRoom(ReservationDto reservationDto) {
+
 
 
         Optional<Room> optRoom = roomRepository.findById((int) reservationDto.getRoomId());
@@ -80,12 +81,15 @@ public class ReservationService {
         //AN O PELATIS EXEI PANW APO 3 RESERVATIONS TOTE EINAI REGULAR
         List<Reservation> reservations = reservationRepository.findByCustomer(customer);
         int count = reservations.size() + 1;
-        System.out.println("Reservations made by this user: " + count);
+        System.out.println("Reservations made by " + customer.getLastname() + ": " + count);
         if ( count >= 3) {
             customer.setType("REGULAR");
         } else {
             customer.setType("NEW");
         }
+
+        diffirence = checkin.getDayOfYear() - localDate.getDayOfYear();
+        System.out.println("Diffirence :" + diffirence);
 
 //        if (checkin.isEqual(res.getCheckin()) && room.getAvailability()) {
 //            message = "Room is not available at the moment!" ;
@@ -105,6 +109,15 @@ public class ReservationService {
 
     //------------------------------------------------------------------
 
+        //AN TO KLEINEI 90 MERES NWRITERA EXEI 0% EKPTWSH,GIA 90 MEXRI 140 10%,GIA >140 20%
+        if( diffirence < 90) {
+            discount2 = 0.0;
+        } else if ( 90 <= diffirence && diffirence <= 140 ) {
+            discount2 = 0.1;
+        } else {
+            discount2 = 0.2;
+        }
+
         if (!room.getAvailability()) {
             message = "Room not available at the moment!" ;
             System.out.println(message);
@@ -113,31 +126,38 @@ public class ReservationService {
             //15% DISCOUNT STOUS REGULAR PELATES
         } else if (customer.getType().equals("REGULAR")) {
 
+
+
             reservation.setRoom(room);
             reservation.setCustomer(customer);
-            reservation.setCheckin(reservationDto.getCheckin());
-            reservation.setCheckout(reservationDto.getCheckout());
+            reservation.setCheckin(checkin);
+            reservation.setCheckout(checkout);
             reservation.getRoom().setAvailability(false);
-
-            price = (double)reservation.getNights()*room.getRoom_roomtype().getPrice();
-            discount = 15*price/100;
-            total = price - discount;
-            reservation.setTotal(total);
 
             message = "Room booked!";
             System.out.println(message);
+
+            price = (double)reservation.getNights()*room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice();
+            discount = 15*price/100 + discount2*price;
+            total = price - discount;
+            reservation.setTotal(total);
+
+
 
 
             //NO DISCOUNT STOUS NEW PELATES
         } else if (customer.getType().equals("NEW")) {
 
+
             reservation.setRoom(room);
             reservation.setCustomer(customer);
-            reservation.setCheckin(reservationDto.getCheckin());
-            reservation.setCheckout(reservationDto.getCheckout());
+            reservation.setCheckin(checkin);
+            reservation.setCheckout(checkout);
             reservation.getRoom().setAvailability(false);
 
-            total = (double)reservation.getNights()*room.getRoom_roomtype().getPrice();
+            price = (double)reservation.getNights()*room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice();
+
+            total = price - discount2*price;
             reservation.setTotal(total);
 
             message = "Room booked!";
