@@ -160,6 +160,7 @@ CREATE TABLE `room` (
   `room_hotelId` int(10) unsigned DEFAULT NULL,
   `room_roomtypeId` int(10) DEFAULT NULL,
   `available` tinyint(1) DEFAULT '1',
+  `cancel` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`roomId`),
   KEY `fk_room_room_typeid_idx` (`room_roomtypeId`),
   KEY `fk_room_hotelid` (`room_hotelId`),
@@ -174,7 +175,7 @@ CREATE TABLE `room` (
 
 LOCK TABLES `room` WRITE;
 /*!40000 ALTER TABLE `room` DISABLE KEYS */;
-INSERT INTO `room` VALUES (1,'Room 100',1,1,0),(2,'Room 101',1,1,1),(3,'Room 102',1,2,1),(4,'Room 103',1,3,0),(5,'Room 104',1,3,1),(6,'Room 200',1,1,0),(7,'Room 201',1,1,0),(8,'Room 202',1,2,1),(9,'Room 203',1,3,1),(10,'Room 204',1,3,1),(11,'Room 300',1,1,0),(12,'Room 301',1,1,1),(13,'Room 302',1,3,0),(14,'Room 303',1,4,1),(15,'Room 304',1,4,1);
+INSERT INTO `room` VALUES (1,'Room 100',1,1,0,1),(2,'Room 101',1,1,1,0),(3,'Room 102',1,2,1,1),(4,'Room 103',1,3,0,0),(5,'Room 104',1,3,1,0),(6,'Room 200',1,1,0,1),(7,'Room 201',1,1,0,1),(8,'Room 202',1,2,1,0),(9,'Room 203',1,3,1,0),(10,'Room 204',1,3,1,0),(11,'Room 300',1,1,0,1),(12,'Room 301',1,1,1,1),(13,'Room 302',1,3,0,0),(14,'Room 303',1,4,1,1),(15,'Room 304',1,4,1,0);
 /*!40000 ALTER TABLE `room` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -304,4 +305,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-26 12:00:59
+-- Dump completed on 2019-07-26 17:25:28
