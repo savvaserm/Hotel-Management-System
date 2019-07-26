@@ -121,9 +121,8 @@
             </thead>
 
             <tbody>
-
-
             <tr *ngFor="let room of rooms">
+
               <td>{{room.roomNumber}}</td>
               &nbsp;
               &nbsp;
@@ -134,13 +133,12 @@
               &nbsp;
               &nbsp;
               &nbsp;
-              <td>{{room.availability}}</td>
+              <td>{{room.availability | jsonprint}}</td>
               &nbsp;
               &nbsp;
               &nbsp;
-              <td><input type="button" value="Select" (click)="roomSelected(room)"/></td>
+              <td> <input *ngIf="room.availability" type="button" value="Select" (click)="roomSelected(room)"/></td>
             </tr>
-
             </tbody>
 
           </table>
@@ -241,8 +239,10 @@
           <mat-card-header class="header"><strong>Payment method</strong></mat-card-header>
           <pre class="pre"><strong> {{ this.selectedPayment }} </strong></pre>
 
+
+<!--          AN DEN EMFANIZEI THN SELIDA SVHSE TO {{ this.getTotal() }}             -->
           <mat-card-header class="header"><strong>Total</strong></mat-card-header>
-          <pre class="pre"><strong>{{ this.total }}</strong></pre>
+          <pre class="pre"><strong></strong></pre>
 
         </mat-card>
 

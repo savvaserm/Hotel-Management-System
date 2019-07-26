@@ -1,4 +1,4 @@
-import {Roomtype} from './model.roomtype';
+import { Roomtype } from './model.roomtype';
 
 export class Room {
   roomId: string;

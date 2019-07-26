@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 import { Reservation } from '../../model/model.reservation';
 import { Amenities } from '../../model/model.amenities';
 import { Roomtype } from '../../model/model.roomtype';
-import {Room} from '../../model/model.room';
+import { Room } from '../../model/model.room';
+import { reduce } from 'rxjs/operators';
 
 @Component({
   selector: 'app-reservation',
@@ -36,12 +37,12 @@ export class ReservationComponent implements OnInit {
   nights: number;
   amenities: Amenities;
   isOptional = true;
-  rooms: any;
+  rooms: Room;
   @Input() showMePartially: boolean;
   roomtypes: Roomtype;
   hotels: any;
   selectedValue: string;
-  selectedValue2: string;
+  selectedValue2: Roomtype;
   selectedPayment: string;
   opened: boolean;
   errorMessage: string;
@@ -53,9 +54,18 @@ export class ReservationComponent implements OnInit {
   user: User = new User();
   showVar: boolean;
   total: number;
+  totalCost: number;
   showCard: boolean;
   selectedAmenities = [];
   selectedRoom: Room;
+
+  sum() {
+    for (const i of this.selectedAmenities) {
+      this.totalCost = this.amenities.cost;
+    }
+    return this.totalCost;
+  }
+
 
   toggleChild() {
     this.showVar = !this.showVar;
@@ -147,11 +157,11 @@ export class ReservationComponent implements OnInit {
           alert('Cannot book this room');
         }
       );
+  }
 
-    getTotal() {
-      this.total = this.selectedRoom.roomtype.price + this.selectedAmenities;
-
-    }
+  getTotal() {
+    this.total = this.selectedRoom.roomtype.price + this.sum();
+    return this.total;
   }
 }
 
