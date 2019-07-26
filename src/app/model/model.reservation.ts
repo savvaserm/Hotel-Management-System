@@ -1,9 +1,12 @@
+import { User } from './model.user';
+import { Room } from './model.room';
+
 export class Reservation {
-  reservationId: string;
-  roomId: string;
-  customerId: string;
+  reservationId: number;
+  roomId: Room;
+  customerId: User;
   checkin: string;
   checkout: string;
   details: string;
-  total: string;
+  total: number;
 }
