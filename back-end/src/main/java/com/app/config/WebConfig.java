@@ -86,7 +86,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 
                 // ignoring the guest's urls "
-                .antMatchers("/users/hotels/rooms/amenities", "users/hotels/reserveroom",
+                .antMatchers("users/hotels/reservations", "/users/hotels/rooms/amenities", "users/hotels/reserveroom",
                         "/users/hotels/rooms", "/users/hotels/roomtypes", "/users/hotels", "/users/list",
                         "/users/register", "/users/login", "/users/logout", "/users/create", "/users/profile", "/users/employees").permitAll()
 

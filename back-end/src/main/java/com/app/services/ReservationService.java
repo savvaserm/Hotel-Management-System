@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+@SuppressWarnings("FieldCanBeLocal")
 @Service
 public class ReservationService {
 
@@ -56,9 +57,10 @@ public class ReservationService {
 //-------------------------------------------------------------------------------------------
 
     private long diffirence;
-    LocalDate localDate = LocalDate.now();
+    private LocalDate localDate = LocalDate.now();
     private String message;
-    private Double total, price, discount, discount2;
+    private Double total, price;
+    private Double discount, discount2, discount3;
 
     @Transactional
     public Reservation reserveRoom(ReservationDto reservationDto) {
@@ -118,6 +120,14 @@ public class ReservationService {
             discount2 = 0.2;
         }
 
+        if(room.getCancel()) {
+            discount3 = 0.0;
+            System.out.println("In case you want to cancel, no money can be returned");
+        } else {
+            discount3 = 0.25;
+            System.out.println("If cancelled, money will be returned");
+        }
+
         if (!room.getAvailability()) {
             message = "Room not available at the moment!" ;
             System.out.println(message);
@@ -138,7 +148,7 @@ public class ReservationService {
             System.out.println(message);
 
             price = (double)reservation.getNights()*room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice();
-            discount = 15*price/100 + discount2*price;
+            discount = 15*price/100 + discount2*price + discount3*price;
             total = price - discount;
             reservation.setTotal(total);
 
@@ -157,7 +167,7 @@ public class ReservationService {
 
             price = (double)reservation.getNights()*room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice();
 
-            total = price - discount2*price;
+            total = price - discount2*price - discount3*price;
             reservation.setTotal(total);
 
             message = "Room booked!";
@@ -165,6 +175,22 @@ public class ReservationService {
 
         }
         return reservationRepository.save(reservation);
+    }
+
+    @Transactional
+    public Reservation cancelRes(Reservation reservation) {
+
+        Optional<Reservation> optRes = reservationRepository.findById(reservation.getRoom_reservationId());
+        Reservation res = optRes.get();
+
+        if(res.getRoom().getCancel()) {
+            System.out.println("Reservation cancelled!");
+            reservationRepository.delete(res);
+        } else {
+            System.out.println("Reservation cannot be cancelled!");
+        }
+
+        return res;
     }
 
 }

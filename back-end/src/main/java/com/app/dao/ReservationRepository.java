@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import javax.persistence.Id;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
             "(:checkin BETWEEN r.checkin AND r.checkout) OR " +
             "(:checkout BETWEEN r.checkin AND r.checkout) OR " +
             "(:checkin <= r.checkin AND :checkout >= r.checkout)")
-    Reservation findByRoomAndDate(@Param("roomId") Integer roomId, @Param("checkin") LocalDate checkin, @Param("checkout") LocalDate checkout);
+    List<Reservation> findByRoomAndDate(@Param("roomId") Integer roomId, @Param("checkin") LocalDate checkin, @Param("checkout") LocalDate checkout);
+
     List<Reservation> findByCustomer(@Param("customerId") User customerId);
 }

@@ -13,6 +13,7 @@ public class Room {
 
     private String room_number;
     private Boolean available;
+    private Boolean cancel;
 
 //    @OneToMany(mappedBy = "reservation_roomId", cascade = CascadeType.ALL)
 //    private Collection<Reservation> reservations;
@@ -64,6 +65,14 @@ public class Room {
 
     public void setAvailability(Boolean available) {
         this.available = available;
+    }
+
+    public Boolean getCancel() {
+        return cancel;
+    }
+
+    public void setCancel(Boolean cancel) {
+        this.cancel = cancel;
     }
 
     public String toString() {
