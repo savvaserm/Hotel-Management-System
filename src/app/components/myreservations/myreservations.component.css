@@ -21,3 +21,15 @@
 .h2 {
   text-align: center;
 }
+
+.back-btn {
+  background-color: black;
+  color: navajowhite;
+  font-family: Calibri, sans-serif;
+  font-size: 16px;
+  margin: 20px;
+}
+
+.back-btn:hover {
+  background-color: crimson;
+}

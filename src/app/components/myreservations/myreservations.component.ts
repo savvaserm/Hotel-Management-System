@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ListService } from '../../services/list-service.service';
-import {Reservation} from '../../model/model.reservation';
+import { Reservation } from '../../model/model.reservation';
 
 @Component({
   selector: 'app-myreservations',
@@ -11,7 +11,7 @@ export class MyreservationsComponent implements OnInit {
 
   noReservationsMessage: string;
   errorMessage: string;
-  reservations: Reservation;
+  reservations: any;
   opened: boolean;
 
   constructor(private listService: ListService) {
@@ -23,7 +23,7 @@ export class MyreservationsComponent implements OnInit {
 
   getReservations() {
     this.listService.getReservations()
-      .subscribe((data: Reservation) => {
+      .subscribe((data) => {
         if (data) {
           this.reservations = data;
         } else {

@@ -9,4 +9,5 @@ export class Reservation {
   checkout: string;
   details: string;
   total: number;
+  nights: number;
 }
