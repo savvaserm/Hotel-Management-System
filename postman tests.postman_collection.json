@@ -1,0 +1,286 @@
+{
+	"info": {
+		"_postman_id": "3acd1fa3-5b96-42c4-a0b2-57b1403f26de",
+		"name": "postman tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/users/login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ermidis",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"user7\",\n\t\"password\": \"77777\",\n\t\"email\" : \"user7@domain.com\",\n\t\"role\":\"USER\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/users/create",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ermidis",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"user7\",\n\t\"password\": \"77777\",\n\t\"email\" : \"user7@domain.com\",\n\t\"role\":\"USER\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/users/create",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ermidis",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"user7\",\n\t\"password\": \"77777\",\n\t\"email\" : \"user7@domain.com\",\n\t\"role\":\"USER\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get reservations",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "1111",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "savvas",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\n    \"reservation_roomId\":  { \"roomId\": 1} ,\n    \"reservation_customerId\": {\"customerId\": 4},\n    \"checkin\": \"2019-10-10\",\n    \"checkout\": \"2019-10-10\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/hotels/reserveroom",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"hotels",
+						"reserveroom"
+					]
+				},
+				"description": "get all the reservations"
+			},
+			"response": []
+		},
+		{
+			"name": "cancelRes",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\n\t\"room_reservationId\": 120\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/hotels/reservations/cancel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"hotels",
+						"reservations",
+						"cancel"
+					]
+				},
+				"description": "cancel reservation by reservation id"
+			},
+			"response": []
+		},
+		{
+			"name": "reserveRoom",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "1111",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "savvas",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\n                \"roomId\": 5,\n    \t\"customerId\": 4,\n    \"checkin\": \"2019-10-20\",\n    \"checkout\": \"2019-10-26\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/hotels/reserveroom",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"hotels",
+						"reserveroom"
+					]
+				},
+				"description": "reserve room and calculate the total discount based on checkin date, customer type and cancelability of room."
+			},
+			"response": []
+		}
+	]
+}
