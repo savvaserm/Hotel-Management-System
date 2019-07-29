@@ -44,7 +44,7 @@ public class ReservationController {
         reservationService.reserveRoom(reservationDto);
     }
 
-    @RequestMapping(value = "/cancel", method = RequestMethod.POST)
+    @RequestMapping(value = "/reservations/cancel", method = RequestMethod.POST)
     public void cancelRes(@RequestBody Reservation reservation) {
         reservationService.cancelRes(reservation);
     }

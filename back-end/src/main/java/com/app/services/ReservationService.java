@@ -42,21 +42,22 @@ public class ReservationService {
 
 // -------------------------------------------------------------------------------------------
 
-//    private String checkIfAvailable(Room room, LocalDate checkin, LocalDate checkout) {
-//        LocalDate localDate = LocalDate.now();
+//    private Reservation checkIfAvailable(Room room, LocalDate checkin, LocalDate checkout) {
+//        ReservationDto reservationDto = new ReservationDto();
+//        LocalDate start;
+//        start = reservationDto.getCheckin();
 //        reservationRepository.findByRoomAndDate(room, checkin, checkout);
-//        if (!room.getAvailability()) {
-//            return "Room is not available";
-//        } else if (localDate.isAfter(checkout)) {
+//        if (!room.getAvailability() && start.isEqual(checkin)) {
+//            System.out.println("Room not available at given dates!");
+//        } else if (start.isAfter(checkout)) {
 //            room.setAvailability(true);
 //        }
-//        return "";
-//
+//        return res;
 //    }
 
-//-------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------
 
-    private long diffirence;
+    private long difference;
     private LocalDate localDate = LocalDate.now();
     private String message;
     private Double total, price;
@@ -64,7 +65,6 @@ public class ReservationService {
 
     @Transactional
     public Reservation reserveRoom(ReservationDto reservationDto) {
-
 
 
         Optional<Room> optRoom = roomRepository.findById((int) reservationDto.getRoomId());
@@ -78,43 +78,24 @@ public class ReservationService {
 
         Reservation reservation = new Reservation();
 
-//        Reservation res = reservationRepository.findByRoomAndDate(room.getRoomID(), checkin, checkout);
-
         //AN O PELATIS EXEI PANW APO 3 RESERVATIONS TOTE EINAI REGULAR
         List<Reservation> reservations = reservationRepository.findByCustomer(customer);
         int count = reservations.size() + 1;
-        System.out.println("Reservations made by " + customer.getLastname() + ": " + count);
+        System.out.println("\nReservations made by " + customer.getLastname() + ": " + count);
         if ( count >= 3) {
             customer.setType("REGULAR");
         } else {
             customer.setType("NEW");
         }
 
-        diffirence = checkin.getDayOfYear() - localDate.getDayOfYear();
-        System.out.println("Diffirence :" + diffirence);
+        difference = checkin.getDayOfYear() - localDate.getDayOfYear();
+        System.out.println("Difference :" + difference);
 
-//        if (checkin.isEqual(res.getCheckin()) && room.getAvailability()) {
-//            message = "Room is not available at the moment!" ;
-//            System.out.println(message);
-//        } else if (checkin.isAfter(res.getCheckout()) && customer.getType().equals("NEW")) {
-//            reservation.setRoom(room);
-//            reservation.setCustomer(customer);
-//            reservation.setCheckin(reservationDto.getCheckin());
-//            reservation.setCheckout(reservationDto.getCheckout());
-//            reservation.getRoom().setAvailability(false);
-//
-//            message = "Room booked!";
-//            System.out.println(message);
-//        }
-//        return reservationRepository.save(reservation);
-//    }
-
-    //------------------------------------------------------------------
 
         //AN TO KLEINEI 90 MERES NWRITERA EXEI 0% EKPTWSH,GIA 90 MEXRI 140 10%,GIA >140 20%
-        if( diffirence < 90) {
+        if( difference < 90) {
             discount2 = 0.0;
-        } else if ( 90 <= diffirence && diffirence <= 140 ) {
+        } else if ( difference <= 140 ) {
             discount2 = 0.1;
         } else {
             discount2 = 0.2;
@@ -122,13 +103,23 @@ public class ReservationService {
 
         if(room.getCancel()) {
             discount3 = 0.0;
-            System.out.println("In case you want to cancel, no money can be returned");
+            System.out.println("If reservation is cancelled, money will be returned");
+
         } else {
             discount3 = 0.25;
-            System.out.println("If cancelled, money will be returned");
+            System.out.println("If reservation is cancelled, no money can be returned");
         }
 
-        if (!room.getAvailability()) {
+        List<Reservation> checkRes = reservationRepository.findByRoomAndDate(room.getRoomID(), checkin, checkout);
+        if( checkRes.size() >= 2 ) {
+            System.out.println(checkRes.size());
+            System.out.println("Room is not available at the given dates!");
+        } else {
+            room.setAvailability(true);
+        }
+
+
+            if (!room.getAvailability()) {
             message = "Room not available at the moment!" ;
             System.out.println(message);
 
@@ -145,14 +136,15 @@ public class ReservationService {
             reservation.getRoom().setAvailability(false);
 
             message = "Room booked!";
-            System.out.println(message);
 
             price = (double)reservation.getNights()*room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice();
             discount = 15*price/100 + discount2*price + discount3*price;
             total = price - discount;
             reservation.setTotal(total);
-
-
+            reservation.setReservation_details("Reservation id: [" + reservation.getRoom_reservationId() + "], room number: " + room.getRoomNumber() + ", customer: " + customer.getLastname() + ", checkin: " + checkin +
+                    ", reserved for " + reservation.getNights() + " nights" + ", for a total price of: " + reservation.getTotal() + " $" );
+            System.out.println(reservation.getReservation_details());
+            System.out.println(message);
 
 
             //NO DISCOUNT STOUS NEW PELATES
@@ -169,11 +161,15 @@ public class ReservationService {
 
             total = price - discount2*price - discount3*price;
             reservation.setTotal(total);
+            reservation.setReservation_details("Reservation id : [" + reservation.getRoom_reservationId() + "], room number: " + room.getRoomNumber() + ", customer: " + customer.getLastname() + ", checkin: " + checkin +
+                    ", reserved for " + reservation.getNights() + " nights" + ", for a total price of: " + reservation.getTotal() + " $");
 
             message = "Room booked!";
-            System.out.println(message);
 
+            System.out.println(reservation.getReservation_details());
+            System.out.println(message);
         }
+
         return reservationRepository.save(reservation);
     }
 
@@ -184,10 +180,13 @@ public class ReservationService {
         Reservation res = optRes.get();
 
         if(res.getRoom().getCancel()) {
-            System.out.println("Reservation cancelled!");
+            System.out.println("\nReservation with id: [" +  res.getRoom_reservationId() + "]    cancelled (MONEY WILL BE REFUNDED)!");
             reservationRepository.delete(res);
+            res.getRoom().setAvailability(true);
         } else {
-            System.out.println("Reservation cannot be cancelled!");
+            reservationRepository.delete(res);
+            res.getRoom().setAvailability(true);
+            System.out.println("\nReservation with id: [" + res.getRoom_reservationId() + "]    cancelled (MONEY WONT BE REFUNDED)!");
         }
 
         return res;
