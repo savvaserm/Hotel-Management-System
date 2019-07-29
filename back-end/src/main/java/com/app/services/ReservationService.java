@@ -103,24 +103,24 @@ public class ReservationService {
 
         if(room.getCancel()) {
             discount3 = 0.0;
-            System.out.println("If reservation is cancelled, money will be returned");
+            System.out.println("If reservation is cancelled, money will be refunded");
 
         } else {
             discount3 = 0.25;
-            System.out.println("If reservation is cancelled, no money can be returned");
+            System.out.println("If reservation is cancelled, no money can be refunded");
         }
 
-        List<Reservation> checkRes = reservationRepository.findByRoomAndDate(room.getRoomID(), checkin, checkout);
-        if( checkRes.size() >= 2 ) {
-            System.out.println(checkRes.size());
-            System.out.println("Room is not available at the given dates!");
+        //DEN VRISKEI TO ROOM ID, CHECKAREI MONO TIS HMEROMHNIES KAI STELNEI PISW OLA TA RESERVATIONS GIAYTES TIS HMEROMHNIES
+        List<Reservation> checkRes = reservationRepository.findByRoomAndDate(room, checkin, checkout);
+        if( checkRes.size() >= 1 ) {
+            System.out.println("Reservation for given dates: " + checkRes.size());
         } else {
             room.setAvailability(true);
         }
 
 
             if (!room.getAvailability()) {
-            message = "Room not available at the moment!" ;
+            message = "Room is not available at given dates!" ;
             System.out.println(message);
 
 
