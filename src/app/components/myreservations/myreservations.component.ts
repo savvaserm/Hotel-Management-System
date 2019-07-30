@@ -13,21 +13,31 @@ export class MyreservationsComponent implements OnInit {
   errorMessage: string;
   reservations: any;
   opened: boolean;
+  now = new Date();
+  x = 0;
+  var = JSON.parse(localStorage.getItem('currentUser'));
+
 
   constructor(private listService: ListService) {
   }
 
   ngOnInit() {
-    this.getReservations();
+    this.getPastReservations();
   }
 
-  getReservations() {
+  getPastReservations() {
     this.listService.getReservations()
-      .subscribe((data) => {
-        if (data) {
-          this.reservations = data;
-        } else {
-          return this.noReservationsMessage = 'No reservations found';
+      .subscribe((data: Array<Reservation>) => {
+        console.log(data[this.x].customer.username);
+        console.log(this.now);
+        for (this.x; this.x < data.length; this.x++) {
+          if (data[this.x].customer.username === this.var.username ) {
+            this.reservations = data;
+            console.log(this.var.username);
+            console.log(this.reservations);
+          } else {
+            return this.noReservationsMessage = ' No reservations found';
+          }
         }
       }, error => {
         this.errorMessage = error;

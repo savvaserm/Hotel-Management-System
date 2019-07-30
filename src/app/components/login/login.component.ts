@@ -33,10 +33,9 @@ export class LoginComponent implements OnInit {
         this.errorMessage = 'Error: Username or password is incorrect';
       });
     localStorage.setItem('currentUser', JSON.stringify(this.user));
-    const userCredentials = JSON.parse(localStorage.getItem('currentUser'));
-    return localStorage.getItem('userCredentials');
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    return localStorage.getItem('currentUser');
   }
-
 
 // data => {
 //   this.router.navigate(['profile']);

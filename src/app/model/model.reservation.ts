@@ -2,11 +2,11 @@ import { User } from './model.user';
 import { Room } from './model.room';
 
 export class Reservation {
-  reservationId: number;
-  roomId: Room;
-  customerId: User;
-  checkin: string;
-  checkout: string;
+  id: number;
+  room: Room;
+  customer: User;
+  checkin: Date;
+  checkout: Date;
   details: string;
   total: number;
   nights: number;

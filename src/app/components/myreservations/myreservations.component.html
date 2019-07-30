@@ -7,11 +7,11 @@
 
       <mat-list class="navbar">
         <a style="color: black" href="/list">
-          <mat-list-item class="item1">See customers</mat-list-item>
+          <mat-list-item class="item1">Show customers</mat-list-item>
         </a>
 
         <a style="color: black" href="/employees">
-          <mat-list-item class="item2">Our employees</mat-list-item>
+          <mat-list-item class="item2">Show employees</mat-list-item>
         </a>
 
         <a style="color: black" href="/reservations">
@@ -41,20 +41,33 @@
       <thead>
 
       <tr>
-        <th></th>
-        <th></th>
+        <th>ID</th>
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        <th>Details</th>
+        &nbsp;
+        &nbsp;
+        <th>Rate</th>
       </tr>
 
       </thead>
 
       <tbody>
       <tr *ngFor="let reservation of reservations">
-        <td>{{ reservation.id | json }}</td>
+        <ng-container *ngIf="this.var.username">
+        <td>{{ reservation.room_reservationId }}</td>
         &nbsp;
         &nbsp;
         &nbsp;
-        <td><button mat-button>Rate</button></td>
-
+        <td>{{ reservation.reservation_details }}</td>
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        <td><button mat-button><i class="material-icons">
+          rate_review
+        </i></button></td>
+        </ng-container>
       </tr>
 
       </tbody>
