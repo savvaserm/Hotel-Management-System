@@ -156,7 +156,7 @@ DROP TABLE IF EXISTS `quantity`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `quantity` (
   `id` int(11) NOT NULL,
-  `amount` varchar(45) DEFAULT NULL,
+  `amount` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -167,7 +167,7 @@ CREATE TABLE `quantity` (
 
 LOCK TABLES `quantity` WRITE;
 /*!40000 ALTER TABLE `quantity` DISABLE KEYS */;
-INSERT INTO `quantity` VALUES (1,'8'),(2,'4'),(3,'6'),(4,'2');
+INSERT INTO `quantity` VALUES (1,8),(2,4),(3,6),(4,2);
 /*!40000 ALTER TABLE `quantity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -332,4 +332,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-30 14:42:55
+-- Dump completed on 2019-07-30 15:05:43
