@@ -113,7 +113,7 @@ public class ReservationService {
         //DEN VRISKEI TO ROOM ID, CHECKAREI MONO TIS HMEROMHNIES KAI STELNEI PISW OLA TA RESERVATIONS GIAYTES TIS HMEROMHNIES
         List<Reservation> checkRes = reservationRepository.findByRoomAndDate(room, checkin, checkout);
         if( checkRes.size() >= 1 ) {
-            System.out.println("Reservation for given dates: " + checkRes.size());
+            System.out.println("Reservations for given dates: " + checkRes.size());
         } else {
             room.setAvailability(true);
         }
@@ -141,8 +141,8 @@ public class ReservationService {
             discount = 15*price/100 + discount2*price + discount3*price;
             total = price - discount;
             reservation.setTotal(total);
-            reservation.setReservation_details("Reservation id: [" + reservation.getRoom_reservationId() + "], room number: " + room.getRoomNumber() + ", customer: " + customer.getLastname() + ", checkin: " + checkin +
-                    ", reserved for " + reservation.getNights() + " nights" + ", for a total price of: " + reservation.getTotal() + " $" );
+            reservation.setReservation_details("Hotel: " + room.getRoom_hotelId().getHotelName() + ", room number: " + room.getRoomNumber() + ", customer: " + customer.getLastname() + ", checkin: " + checkin +
+                    ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
             System.out.println(reservation.getReservation_details());
             System.out.println(message);
 
@@ -161,8 +161,8 @@ public class ReservationService {
 
             total = price - discount2*price - discount3*price;
             reservation.setTotal(total);
-            reservation.setReservation_details("Reservation id : [" + reservation.getRoom_reservationId() + "], room number: " + room.getRoomNumber() + ", customer: " + customer.getLastname() + ", checkin: " + checkin +
-                    ", reserved for " + reservation.getNights() + " nights" + ", for a total price of: " + reservation.getTotal() + " $");
+            reservation.setReservation_details("Hotel: " + room.getRoom_hotelId().getHotelName() + ", room number: " + room.getRoomNumber() + ", customer: " + customer.getLastname() + ", checkin: " + checkin +
+                    ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
 
             message = "Room booked!";
 
