@@ -132,16 +132,13 @@ public class ReservationService {
 
         }
 
+        if (!room.getAvailability()) {
 
-            if (!room.getAvailability()) {
             message = "Room is not available at given dates!" ;
             System.out.println(message);
 
-
             //15% DISCOUNT STOUS REGULAR PELATES
         } else if (customer.getType().equals("REGULAR")) {
-
-
 
             reservation.setRoom(room);
             reservation.setCustomer(customer);
@@ -151,17 +148,17 @@ public class ReservationService {
             room.getRoom_roomtype().getQuantity().setAmount(quantity - 1);
 
             message = "Room booked!";
-
             quantity = room.getRoom_roomtype().getQuantity().getAmount();
-
-            System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + quantity + ", extra cost(depends on the availability): " + extraCost);
-
             price = (double)reservation.getNights()*room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice();
             discount = 15*price/100 + discount2*price + discount3*price;
             total = price - discount + extraCost;
             reservation.setTotal(total);
+
+
             reservation.setReservation_details("Hotel: " + room.getRoom_hotelId().getHotelName() + ", room number: " + room.getRoomNumber() + ", customer: " + customer.getLastname() + ", checkin: " + checkin +
                     ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
+
+            System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + quantity + ", extra cost(depends on the availability): " + extraCost);
             System.out.println(reservation.getReservation_details());
             System.out.println(message);
 
@@ -178,17 +175,17 @@ public class ReservationService {
             room.getRoom_roomtype().getQuantity().setAmount(quantity - 1);
 
             price = (double)reservation.getNights()*room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice();
-
             total = price - discount2*price - discount3*price + extraCost;
             reservation.setTotal(total);
+            message = "Room booked!";
+
             reservation.setReservation_details("Hotel: " + room.getRoom_hotelId().getHotelName() + ", room number: " + room.getRoomNumber() + ", customer: " + customer.getLastname() + ", checkin: " + checkin +
                     ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
 
-            message = "Room booked!";
 
             quantity = room.getRoom_roomtype().getQuantity().getAmount();
-            System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + quantity + ", extra cost(depends on the availability): " + extraCost);
 
+            System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + quantity + ", extra cost(depends on the availability): " + extraCost);
             System.out.println(reservation.getReservation_details());
             System.out.println(message);
         }
@@ -203,15 +200,19 @@ public class ReservationService {
         Reservation res = optRes.get();
 
         if(res.getRoom().getCancel()) {
+
             System.out.println("\nReservation with id: [" +  res.getRoom_reservationId() + "]    cancelled (MONEY WILL BE REFUNDED)!");
             reservationRepository.delete(res);
             res.getRoom().setAvailability(true);
             res.getRoom().getRoom_roomtype().getQuantity().setAmount(quantity + 1);
+
         } else {
+
             reservationRepository.delete(res);
             res.getRoom().setAvailability(true);
             res.getRoom().getRoom_roomtype().getQuantity().setAmount(quantity + 1);
             System.out.println("\nReservation with id: [" + res.getRoom_reservationId() + "]    cancelled (MONEY WONT BE REFUNDED)!");
+
         }
 
         return res;
