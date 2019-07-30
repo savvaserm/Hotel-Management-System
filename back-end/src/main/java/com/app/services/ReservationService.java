@@ -91,7 +91,7 @@ public class ReservationService {
         }
 
         difference = checkin.getDayOfYear() - localDate.getDayOfYear();
-        System.out.println("Difference :" + difference);
+        System.out.println("Difference: " + difference);
 
 
         //AN TO KLEINEI 90 MERES NWRITERA EXEI 0% EKPTWSH,GIA 90 MEXRI 140 10%,GIA >140 20%
@@ -174,17 +174,17 @@ public class ReservationService {
             reservation.getRoom().setAvailability(false);
             room.getRoom_roomtype().getQuantity().setAmount(quantity - 1);
 
+
             price = (double)reservation.getNights()*room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice();
             total = price - discount2*price - discount3*price + extraCost;
             reservation.setTotal(total);
             message = "Room booked!";
 
+
             reservation.setReservation_details("Hotel: " + room.getRoom_hotelId().getHotelName() + ", room number: " + room.getRoomNumber() + ", customer: " + customer.getLastname() + ", checkin: " + checkin +
                     ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
 
-
             quantity = room.getRoom_roomtype().getQuantity().getAmount();
-
             System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + quantity + ", extra cost(depends on the availability): " + extraCost);
             System.out.println(reservation.getReservation_details());
             System.out.println(message);
