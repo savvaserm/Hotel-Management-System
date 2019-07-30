@@ -57,6 +57,8 @@ public class ReservationService {
 
 // -------------------------------------------------------------------------------------------
 
+    private Integer quantity;
+    private Double extraCost;
     private long difference;
     private LocalDate localDate = LocalDate.now();
     private String message;
@@ -110,12 +112,24 @@ public class ReservationService {
             System.out.println("If reservation is cancelled, no money can be refunded");
         }
 
+        quantity = room.getRoom_roomtype().getQuantity().getAmount();
+        if ( quantity < 1) {
+            extraCost = 40.0;
+        } else if ( quantity < 3 ) {
+            extraCost = 20.0;
+        } else {
+            extraCost = 0.0;
+        }
+
+
+
         //DEN VRISKEI TO ROOM ID, CHECKAREI MONO TIS HMEROMHNIES KAI STELNEI PISW OLA TA RESERVATIONS GIAYTES TIS HMEROMHNIES
         List<Reservation> checkRes = reservationRepository.findByRoomAndDate(room, checkin, checkout);
         if( checkRes.size() >= 1 ) {
             System.out.println("Reservations for given dates: " + checkRes.size());
         } else {
             room.setAvailability(true);
+
         }
 
 
@@ -134,12 +148,17 @@ public class ReservationService {
             reservation.setCheckin(checkin);
             reservation.setCheckout(checkout);
             reservation.getRoom().setAvailability(false);
+            room.getRoom_roomtype().getQuantity().setAmount(quantity - 1);
 
             message = "Room booked!";
 
+            quantity = room.getRoom_roomtype().getQuantity().getAmount();
+
+            System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + quantity + ", extra cost(depends on the availability): " + extraCost);
+
             price = (double)reservation.getNights()*room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice();
             discount = 15*price/100 + discount2*price + discount3*price;
-            total = price - discount;
+            total = price - discount + extraCost;
             reservation.setTotal(total);
             reservation.setReservation_details("Hotel: " + room.getRoom_hotelId().getHotelName() + ", room number: " + room.getRoomNumber() + ", customer: " + customer.getLastname() + ", checkin: " + checkin +
                     ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
@@ -156,15 +175,19 @@ public class ReservationService {
             reservation.setCheckin(checkin);
             reservation.setCheckout(checkout);
             reservation.getRoom().setAvailability(false);
+            room.getRoom_roomtype().getQuantity().setAmount(quantity - 1);
 
             price = (double)reservation.getNights()*room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice();
 
-            total = price - discount2*price - discount3*price;
+            total = price - discount2*price - discount3*price + extraCost;
             reservation.setTotal(total);
             reservation.setReservation_details("Hotel: " + room.getRoom_hotelId().getHotelName() + ", room number: " + room.getRoomNumber() + ", customer: " + customer.getLastname() + ", checkin: " + checkin +
                     ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
 
             message = "Room booked!";
+
+            quantity = room.getRoom_roomtype().getQuantity().getAmount();
+            System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + quantity + ", extra cost(depends on the availability): " + extraCost);
 
             System.out.println(reservation.getReservation_details());
             System.out.println(message);
@@ -183,9 +206,11 @@ public class ReservationService {
             System.out.println("\nReservation with id: [" +  res.getRoom_reservationId() + "]    cancelled (MONEY WILL BE REFUNDED)!");
             reservationRepository.delete(res);
             res.getRoom().setAvailability(true);
+            res.getRoom().getRoom_roomtype().getQuantity().setAmount(quantity + 1);
         } else {
             reservationRepository.delete(res);
             res.getRoom().setAvailability(true);
+            res.getRoom().getRoom_roomtype().getQuantity().setAmount(quantity + 1);
             System.out.println("\nReservation with id: [" + res.getRoom_reservationId() + "]    cancelled (MONEY WONT BE REFUNDED)!");
         }
 

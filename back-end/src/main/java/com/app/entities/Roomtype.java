@@ -14,9 +14,21 @@ public class Roomtype {
 
     private Integer price;
 
+    @ManyToOne
+    @JoinColumn(name = "quantityId", referencedColumnName = "id")
+    private Quantity quantityId;
+
     @Override
     public String toString() {
         return "Roomtype [id = " + room_typeId + ", roomtype = " + room_type + "]";
+    }
+
+    public Quantity getQuantity() {
+        return quantityId;
+    }
+
+    public void setQuantity(Quantity quantityId) {
+        this.quantityId = quantityId;
     }
 
     public Integer getPrice(){
