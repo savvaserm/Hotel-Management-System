@@ -83,6 +83,10 @@ public class ReservationService {
         LocalDate checkin = reservationDto.getCheckin();
         LocalDate checkout = reservationDto.getCheckout();
 
+        //VALIDATE IF START DATE IS AFTER END DATE AND DISPLAY ERROR MESSAGE AND IF START/END DATE IS BEFORE CURRENT DATE
+        DateValidationHelper.dateValidation(checkin, checkout);
+        DateValidationHelper.currentDateValidation(localDate, checkin);
+
         Reservation reservation = new Reservation();
 
         //AN O PELATIS EXEI 3 KAI PANW RESERVATIONS TOTE EINAI REGULAR
@@ -110,11 +114,11 @@ public class ReservationService {
 
         if (room.getCancel()) {
             discount3 = 0.0;
-            System.out.println("If reservation is cancelled, money will be refunded \n-----------------------");
+            System.out.println("If reservation is cancelled, customer will be refunded \n-----------------------");
 
         } else {
             discount3 = 0.25;
-            System.out.println("If reservation is cancelled, no money can be refunded \n-----------------------");
+            System.out.println("If reservation is cancelled, customer wont be refunded \n-----------------------");
         }
 
         quantity = room.getRoom_roomtype().getQuantity().getAmount();
@@ -169,17 +173,14 @@ public class ReservationService {
             reservation.setReservation_details("Hotel: " + room.getRoom_hotelId().getHotelName() + ", room number: " + room.getRoomNumber() + ", customer: " + customer.getLastname() + ", checkin: " + checkin +
                     ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
 
-            System.out.println("Total discount: " + 0.15 + " (REGULAR customer), " + discount2 + " (for early reservations), " + discount3 + " (if room is cancelable), " +
-                    highSeasonExtra +" (for reservations in high season)\n-----------------------");
-            System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + quantity + ", extra cost(depends on the availability): " + extraCost + " $\n-----------------------");
+            System.out.println("Total discount: " + 0.15 + " (REGULAR customer), " + discount2 + " (for early reservations), " + discount3 + " (if room is NOT cancelable)");
+            System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + quantity + ", extra cost(depends on the availability): " + extraCost + " $, " +  highSeasonExtra + " (for reservations in high season)\n-----------------------");
             System.out.println(reservation.getReservation_details() + "\n-----------------------");
             System.out.println(message);
 
 
             //NO DISCOUNT STOUS NEW PELATES
         } else if (customer.getType().equals("NEW")) {
-
-
 
             reservation.setRoom(room);
             reservation.setCustomer(customer);
@@ -198,9 +199,9 @@ public class ReservationService {
                     ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
 
             quantity = room.getRoom_roomtype().getQuantity().getAmount();
-            System.out.println("Total discount: " + 0.0 + " (NEW customer), " + discount2 + " (for early reservations), " + discount3 + " (if room is cancelable), " +
-                    highSeasonExtra +" (for reservations in high season)\n-----------------------");
-            System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + quantity + ", extra cost(depends on the availability): " + extraCost + " $\n-----------------------");
+            System.out.println("Total discount: " + 0.0 + " (NEW customer), " + discount2 + " (for early reservations), " + discount3 + " (if room is NOT cancelable)\n-----------------------");
+            System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + quantity + ", extra cost(depends on the availability): " + extraCost + " $, " +
+                    highSeasonExtra + " (for reservations in high season)\n-----------------------");
             System.out.println(reservation.getReservation_details() + "\n-----------------------");
             System.out.println(message);
         }
@@ -220,14 +221,14 @@ public class ReservationService {
             reservationRepository.delete(res);
             res.getRoom().setAvailability(true);
             res.getRoom().getRoom_roomtype().getQuantity().setAmount(quantity + 1);
-            System.out.println("\nReservation with id: [" + res.getRoom_reservationId() + "]    cancelled (money WILL be refunded)!");
+            System.out.println("\nReservation with id: [" + res.getRoom_reservationId() + "]    cancelled (customer WILL be refunded)!");
 
         } else {
 
             reservationRepository.delete(res);
             res.getRoom().setAvailability(true);
             res.getRoom().getRoom_roomtype().getQuantity().setAmount(quantity + 1);
-            System.out.println("\nReservation with id: [" + res.getRoom_reservationId() + "]    cancelled (money WONT be refunded)!");
+            System.out.println("\nReservation with id: [" + res.getRoom_reservationId() + "]    cancelled (customer WONT be refunded)!");
 
         }
 
