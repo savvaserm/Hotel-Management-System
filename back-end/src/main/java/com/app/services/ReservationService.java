@@ -95,9 +95,9 @@ public class ReservationService {
 
 
         //AN TO KLEINEI 90 MERES NWRITERA EXEI 0% EKPTWSH,GIA 90 MEXRI 140 10%,GIA >140 20%
-        if (difference < 90) {
+        if (difference < 60) {
             discount2 = 0.0;
-        } else if (difference <= 140) {
+        } else if (difference <= 100) {
             discount2 = 0.1;
         } else {
             discount2 = 0.2;
