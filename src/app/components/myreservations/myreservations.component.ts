@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { ListService } from '../../services/list-service.service';
 import { Reservation } from '../../model/model.reservation';
 
@@ -17,7 +17,6 @@ export class MyreservationsComponent implements OnInit {
   x = 0;
   var = JSON.parse(localStorage.getItem('currentUser'));
 
-
   constructor(private listService: ListService) {
   }
 
@@ -34,9 +33,8 @@ export class MyreservationsComponent implements OnInit {
           if (data[this.x].customer.username === this.var.username ) {
             this.reservations = data;
             console.log(this.var.username);
-            console.log(this.reservations);
           } else {
-            return this.noReservationsMessage = ' No reservations found';
+            return this.noReservationsMessage = 'No reservations found';
           }
         }
       }, error => {

@@ -19,6 +19,7 @@ import { ListService } from './services/list-service.service';
 import { AaDatepickerModule } from 'ngx-animating-datepicker';
 import { JsonPrint } from './components/reservation/pipe';
 import { MyreservationsComponent } from './components/myreservations/myreservations.component';
+import {StarRatingModule} from 'angular-star-rating';
 
 @NgModule({
   declarations: [
@@ -32,11 +33,11 @@ import { MyreservationsComponent } from './components/myreservations/myreservati
     MyreservationsComponent,
     JsonPrint,
 
-
   ],
   imports: [
     BrowserModule, AaDatepickerModule,
-    BrowserAnimationsModule, HttpClientModule, FormsModule, AppRoutingModule, CustomMaterialModule, FacebookModule.forRoot(),
+    BrowserAnimationsModule, HttpClientModule, FormsModule, AppRoutingModule, CustomMaterialModule,
+    FacebookModule.forRoot(), StarRatingModule.forRoot()
   ],
   exports: [
     AppRoutingModule,
