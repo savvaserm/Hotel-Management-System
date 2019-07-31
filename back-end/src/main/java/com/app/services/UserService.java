@@ -59,7 +59,6 @@ public class UserService {
     }
 
 
-
     public User registerAccount(final UserDto accountDto) {
 
         if (find(accountDto.getUsername()) != null)
