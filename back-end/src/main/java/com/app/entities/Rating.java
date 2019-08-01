@@ -13,8 +13,8 @@ public class Rating {
     private Integer roomratingId;
 
     private Double rating;
-    private Date start_date;
-    private Date end_date;
+
+    private String comments;
 
     @ManyToOne
     @JoinColumn(name = "roomrating_roomId", referencedColumnName = "roomId")
@@ -27,8 +27,7 @@ public class Rating {
 
     @Override
     public String toString() {
-        return "Rating [id=" + roomratingId + ", rating: " + rating + ", start date = "
-                + start_date + ", end date = " + end_date + "]";
+        return "Rating [id=" + roomratingId + ", rating: " + rating + ", comments: " + comments + "]";
     }
 
     public Integer getRoom_ratingId() {
@@ -47,20 +46,12 @@ public class Rating {
         this.rating = rating;
     }
 
-    public Date getStart_date() {
-        return start_date;
+    public String getComments() {
+        return comments;
     }
 
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
-    }
-
-    public Date getEnd_date() {
-        return end_date;
-    }
-
-    public void setEnd_date(Date end_date) {
-        this.end_date = end_date;
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
     public Room getRoomrating_roomId() {
