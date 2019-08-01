@@ -55,8 +55,7 @@
 
       <tbody>
       <tr *ngFor="let reservation of reservations">
-        <ng-container *ngIf="this.var.username">
-        <td>{{ reservation.room_reservationId }}</td>
+        <td><b>{{ reservation.room_reservationId }}</b></td>
         &nbsp;
         &nbsp;
         &nbsp;
@@ -64,16 +63,33 @@
         &nbsp;
         &nbsp;
         &nbsp;
-        <td><button mat-button><i class="material-icons">
+        <td><button mat-button (click)="toggle(reservation)"><i class="material-icons">
           rate_review
         </i></button></td>
 
-        </ng-container>
       </tr>
 
       </tbody>
-
     </table>
+
+
+
+      <form class="f1" (ngSubmit)="setRating()">
+        <ng-container *ngIf="showVar"><p style="text-decoration: underline"><i>Enter rating for <strong>{{selectedRes.room.roomNumber}}</strong></i></p>
+      <br/>
+      <mat-form-field><input matInput="number" placeholder="Rate (0-5)" ngModel pattern="(0-5)"/></mat-form-field>
+          <br/>
+      <mat-form-field><input matInput="text" placeholder="Enter your comments"/></mat-form-field>
+          <br>
+      <button mat-button type="submiit">Submit</button>
+      <button mat-button style="background-color: crimson; color: navajowhite" (click)="showVar = false">Cancel</button>
+        </ng-container>
+      </form>
+
+
+
+    <br/>
+    <br/>
 
     <a style="color: black" href="http://localhost:4200/profile">
       <button mat-raised-button class="back-btn">Go back to profile</button>

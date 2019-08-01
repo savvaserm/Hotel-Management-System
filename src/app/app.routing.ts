@@ -17,7 +17,6 @@ const appRoutes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'login', component: LoginComponent },
   { path: 'myreservations', component: MyreservationsComponent },
-//  { path: 'rooms', component: RoomComponent },
   { path: 'register', component: RegisterComponent },
 
   // otherwise redirect to profile

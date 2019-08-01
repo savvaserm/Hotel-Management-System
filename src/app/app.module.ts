@@ -19,7 +19,9 @@ import { ListService } from './services/list-service.service';
 import { AaDatepickerModule } from 'ngx-animating-datepicker';
 import { JsonPrint } from './components/reservation/pipe';
 import { MyreservationsComponent } from './components/myreservations/myreservations.component';
-import {StarRatingModule} from 'angular-star-rating';
+import { RatingModule } from 'ng-starrating';
+import { RatingService } from './services/rating.service';
+import {RoomListService} from './services/room-list.service';
 
 @NgModule({
   declarations: [
@@ -37,12 +39,12 @@ import {StarRatingModule} from 'angular-star-rating';
   imports: [
     BrowserModule, AaDatepickerModule,
     BrowserAnimationsModule, HttpClientModule, FormsModule, AppRoutingModule, CustomMaterialModule,
-    FacebookModule.forRoot(), StarRatingModule.forRoot()
+    FacebookModule.forRoot(), RatingModule
   ],
   exports: [
     AppRoutingModule,
   ],
-  providers: [AuthService, AccountService, ListService],
+  providers: [AuthService, AccountService, ListService, RatingService, RoomListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
