@@ -2,11 +2,9 @@ package com.app.controller;
 
 import com.app.dto.ReservationDto;
 import com.app.entities.Reservation;
-import com.app.entities.Room;
 import com.app.services.ReservationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -40,7 +38,6 @@ public class ReservationController {
 
     @RequestMapping(value = "/reserveroom", method = RequestMethod.POST)
     public void reserveRoom(@RequestBody ReservationDto reservationDto) {
-//        reservationService.checkIfAvailable(room, checkin, checkout);
         reservationService.reserveRoom(reservationDto);
     }
 

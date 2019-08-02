@@ -2,6 +2,7 @@ package com.app.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "roomreservation")
@@ -24,11 +25,25 @@ public class Reservation {
     @JoinColumn(name = "reservation_customerId", referencedColumnName = "customerId")
     private User customer;
 
+    @ManyToMany(mappedBy = "reservations")
+    private Set<Amenity> amenities;
+
+
     @Override
     public String toString() {
         return "Reservation [id = " + room_reservationId + ", checkin: " + checkin + ", checkout: " + checkout
                 + ", reservation details = " + reservation_details + ", total = " + total + "]";
     }
+
+
+    public Set<Amenity> getAmenities() {
+        return amenities;
+    }
+
+    public void setAmenities(Set<Amenity> amenities) {
+        this.amenities = amenities;
+    }
+
 
     public Reservation() {
     }
@@ -43,10 +58,6 @@ public class Reservation {
         this.setCustomer(customer);
         this.setTotal(total);
     }
-//
-//    public Double getTotal() {
-//        return ((double) room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice() * getNights());
-//    }
 
     public Double getTotal() {
         return total;

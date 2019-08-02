@@ -1,5 +1,7 @@
 package com.app.dto;
 
+import com.app.entities.Amenity;
+
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -15,6 +17,7 @@ public class ReservationDto {
     private LocalDate checkout;
     private String reservation_details;
     private Double total;
+    private Amenity amenity;
 
 
     public LocalDate getCheckin() {
@@ -65,6 +68,13 @@ public class ReservationDto {
         this.reservation_details = reservation_details;
     }
 
+    public Amenity getAmenity() {
+        return amenity;
+    }
+
+    public void setAmenity(Amenity amenity) {
+        this.amenity = amenity;
+    }
 
     @Override
     public String toString() {

@@ -1,6 +1,7 @@
 package com.app.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -14,6 +15,21 @@ public class Amenity{
     @Column(name = "amenity_name")
     private String amenity_name;
 
+    private Integer cost;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "reservation_amenities", joinColumns = @JoinColumn(name = "amenity", referencedColumnName = "amenityId"), inverseJoinColumns = @JoinColumn(name = "reservations", referencedColumnName = "room_reservationId"))
+    private Set<Reservation> reservations;
+
+
+    public Set<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
     public Integer getCost() {
         return cost;
     }
@@ -22,7 +38,7 @@ public class Amenity{
         this.cost = cost;
     }
 
-    private Integer cost;
+
 
     public Integer getAmenityId() {
         return amenityId;

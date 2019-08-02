@@ -162,6 +162,7 @@ public class ReservationService {
             reservation.setCheckin(checkin);
             reservation.setCheckout(checkout);
             reservation.getRoom().setAvailability(false);
+
             room.getRoom_roomtype().getQuantity().setAmount(quantity - 1);
 
             message = "Room booked!";
