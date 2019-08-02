@@ -55,6 +55,9 @@ export class MyreservationsComponent implements OnInit {
         for (this.x; this.x < data.length; this.x++) {
           if (data[this.x].customer.username === this.var.username) {
             this.reservations[this.x] = data[this.x];
+
+            // OTAN PAEI STO ELSE VGAINEI APTO FOR KAI DEN PERNAEI TA YPOLOIPA RESERVATIONS
+            // OMWS OTAN TO VGAZW CRASHAREI O BROWSER
           } else {
             return this.noReservationsMessage = 'No reservations found!';
           }
