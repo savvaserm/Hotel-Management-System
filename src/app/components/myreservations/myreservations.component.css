@@ -41,3 +41,11 @@
 .f1 {
   padding: 40px;
 }
+
+.div1 {
+  padding: 40px;
+}
+
+.btn-cancel:hover {
+  color: crimson;
+}

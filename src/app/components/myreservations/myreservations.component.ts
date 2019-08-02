@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ListService } from '../../services/list-service.service';
-import { Reservation } from '../../model/model.reservation';
-import { Rating } from '../../model/model.rating';
-import { RatingService } from '../../services/rating.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ListService} from '../../services/list-service.service';
+import {Reservation} from '../../model/model.reservation';
+import {Rating} from '../../model/model.rating';
+import {RatingService} from '../../services/rating.service';
+import {ReservationService} from '../../services/reservation.service';
 
 @Component({
   selector: 'app-myreservations',
@@ -16,14 +17,16 @@ export class MyreservationsComponent implements OnInit {
   rating = new Rating();
   noReservationsMessage: string;
   errorMessage: string;
-  reservations: any;
+  reservations: Reservation[] = new Array();
   opened: boolean;
   now = new Date();
+  res: Reservation;
   x = 0;
+  z = 0;
   var = JSON.parse(localStorage.getItem('currentUser'));
   showVar = false;
 
-  constructor(private listService: ListService, public ratingService: RatingService) {
+  constructor(private listService: ListService, public ratingService: RatingService, private reservationService: ReservationService) {
   }
 
   ngOnInit() {
@@ -40,7 +43,7 @@ export class MyreservationsComponent implements OnInit {
       alert('Rating submitted');
     }, error => {
       alert('Cannot submit rating');
-    } );
+    });
   }
 
   getPastReservations() {
@@ -48,18 +51,25 @@ export class MyreservationsComponent implements OnInit {
       .subscribe((data: Array<Reservation>) => {
         console.log(data[this.x].customer.username);
         console.log(this.now);
+        console.log(this.var.username);
         for (this.x; this.x < data.length; this.x++) {
-          if ( data[this.x].customer.username === this.var.username ) {
-            this.reservations = data;
-            console.log(this.var.username);
-            console.log(this.reservations);
+          if (data[this.x].customer.username === this.var.username) {
+            this.reservations[this.x] = data[this.x];
           } else {
-            return this.noReservationsMessage = 'No reservations found';
+            return this.noReservationsMessage = 'No reservations found!';
           }
         }
+        console.log(this.var.username);
+        console.log(this.reservations);
       }, error => {
         this.errorMessage = error;
       });
   }
 
+  cancelRes(res: Reservation) {
+    if (window.confirm('Are you sure you want to cancel this reservation?')) {
+      this.reservationService.cancelRes(res);
+    }
+    alert('Reservation cancelled!');
+  }
 }
