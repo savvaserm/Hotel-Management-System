@@ -21,7 +21,7 @@ import { JsonPrint } from './components/reservation/pipe';
 import { MyreservationsComponent } from './components/myreservations/myreservations.component';
 import { RatingModule } from 'ng-starrating';
 import { RatingService } from './services/rating.service';
-import {RoomListService} from './services/room-list.service';
+import { RoomListService } from './services/room-list.service';
 
 @NgModule({
   declarations: [

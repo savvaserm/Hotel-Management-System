@@ -13,7 +13,6 @@ export class ListService {
 
   constructor(private http: HttpClient) { }
 
-  var = JSON.parse(localStorage.getItem('currentUser'));
 
   getUsers() {
     const usersUrl = AppComponent.API_URL + '/users/list';

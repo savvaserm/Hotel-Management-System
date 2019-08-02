@@ -1,9 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ListService} from '../../services/list-service.service';
-import {Reservation} from '../../model/model.reservation';
-import {Rating} from '../../model/model.rating';
-import {RatingService} from '../../services/rating.service';
-import {ReservationService} from '../../services/reservation.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ListService } from '../../services/list-service.service';
+import { Reservation } from '../../model/model.reservation';
+import { Rating } from '../../model/model.rating';
+import { RatingService } from '../../services/rating.service';
+import { ReservationService } from '../../services/reservation.service';
 
 @Component({
   selector: 'app-myreservations',
@@ -39,7 +39,8 @@ export class MyreservationsComponent implements OnInit {
   }
 
   setRating() {
-    this.ratingService.createRating(this.rating).subscribe(data => {
+    this.ratingService.createRating(this.rating)
+      .subscribe(data => {
       alert('Rating submitted');
     }, error => {
       alert('Cannot submit rating');
@@ -56,8 +57,6 @@ export class MyreservationsComponent implements OnInit {
           if (data[this.x].customer.username === this.var.username) {
             this.reservations[this.x] = data[this.x];
 
-            // OTAN PAEI STO ELSE VGAINEI APTO FOR KAI DEN PERNAEI TA YPOLOIPA RESERVATIONS
-            // OMWS OTAN TO VGAZW CRASHAREI O BROWSER
           } else {
             return this.noReservationsMessage = 'No reservations found!';
           }
