@@ -61,10 +61,10 @@ public class ReservationService {
     private long difference;
     private Double highSeasonExtra;
     private LocalDate localDate = LocalDate.now();
-    LocalDate date1 = LocalDate.of(localDate.getYear(),6,1);
-    LocalDate date2 = LocalDate.of(localDate.getYear(),8,31);
-    LocalDate date3 = LocalDate.of(localDate.getYear(), 12,20);
-    LocalDate date4 = LocalDate.of(localDate.getYear(),12,31);
+    private LocalDate date1 = LocalDate.of(localDate.getYear(),6,1);
+    private LocalDate date2 = LocalDate.of(localDate.getYear(),8,31);
+    private LocalDate date3 = LocalDate.of(localDate.getYear(), 12,20);
+    private LocalDate date4 = LocalDate.of(localDate.getYear(),12,31);
     private String message;
     private Double total, price;
     private Double discount, discount2, discount3, discount4;
@@ -90,7 +90,7 @@ public class ReservationService {
 
         Reservation reservation = new Reservation();
 
-        Set<Amenity> amenities = reservation.getAmenities();
+        Set<Amenity> amenities;
 
         //AN O PELATIS EXEI 3 KAI PANW RESERVATIONS TOTE EINAI REGULAR
         List<Reservation> reservations = reservationRepository.findByCustomer(customer);
