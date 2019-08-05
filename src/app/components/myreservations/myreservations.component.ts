@@ -68,10 +68,11 @@ export class MyreservationsComponent implements OnInit {
       });
   }
 
-  cancelRes(res: Reservation) {
+  cancelRes(res: number) {
     if (window.confirm('Are you sure you want to cancel this reservation?')) {
       this.reservationService.cancelRes(res);
+      alert('Reservation cancelled!');
     }
-    alert('Reservation cancelled!');
+
   }
 }

@@ -16,7 +16,7 @@ export class ReservationService {
       .pipe(map(resp => console.log(resp)));
   }
 
-  cancelRes(reservation: Reservation) {
+  cancelRes(reservation: number) {
     return this.http.post( AppComponent.API_URL + '/users/hotels/reservations/cancel', reservation)
       .pipe(map( response => console.log(response)));
   }

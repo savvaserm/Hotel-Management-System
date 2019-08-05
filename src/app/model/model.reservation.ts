@@ -2,6 +2,7 @@ import { User } from './model.user';
 import { Room } from './model.room';
 
 export class Reservation {
+
   id: number;
   room: Room;
   customer: User;
@@ -10,4 +11,5 @@ export class Reservation {
   details: string;
   total: number;
   nights: number;
+
 }
