@@ -4,6 +4,8 @@ import com.app.entities.Amenity;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 public class ReservationDto {
 
@@ -17,7 +19,7 @@ public class ReservationDto {
     private LocalDate checkout;
     private String reservation_details;
     private Double total;
-    private Amenity amenity;
+    private Set<Amenity> amenities;
 
 
     public LocalDate getCheckin() {
@@ -68,12 +70,12 @@ public class ReservationDto {
         this.reservation_details = reservation_details;
     }
 
-    public Amenity getAmenity() {
-        return amenity;
+    public Set<Amenity> getAmenity() {
+        return amenities;
     }
 
-    public void setAmenity(Amenity amenity) {
-        this.amenity = amenity;
+    public void setAmenity(Set<Amenity> amenities) {
+        this.amenities = amenities;
     }
 
     @Override

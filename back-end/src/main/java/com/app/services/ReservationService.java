@@ -4,9 +4,7 @@ import com.app.dao.ReservationRepository;
 import com.app.dao.RoomRepository;
 import com.app.dao.UserRepository;
 import com.app.dto.ReservationDto;
-import com.app.entities.Reservation;
-import com.app.entities.Room;
-import com.app.entities.User;
+import com.app.entities.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @SuppressWarnings("FieldCanBeLocal")
 @Service
@@ -83,11 +82,15 @@ public class ReservationService {
         LocalDate checkin = reservationDto.getCheckin();
         LocalDate checkout = reservationDto.getCheckout();
 
+
+
         //VALIDATE IF START DATE IS AFTER END DATE AND DISPLAY ERROR MESSAGE AND IF START/END DATE IS BEFORE CURRENT DATE
         DateValidationHelper.dateValidation(checkin, checkout);
         DateValidationHelper.currentDateValidation(localDate, checkin);
 
         Reservation reservation = new Reservation();
+
+        Set<Amenity> amenities = reservation.getAmenities();
 
         //AN O PELATIS EXEI 3 KAI PANW RESERVATIONS TOTE EINAI REGULAR
         List<Reservation> reservations = reservationRepository.findByCustomer(customer);
@@ -163,11 +166,14 @@ public class ReservationService {
             reservation.setCheckout(checkout);
             reservation.getRoom().setAvailability(false);
 
+            amenities = reservation.getAmenities();
+            reservation.setAmenities(amenities);
+
             room.getRoom_roomtype().getQuantity().setAmount(quantity - 1);
 
             message = "Room booked!";
             quantity = room.getRoom_roomtype().getQuantity().getAmount();
-            price = (double) reservation.getNights() * room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice();
+            price = (double) reservation.getNights()  * room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice();
             discount = 15 * price / 100 + discount2 * price + discount3 * price;
             total = price - discount + extraCost + highSeasonExtra * price;
             reservation.setTotal(total);
@@ -190,6 +196,8 @@ public class ReservationService {
             reservation.getRoom().setAvailability(false);
             room.getRoom_roomtype().getQuantity().setAmount(quantity - 1);
 
+            amenities = reservation.getAmenities();
+            reservation.setAmenities(amenities);
 
             price = (double) reservation.getNights() * room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice();
             total = price - discount2 * price - discount3 * price + extraCost + highSeasonExtra * price;

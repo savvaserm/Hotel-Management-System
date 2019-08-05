@@ -18,16 +18,16 @@ public class Amenity{
     private Integer cost;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "reservation_amenities", joinColumns = @JoinColumn(name = "amenity", referencedColumnName = "amenityId"), inverseJoinColumns = @JoinColumn(name = "reservations", referencedColumnName = "room_reservationId"))
-    private Set<Reservation> reservations;
+    @JoinTable(name = "reservation_amenities", joinColumns = @JoinColumn(name = "amenity", referencedColumnName = "amenityId"), inverseJoinColumns = @JoinColumn(name = "reservation", referencedColumnName = "room_reservationId"))
+    private Set<Reservation> reservation;
 
 
     public Set<Reservation> getReservations() {
-        return reservations;
+        return reservation;
     }
 
     public void setReservations(Set<Reservation> reservations) {
-        this.reservations = reservations;
+        this.reservation = reservations;
     }
 
     public Integer getCost() {

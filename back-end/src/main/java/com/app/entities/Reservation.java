@@ -25,8 +25,8 @@ public class Reservation {
     @JoinColumn(name = "reservation_customerId", referencedColumnName = "customerId")
     private User customer;
 
-    @ManyToMany(mappedBy = "reservations")
-    private Set<Amenity> amenities;
+    @ManyToMany(mappedBy = "reservation")
+    private Set<Amenity> amenity;
 
 
     @Override
@@ -37,11 +37,11 @@ public class Reservation {
 
 
     public Set<Amenity> getAmenities() {
-        return amenities;
+        return amenity;
     }
 
-    public void setAmenities(Set<Amenity> amenities) {
-        this.amenities = amenities;
+    public void setAmenities(Set<Amenity> amenity) {
+        this.amenity = amenity;
     }
 
 
@@ -73,7 +73,7 @@ public class Reservation {
         return room_reservationId;
     }
 
-    public void setRoom_reservationId(Integer room_reservationId) {
+    private void setRoom_reservationId(Integer room_reservationId) {
         this.room_reservationId = room_reservationId;
     }
 
