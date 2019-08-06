@@ -75,7 +75,7 @@
         &nbsp;
         &nbsp;
         &nbsp;
-        <td><button mat-button class="btn-cancel" [(ngModel)]="this.reservation" (click)="cancelRes(this.reservation.id)"><i class="material-icons">
+        <td><button mat-button class="btn-cancel" [(ngModel)]="this.reservation" ngDefaultControl (click)="cancelRes(this.reservation)"><i class="material-icons">
           cancel_presentation
         </i></button></td>
 
