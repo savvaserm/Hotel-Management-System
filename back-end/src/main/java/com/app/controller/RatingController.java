@@ -1,6 +1,8 @@
 package com.app.controller;
 
+import com.app.dto.RatingDto;
 import com.app.entities.Rating;
+import com.app.entities.Reservation;
 import com.app.services.RatingService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,4 +22,7 @@ public class RatingController {
 
     @GetMapping("/rating")
     public List<Rating> getRatings() { return ratingService.getRatings(); }
+
+    @RequestMapping(value = "/rateroom", method = RequestMethod.POST)
+    public void rateRoom(@RequestBody RatingDto ratingDto) { ratingService.rateRoom(ratingDto); }
 }

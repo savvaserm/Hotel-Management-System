@@ -23,17 +23,19 @@ public class RatingService {
     public Rating rateRoom(RatingDto ratingDto) {
 
         Rating newRating = new Rating();
-        Room room = newRating.getRoomrating_roomId();
-        User user = newRating.getRoomrating_customerId();
+
+        Room room = ratingDto.getRoomId();
+        User user = ratingDto.getCustomerId();
 
         newRating.setRoomrating_customerId(user);
-        newRating.setRoom_ratingId(room.getRoomID());
+        newRating.setRoomrating_roomId(room);
         newRating.setRating(ratingDto.getRating());
         newRating.setComments(ratingDto.getComments());
 
-        System.out.println("Rating submitted!");
+        System.out.println("Rating for: " + "submitted!");
         return ratingRepository.saveAndFlush(newRating);
 
     }
+
 
 }
