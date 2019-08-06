@@ -263,7 +263,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\t\n                \"roomId\": 5,\n    \t\"customerId\": 4,\n    \"checkin\": \"2019-10-20\",\n    \"checkout\": \"2019-10-26\"\n}"
+					"raw": "{\t\n                \"roomId\": 3,\n    \t\"customerId\": 5,\n    \"checkin\": \"2019-10-21\",\n    \"checkout\": \"2019-10-24\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/users/hotels/reserveroom",
@@ -279,6 +279,29 @@
 					]
 				},
 				"description": "reserve room and calculate the total discount based on checkin date, customer type and cancelability of room."
+			},
+			"response": []
+		},
+		{
+			"name": "RoomRating",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/hotels/rooms/rating",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"hotels",
+						"rooms",
+						"rating"
+					]
+				},
+				"description": "Call rateRoom function to rate a room with rating (0-5) and comments about the rom"
 			},
 			"response": []
 		}
