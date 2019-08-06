@@ -12,7 +12,7 @@ public class Rating {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer roomratingId;
 
-    private Double rating;
+    private Integer rating;
 
     private String comments;
 
@@ -38,11 +38,11 @@ public class Rating {
         this.roomratingId = roomratingId;
     }
 
-    public Double getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(Double rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 

@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/users/hotels/rooms", method = RequestMethod.GET)
+@RequestMapping(value = "/users/hotels/rooms", method = {RequestMethod.POST, RequestMethod.GET})
 public class RatingController {
 
     @Autowired

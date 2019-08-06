@@ -61,10 +61,10 @@ public class ReservationService {
     private long difference;
     private Double highSeasonExtra;
     private LocalDate localDate = LocalDate.now();
-    private LocalDate date1 = LocalDate.of(localDate.getYear(),6,1);
-    private LocalDate date2 = LocalDate.of(localDate.getYear(),8,31);
-    private LocalDate date3 = LocalDate.of(localDate.getYear(), 12,20);
-    private LocalDate date4 = LocalDate.of(localDate.getYear(),12,31);
+    private LocalDate date1 = LocalDate.of(localDate.getYear(), 6, 1);
+    private LocalDate date2 = LocalDate.of(localDate.getYear(), 8, 31);
+    private LocalDate date3 = LocalDate.of(localDate.getYear(), 12, 20);
+    private LocalDate date4 = LocalDate.of(localDate.getYear(), 12, 31);
     private String message;
     private Double total, price;
     private Double discount, discount2, discount3, discount4;
@@ -81,7 +81,6 @@ public class ReservationService {
 
         LocalDate checkin = reservationDto.getCheckin();
         LocalDate checkout = reservationDto.getCheckout();
-
 
 
         //VALIDATE IF START DATE IS AFTER END DATE AND DISPLAY ERROR MESSAGE AND IF START/END DATE IS BEFORE CURRENT DATE
@@ -136,7 +135,7 @@ public class ReservationService {
         if (checkin.isAfter(date1) && checkin.isBefore(date2)) {
             highSeasonExtra = 0.15;
             System.out.println("Reservations made for Summer (" + date1 + " to " + date2 + ")" + " are more expensive due to high demand: " + highSeasonExtra);
-        } else if(checkin.isAfter(date3) && checkin.isBefore(date4)) {
+        } else if (checkin.isAfter(date3) && checkin.isBefore(date4)) {
             highSeasonExtra = 0.20;
             System.out.println("Reservations made during Christmas period( " + date3 + " to " + date4 + ")" + " are more expensive due to hgh demand: " + highSeasonExtra);
         } else {
@@ -173,16 +172,21 @@ public class ReservationService {
 
             message = "Room booked!";
             quantity = room.getRoom_roomtype().getQuantity().getAmount();
-            price = (double) reservation.getNights()  * room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice();
+            price = (double) reservation.getNights() * room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice();
             discount = 15 * price / 100 + discount2 * price + discount3 * price;
             total = price - discount + extraCost + highSeasonExtra * price;
+
             reservation.setTotal(total);
             reservation.setReservation_details("Hotel: " + room.getRoom_hotelId().getHotelName() + ", room number: " + room.getRoomNumber() + ", customer: " + customer.getLastname() + ", checkin: " + checkin +
                     ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
 
+
             System.out.println("Total discount: " + 0.15 + " (REGULAR customer), " + discount2 + " (for early reservations), " + discount3 + " (if room is NOT cancelable)");
-            System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + quantity + ", extra cost(depends on the availability): " + extraCost + " $, " +  highSeasonExtra + " (for reservations in high season)\n-----------------------");
+
+            System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + quantity + ", extra cost(depends on the availability): " + extraCost + " $, " + highSeasonExtra + " (for reservations in high season)\n-----------------------");
+
             System.out.println(reservation.getReservation_details() + "\n-----------------------");
+
             System.out.println(message);
 
 
@@ -208,10 +212,14 @@ public class ReservationService {
                     ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
 
             quantity = room.getRoom_roomtype().getQuantity().getAmount();
+
             System.out.println("Total discount: " + 0.0 + " (NEW customer), " + discount2 + " (for early reservations), " + discount3 + " (if room is NOT cancelable)\n-----------------------");
+
             System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + quantity + ", extra cost(depends on the availability): " + extraCost + " $, " +
                     highSeasonExtra + " (for reservations in high season)\n-----------------------");
+
             System.out.println(reservation.getReservation_details() + "\n-----------------------");
+
             System.out.println(message);
         }
 
