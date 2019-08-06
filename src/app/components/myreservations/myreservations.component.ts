@@ -17,7 +17,7 @@ export class MyreservationsComponent implements OnInit {
   rating = new Rating();
   noReservationsMessage: string;
   errorMessage: string;
-  reservations: Reservation[] = new Array();
+  reservations: Reservation[] = [];
   opened: boolean;
   now = new Date();
   res: Reservation;
@@ -56,9 +56,9 @@ export class MyreservationsComponent implements OnInit {
         for (this.x; this.x < data.length; this.x++) {
           if (data[this.x].customer.username === this.var.username) {
             this.reservations[this.x] = data[this.x];
+            } else {
+              return this.noReservationsMessage = 'No reservations found!';
 
-          } else {
-            return this.noReservationsMessage = 'No reservations found!';
           }
         }
         console.log(this.var.username);
