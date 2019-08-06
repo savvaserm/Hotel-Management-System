@@ -153,54 +153,6 @@
 			"response": []
 		},
 		{
-			"name": "get reservations",
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "1111",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "savvas",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\t\n    \"reservation_roomId\":  { \"roomId\": 1} ,\n    \"reservation_customerId\": {\"customerId\": 4},\n    \"checkin\": \"2019-10-10\",\n    \"checkout\": \"2019-10-10\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/users/hotels/reserveroom",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users",
-						"hotels",
-						"reserveroom"
-					]
-				},
-				"description": "get all the reservations"
-			},
-			"response": []
-		},
-		{
 			"name": "cancelRes",
 			"request": {
 				"method": "POST",
@@ -285,10 +237,36 @@
 		{
 			"name": "RoomRating",
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "1111",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "savvas",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n\t\"roomrating_customerId\": 4,\n\t\"roomrating_roomId\": 3,\n\t\"rating\": 3,\n\t\"comments\": \"good\"\n\t\n}"
+				},
 				"url": {
-					"raw": "http://localhost:8080/users/hotels/rooms/rating",
+					"raw": "http://localhost:8080/users/hotels/rooms/rateroom",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -298,7 +276,7 @@
 						"users",
 						"hotels",
 						"rooms",
-						"rating"
+						"rateroom"
 					]
 				},
 				"description": "Call rateRoom function to rate a room with rating (0-5) and comments about the rom"
