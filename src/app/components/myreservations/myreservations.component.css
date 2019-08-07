@@ -49,3 +49,7 @@
 .btn-cancel:hover {
   color: crimson;
 }
+
+.pre {
+  font-size: 17px;
+}
