@@ -12,8 +12,8 @@ public class RatingDto {
 
     private Integer rating;
     private String comments;
-    private Room roomId;
-    private User customerId;
+    private int roomId;
+    private int customerId;
 
     public Integer getId() {
         return id;
@@ -39,19 +39,19 @@ public class RatingDto {
         this.comments = comments;
     }
 
-    public Room getRoomId() {
+    public int getRoomId() {
         return roomId;
     }
 
-    public void setRoomId(Room roomId) {
+    public void setRoomId(int roomId) {
         this.roomId = roomId;
     }
 
-    public User getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(User customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 

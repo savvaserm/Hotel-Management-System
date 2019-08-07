@@ -177,7 +177,7 @@ public class ReservationService {
             total = price - discount + extraCost + highSeasonExtra * price;
 
             reservation.setTotal(total);
-            reservation.setReservation_details("Hotel: " + room.getRoom_hotelId().getHotelName() + ", room number: " + room.getRoomNumber() + ", customer: " + customer.getLastname() + ", checkin: " + checkin +
+            reservation.setReservation_details("Your ID is: " + customer.getId() + "\nHotel: " + room.getRoom_hotelId().getHotelName() + ", room id and room number: [ " + room.getRoomID() + ", " + room.getRoomNumber() + " ] , customer: " + customer.getLastname() + ", checkin: " + checkin +
                     ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
 
 
@@ -208,7 +208,7 @@ public class ReservationService {
             reservation.setTotal(total);
             message = "Room booked!";
 
-            reservation.setReservation_details("Hotel: " + room.getRoom_hotelId().getHotelName() + ", room number: " + room.getRoomNumber() + ", customer: " + customer.getLastname() + ", checkin: " + checkin +
+            reservation.setReservation_details("Your ID is: " + customer.getId() + "\nHotel: " + room.getRoom_hotelId().getHotelName() + ", room id and room number: [ " +room.getRoomID() + ", " + room.getRoomNumber() + " ], customer: " + customer.getLastname() + ", checkin: " + checkin +
                     ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
 
             quantity = room.getRoom_roomtype().getQuantity().getAmount();

@@ -1,6 +1,8 @@
 package com.app.entities;
 
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.Date;
 
