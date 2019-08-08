@@ -1,39 +1,57 @@
-<mat-toolbar class="tb">
-  <mat-toolbar-row>
-    <span class="txt2">My App</span>
-    <span class="example-fill-remaining-space"></span>
-    <span class="spacer"></span>
-    <span class="align-center"></span>
-    <a href="/profile"><button mat-button class="icon0"><mat-icon>home</mat-icon></button></a>
-    <button mat-icon-button [matMenuTriggerFor]="menu1">
-      <mat-icon>info</mat-icon>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>My App</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <h1>Booking System</h1>
+  <p>Welcome !</p>
+</div>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <a class="navbar-brand" href="/homepage"><mat-icon>home</mat-icon></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/about">About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/employees">Our Employees</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/contact">Contact</a>
+      </li>
+    </ul>
+  </div>
+  <a href="/register"><button class="icon-btn" mat-icon-button><mat-icon>person_add</mat-icon></button></a>
+  <a href="/login"><button class="icon-btn" mat-icon-button><mat-icon>person</mat-icon></button></a>
+  <button class="icon-btn" mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon class="icon1">dialpad</mat-icon>
+      <span>Redial</span>
     </button>
-    <mat-menu #menu1="matMenu">
-      <button mat-button>About</button>
-      <button mat-button>Contact</button>
-    </mat-menu>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>more_vert</mat-icon>
+    <button mat-menu-item disabled>
+      <mat-icon class="icon2">voicemail</mat-icon>
+      <span>Check voicemail</span>
     </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <mat-icon class="icon1"> dialpad</mat-icon>
-        <span>Redial</span>
-      </button>
-      <button mat-menu-item disabled>
-        <mat-icon class="icon2">voicemail</mat-icon>
-        <span>Check voicemail</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon class="icon3">notifications_off</mat-icon>
-        <span>Disable alerts</span>
-      </button>
-    </mat-menu>
-  </mat-toolbar-row>
-</mat-toolbar>
+    <button mat-menu-item>
+      <mat-icon class="icon3">notifications_off</mat-icon>
+      <span>Disable alerts</span>
+    </button>
+  </mat-menu>
+</nav>
 <p>{{now | date:'fullDate'}} {{now | date:'h:mm a'}}</p>
 <router-outlet></router-outlet>
-
-
-
-

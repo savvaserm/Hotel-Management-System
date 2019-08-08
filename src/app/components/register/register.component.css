@@ -6,28 +6,28 @@
  */
 body, html {
   height: 100%;
-  background-repeat: no-repeat;
-  background-image: linear-gradient(navajowhite, black);
 }
 
 .card-container.card {
   max-width: 500px;
-  max-height: 800px;
+  max-height: 900px;
   padding: 40px 40px;
+  background-color: #eceff1;
 }
 
 .txt1 {
-  font-family: Calibri, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 25px;
 }
 .full-width{
   width : 80%;
 }
 .btn {
-  width: 120px;
+  width: 80px;
   font-weight: 700;
   height: 36px;
   -moz-user-select: none;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-user-select: none;
   user-select: none;
   cursor: default;
@@ -72,12 +72,13 @@ body, html {
 
 .btn.btn-signin,.btn-cancel {
   /*background-color: #4d90fe; */
-  background-color: black;
-  color: navajowhite;
+  background-color: #263238;
+  color: white;
+  width: 200px;
   /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
   padding: 0px;
   font-weight: 700;
-  font-family: Calibri, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   height: 36px;
   -moz-border-radius: 3px;
@@ -92,17 +93,19 @@ body, html {
 }
 
 .btn.btn-cancel {
-  background-color: black;
-  color: navajowhite;
-  font-family: Calibri, sans-serif;
+  background-color: crimson;
+  width: 200px;
+  color: white;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
 }
+
 .btn.btn-cancel:hover{
-  background-color: crimson;
+  background-color: red;
 }
 
 .btn.btn-signin:hover,
 .btn.btn-signin:active,
 .btn.btn-signin:focus {
-  background-color: crimson;
+  background-color: #263238;
 }

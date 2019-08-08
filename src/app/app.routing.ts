@@ -7,11 +7,13 @@ import { UserslistComponent } from './components/userslist/userslist.component';
 import { EmployeesComponent } from './components/employees/employees.component';
 import { ReservationComponent } from './components/reservation/reservation.component';
 import { MyreservationsComponent } from './components/myreservations/myreservations.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
 
 
 const appRoutes: Routes = [
 
   { path: 'employees', component: EmployeesComponent },
+  { path: 'homepage', component: HomepageComponent },
   { path: 'reservations', component: ReservationComponent },
   { path: 'list', component: UserslistComponent },
   { path: 'profile', component: ProfileComponent },
@@ -20,7 +22,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
 
   // otherwise redirect to profile
-  { path: '**', redirectTo: '/login' }
+  { path: '**', redirectTo: '/homepage' }
 ];
 @NgModule({
   declarations: [],

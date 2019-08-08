@@ -49,13 +49,9 @@ body, html {
 }
 
 .back-btn {
-  background-color: black;
-  color: navajowhite;
+  background-color: #263238;
+  color: white;
   font-family: Calibri, sans-serif;
   font-size: 16px;
   margin: 20px;
-}
-
-.back-btn:hover {
-  background-color: crimson;
 }

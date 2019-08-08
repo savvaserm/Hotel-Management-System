@@ -14,23 +14,33 @@
       <span id="reauth-email" class="reauth-email"></span>
 
       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-        <mat-form-field class="full-width">
+
+        <mat-form-field style="background-color: #eceff1" class="full-width">
+
           <mat-label for="username">Username</mat-label>
-          <input matInput placeholder="Enter username" type="text" class="form-control" id="username" name="username"
+
+          <input style="background-color: #eceff1; border: none;" matInput placeholder="Enter username" type="text" class="form-control" id="username" name="username"
                  [(ngModel)]="user.username" #username="ngModel" required/>
+
           <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+
         </mat-form-field>
+
       </div>
 
       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+
         <mat-form-field class="full-width">
 
           <mat-label for="password">Password</mat-label>
-          <input matInput placeholder="Enter password" type="password" class="form-control" id="password"
+
+          <input style="background-color: #eceff1; border: none; " matInput placeholder="Enter password" type="password" class="form-control" id="password"
                  name="password" [(ngModel)]="user.password" #password="ngModel" required/>
+
           <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
 
         </mat-form-field>
+
       </div>
 
       <button mat-raised-button (click)="login()" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign
@@ -38,8 +48,11 @@
       </button>
     </form>
     <br>
+&nbsp;
+&nbsp;
+&nbsp;
     <p class="text">Are you a new user ?</p>
-    <button mat-raised-button [routerLink]="['/register']" class="btn btn-link">Register here!</button>
+    <a href="/register"><button mat-raised-button class="btn btn-link">Register here!</button></a>
 
   </div>
 

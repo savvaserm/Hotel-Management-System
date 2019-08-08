@@ -6,23 +6,22 @@
  */
 body, html {
   height: 100%;
-  background-repeat: no-repeat;
-
-  background-image: linear-gradient(navajowhite, black);
 }
 
 .card-container.card {
   max-width: 500px;
-  max-height: 500px;
+  max-height: 900px;
   padding: 40px 40px;
+  background-color: #eceff1;
 }
 .txt {
-  font-family: Calibri, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 25px;
 }
 .full-width {
   width: 80%;
 }
+
 .btn {
   font-weight: 700;
   height: 36px;
@@ -80,13 +79,13 @@ body, html {
 
 .btn.btn-signin {
 
-  background-color: black;
-  color: navajowhite;
-  font-family: Calibri, sans-serif;
+  background-color: #263238;
+  color: white;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 0px;
   font-weight: 700;
   font-size: 16px;
-  width: 120px;
+  width: 100px;
   height: 36px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -101,24 +100,28 @@ body, html {
 .btn.btn-signin:hover,
 .btn.btn-signin:active,
 .btn.btn-signin:focus {
-  background-color: crimson;
+  background-color: #263238;
 }
 
 .btn.btn-link {
   bottom: 51px;
   left: 200px;
-  background-color: black;
-  color: navajowhite;
-  height: 36px;
-  font-family: Calibri, sans-serif;
-  font-size: 16px;
-}
-.btn.btn-link:hover {
+  width: 150px;
   background-color: crimson;
+  color: white;
+  height: 36px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.btn.btn-link:hover {
+  background-color: red;
+  color: white;
+  text-decoration: none;
+
 }
 
 .text {
-  color: black;
-  font-size: 20px;
-  font-family: Calibri, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }

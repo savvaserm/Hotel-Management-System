@@ -16,45 +16,6 @@
   }
 </style>
 
-<mat-sidenav-container class="example-container">
-
-
-  <mat-sidenav #sidenav class="side" mode="side" [(opened)]="opened">
-
-    <div class="container-fluid">
-
-      <mat-list class="navbar">
-        <a style="color: black" href="/list">
-          <mat-list-item class="item1"><span class="users-btn">Show customers</span>
-          </mat-list-item>
-        </a>
-
-        <a style="color: black" href="/employees">
-          <mat-list-item class="item2"><span class="users-btn">Show employees</span>
-          </mat-list-item>
-        </a>
-
-        <a style="color: black" href="/reservations">
-          <mat-list-item class="item3"><span
-            class="users-btn">Make a reservation</span></mat-list-item>
-        </a>
-
-        <a style="color: black" href="/myreservations">
-          <mat-list-item class="item4"><span class="users-btn">My reservations</span>
-          </mat-list-item>
-        </a>
-
-      </mat-list>
-    </div>
-  </mat-sidenav>
-
-  <mat-sidenav-content class="content">
-    <p>
-      <button mat-button (click)="sidenav.toggle()">
-        <mat-icon class="icon1">menu</mat-icon>
-      </button>
-    </p>
-
     <table class="table table-striped table-bordered">
       <thead>
 
@@ -96,6 +57,3 @@
     <a style="color: black" href="http://localhost:4200/profile">
       <button mat-raised-button class="back-btn">Go back to profile</button>
     </a>
-  </mat-sidenav-content>
-
-</mat-sidenav-container>

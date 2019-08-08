@@ -61,10 +61,10 @@ body { padding: 0em; }
 }
 
 .logout-btn {
-  top: 20px;
-  color: navajowhite;
-  font-family: Roboto, sans-serif;
-  background-color: black;
+  top: 400px;
+  color: white;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: crimson;
   padding: 0px;
   font-weight: 700;
   font-size: 16px;
