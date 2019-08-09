@@ -16,24 +16,23 @@
   <p>Welcome !</p>
 </div>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="/homepage"><mat-icon>home</mat-icon></a>
+  <a class="navbar-brand" href="/homepage"><mat-icon><div class="div3">home</div></mat-icon></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="/about">About Us</a>
+        <a class="nav-link" style="color: white" href="/about"><div class="div3">About Us</div></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/employees">Our Employees</a>
+        <a class="nav-link" style="color: white;" href="/employees"><div class="div3">Our Employees</div></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/contact">Contact</a>
+        <a class="nav-link" style="color: white" href="/contact"><div class="div3">Contact</div></a>
       </li>
     </ul>
   </div>
-  <a href="/register"><button class="icon-btn" mat-icon-button><mat-icon>person_add</mat-icon></button></a>
   <a href="/login"><button class="icon-btn" mat-icon-button><mat-icon>person</mat-icon></button></a>
   <button class="icon-btn" mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon>more_vert</mat-icon>
@@ -52,6 +51,27 @@
       <span>Disable alerts</span>
     </button>
   </mat-menu>
+
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  <div class="user">
+    <div class="div3"><button mat-button (click)="toggle()" [matMenuTriggerFor]="menu1">{{this.var.username}}<ng-container *ngIf="this.showVar"><mat-icon>expand_more</mat-icon></ng-container></button></div>
+
+    <mat-menu #menu1="matMenu">
+      <a href="/profile"><button mat-menu-item>
+        <mat-icon style="color: #263238">ballot</mat-icon>
+        <span>Show profile</span>
+      </button></a>
+      <button mat-menu-item>
+        <mat-icon style="color: #263238;">settings</mat-icon>
+        <span>Settings</span>
+      </button>
+    </mat-menu>
+  </div>
+
 </nav>
-<p>{{now | date:'fullDate'}} {{now | date:'h:mm a'}}</p>
+<div style="background-color: #323941; color:white; text-align: center;">{{now | date:'fullDate'}} {{now | date:'h:mm a'}}</div>
 <router-outlet></router-outlet>

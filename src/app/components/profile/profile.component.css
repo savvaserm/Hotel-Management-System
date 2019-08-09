@@ -1,4 +1,4 @@
-body { padding: 0em; }
+body { padding: 0px; }
 
 .icon1 {
   width: 50px;
@@ -8,19 +8,21 @@ body { padding: 0em; }
 
 
 .item1:hover {
-  background-color: lightgray;
-}
-
-.item2:hover {
-  background-color: lightgray;
+  color: crimson;
+  width: 100%;
+  text-decoration: none;
 }
 
 .item3:hover {
-  background-color: lightgray;
+  color: crimson;
+  width: 100%;
+  text-decoration: none;
 }
 
 .item4:hover {
-  background-color: lightgray;
+  color: crimson;
+  width: 100%;
+  text-decoration: none;
 }
 
 
@@ -52,8 +54,7 @@ body { padding: 0em; }
   text-align: center;
 }
 
-.a {
-  color: black;
+.a:hover {
   text-decoration: none;
 }
 .a:link:active {
@@ -81,7 +82,7 @@ body { padding: 0em; }
 }
 
 .logout-btn:hover {
-  background-color: crimson;
+  background-color: red;
 }
 .example-container {
   position: absolute;
@@ -90,4 +91,18 @@ body { padding: 0em; }
   left: 0;
   right: 0;
   background: #eee;
+}
+
+.mat-icon {
+  border: 0;
+  outline: 0;
+}
+
+.btn1 {
+  border: 0px;
+  outline: 0px;
+}
+
+.div1:hover {
+  color: crimson;
 }

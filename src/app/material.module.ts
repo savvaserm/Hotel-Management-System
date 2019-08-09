@@ -13,6 +13,7 @@ import { MatOptionModule } from '@angular/material';
 import { MatStepperModule } from '@angular/material';
 import { MatTooltipModule} from '@angular/material';
 import { RatingModule } from 'ng-starrating';
+import { MatTreeModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -31,7 +32,7 @@ import { RatingModule } from 'ng-starrating';
     MatFormFieldModule, MatListModule, MatSidenavModule,
     MatSliderModule, MatSlideToggleModule,
     MatSelectModule, MatOptionModule, MatStepperModule, MatTooltipModule,
-    RatingModule
+    RatingModule, MatTreeModule
   ],
   exports: [
     CommonModule,
@@ -48,7 +49,7 @@ import { RatingModule } from 'ng-starrating';
     MatNativeDateModule, MatDatepickerModule,
     MatFormFieldModule, MatListModule, MatSidenavModule,
     MatSliderModule, MatSelectModule, MatOptionModule, MatStepperModule, MatTooltipModule,
-    RatingModule
+    RatingModule, MatTreeModule
   ],
 })
 export class CustomMaterialModule { }

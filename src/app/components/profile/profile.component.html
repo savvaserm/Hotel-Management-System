@@ -1,22 +1,22 @@
 <mat-sidenav-container class="example-container">
 
 
-  <mat-sidenav #sidenav class="side" mode="side" [(opened)]="opened">
+  <mat-sidenav #sidenav class="side" style="background-color: #323941" mode="side" [(opened)]="opened">
 
     <div class="container-fluid">
 
       <mat-list class="navbar">
-        <a style="color: black" href="/list">
-          <mat-list-item class="item1">Show customers</mat-list-item>
+        <a style="color: white; text-decoration: none;" href="/list">
+          <mat-list-item class="item1" style="color: white;"><div class="div1">Show customers</div></mat-list-item>
         </a>
 
-        <a style="color: black" href="/reservations">
-          <mat-list-item class="item3">Make a reservation</mat-list-item>
+        <a style="color: white; text-decoration: none;" href="/reservations">
+          <mat-list-item class="item3" style="color: white;"><div class="div1">Make a reservation</div></mat-list-item>
         </a>
 
-        <a style="color: black" href="/myreservations">
-          <mat-list-item class="item4"><span class="users-btn">My reservations</span>
-          </mat-list-item>
+        <a style="text-decoration: none;" href="/myreservations">
+          <mat-list-item class="item4" style="color: white;"><div class="div1">My reservations</div></mat-list-item>
+
         </a>
 
       </mat-list>

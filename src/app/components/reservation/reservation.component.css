@@ -30,10 +30,6 @@ body, html {
   padding: 20px;
 }
 
-.rooms {
-
-}
-
 .datepicker {
   padding: 20px;
 }
@@ -74,16 +70,21 @@ body, html {
 }
 
 .btn {
-  background-color: black;
-  color: navajowhite;
+  background-color: #263238;
+  color: white;
   font-family: Calibri, sans-serif;
   font-size: 16px;
   left: 30%;
 }
 
+.btn:hover {
+  background-color: black;
+  color: white;
+}
+
 .btn2 {
   background-color: crimson;
-  color: navajowhite;
+  color: white;
   font-family: Calibri, sans-serif;
   font-size: 16px;
   width: 200px;
@@ -91,13 +92,13 @@ body, html {
   margin: 20px;
 }
 
+.btn2:hover {
+  background-color: red;
+}
+
 .btn3 {
   margin: 20px;
 
-}
-
-.btn:hover {
-  background-color: crimson;
 }
 
 .date {
@@ -130,4 +131,8 @@ body, html {
 }
 .header{
   font-size: 18px;
+}
+
+.div1:hover {
+  color: crimson;
 }

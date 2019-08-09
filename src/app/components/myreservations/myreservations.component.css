@@ -30,6 +30,9 @@
   margin: 20px;
 }
 
+.back-btn:hover {
+  background-color: black;
+}
 
 .table {
   padding: 40px;
@@ -49,4 +52,8 @@
 
 .pre {
   font-size: 17px;
+}
+
+.div2:hover {
+  color: crimson;
 }
