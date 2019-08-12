@@ -31,7 +31,7 @@
 }
 
 .back-btn:hover {
-  background-color: black;
+  background-color: #485C73;
 }
 
 .table {
@@ -56,4 +56,34 @@
 
 .div2:hover {
   color: crimson;
+}
+
+.btn {
+  background-color: #263238;
+  color: white;
+}
+
+.btn:hover {
+  background-color: #485C73;
+  color: white;
+}
+
+.btn1 {
+  border: 0px;
+  outline: 0px;
+  color: #263238;
+}
+
+.btn1:hover {
+  background-color: ghostwhite;
+  color: crimson;
+}
+
+.btn2 {
+  background-color: crimson;
+  color: white;
+}
+
+.btn2:hover {
+  background-color: red;
 }

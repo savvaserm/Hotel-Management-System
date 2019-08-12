@@ -28,7 +28,22 @@
 .user {
   color: white;
 }
+.btn {
+  color: white;
+}
+
+.btn:hover {
+  color: crimson;
+}
+
+.btn1:hover {
+  text-decoration: none;
+}
 
 .div3:hover {
   color: crimson;
+}
+
+.btn3:hover {
+  text-decoration: none;
 }

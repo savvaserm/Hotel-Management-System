@@ -57,9 +57,20 @@ body, html {
 }
 
 .back-btn:hover {
-  background-color: black;
+  background-color: #485C73;
 }
 
 .div1:hover {
+  color: crimson;
+}
+
+.btn1 {
+  border: 0px;
+  outline: 0px;
+  color: #263238;
+}
+
+.btn1:hover {
+  background-color: ghostwhite;
   color: crimson;
 }

@@ -58,10 +58,10 @@
   &nbsp;
   &nbsp;
   <div class="user">
-    <div class="div3"><button mat-button (click)="toggle()" [matMenuTriggerFor]="menu1">{{this.var.username}}<ng-container *ngIf="this.showVar"><mat-icon>expand_more</mat-icon></ng-container></button></div>
+    <div class="div3"><button class="btn" mat-button (click)="toggle()" [matMenuTriggerFor]="menu1">{{this.var.username}}<ng-container *ngIf="this.showVar"><mat-icon>expand_more</mat-icon></ng-container></button></div>
 
     <mat-menu #menu1="matMenu">
-      <a href="/profile"><button mat-menu-item>
+      <a style="text-decoration: none;" href="/profile"><button mat-menu-item>
         <mat-icon style="color: #263238">ballot</mat-icon>
         <span>Show profile</span>
       </button></a>
@@ -73,5 +73,5 @@
   </div>
 
 </nav>
-<div style="background-color: #323941; color:white; text-align: center;">{{now | date:'fullDate'}} {{now | date:'h:mm a'}}</div>
+<div style="background-color: #323941; color: white; text-align: center;">{{now | date:'fullDate'}} {{now | date:'h:mm a'}}</div>
 <router-outlet></router-outlet>

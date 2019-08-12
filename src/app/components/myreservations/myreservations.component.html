@@ -65,7 +65,7 @@
         &nbsp;
         &nbsp;
         &nbsp;
-        <td><button mat-button (click)="toggle(reservation)"><i class="material-icons">
+        <td><button mat-button class="btn-sm" (click)="toggle(reservation)"><i class="material-icons">
           rate_review
         </i></button></td>
         &nbsp;
@@ -80,10 +80,12 @@
       </tbody>
     </table>
 
-
+    <div *ngIf="showVar" style="color: black;">
+      <hr>
+    </div>
 
       <form class="f1" (ngSubmit)="setRating()">
-        <ng-container *ngIf="showVar"><p style="text-decoration: underline"><i>Enter rating for <strong>{{selectedRes.room.roomNumber}}</strong></i></p>
+        <ng-container *ngIf="showVar"><p style="text-decoration: underline; font-size: 20px;"><i>Enter rating for <strong>{{selectedRes.room.roomNumber}}</strong></i></p>
       <br/>
           <mat-form-field><input [(ngModel)]="this.rating.roomId" name="roomId" id="roomId" matInput="number"  placeholder="Enter room id"/></mat-form-field>
           <br/>
@@ -93,8 +95,11 @@
           <br/>
           <mat-form-field><input [(ngModel)]="this.rating.comments" name="comments" id="comments" matInput="text" placeholder="Enter your comments" /></mat-form-field>
           <br/>
-          <button mat-button type="submit">Submit</button>
-          <button mat-button style="background-color: crimson; color: navajowhite" (click)="showVar = false">Cancel</button>
+          <button mat-button class="btn" type="submit">Submit</button>
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          <button mat-button class="btn2" (click)="showVar = false">Cancel</button>
         </ng-container>
       </form>
 

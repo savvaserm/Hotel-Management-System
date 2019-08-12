@@ -104,13 +104,19 @@
         <div class="rooms" *ngIf="showVar">
 
 
-          <table class="table">
+          <table class="table-sm table-hover">
             <thead>
 
             <tr>
               <th>Room</th>
-              <th></th>
+
+              &nbsp;
+              &nbsp;
+              &nbsp;
+              &nbsp;
+
               <th>Available</th>
+              <th></th>
             </tr>
 
             </thead>
@@ -120,9 +126,14 @@
 
               <td>{{ room.roomNumber }}</td>
 
+              &nbsp;
+              &nbsp;
+              &nbsp;
+              &nbsp;
+
               <td>{{ room.availability | jsonprint }}</td>
 
-              <td> <input *ngIf="room.availability" type="button" value="Select" (click)="roomSelected(room)"/></td>
+              <td> <input class="input1" *ngIf="room.availability" type="button" value="Select" (click)="roomSelected(room)"/></td>
             </tr>
             </tbody>
 

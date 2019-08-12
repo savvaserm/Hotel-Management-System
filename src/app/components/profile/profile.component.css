@@ -101,6 +101,11 @@ body { padding: 0px; }
 .btn1 {
   border: 0px;
   outline: 0px;
+  color: #263238;
+}
+
+.btn1:hover {
+  color: crimson;
 }
 
 .div1:hover {
