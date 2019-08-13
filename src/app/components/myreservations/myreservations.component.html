@@ -16,7 +16,10 @@
 
         <a style="text-decoration: none;" href="/myreservations">
           <mat-list-item class="item4" style="background-color: #323941; color: white;"><div class="div2">My reservations</div></mat-list-item>
+        </a>
 
+        <a style="text-decoration: none;" href="/ratings">
+          <mat-list-item class="item5" style="background-color: #323941; color: white;"><div class="div2">View ratings</div></mat-list-item>
         </a>
 
       </mat-list>
@@ -71,7 +74,7 @@
         &nbsp;
         &nbsp;
         &nbsp;
-        <td><button mat-button class="btn-cancel" [(ngModel)]="this.reservation" ngDefaultControl (click)="cancelRes(this.reservation)"><i class="material-icons">
+        <td><button mat-button class="btn-cancel" [(ngModel)]="this.reservation.room_reservationId" ngDefaultControl (click)="cancelRes(reservation.room_reservationId)"><i class="material-icons">
           cancel_presentation
         </i></button></td>
 
@@ -81,7 +84,7 @@
     </table>
 
     <div *ngIf="showVar" style="color: black;">
-      <hr>
+      <hr class="style1">
     </div>
 
       <form class="f1" (ngSubmit)="setRating()">

@@ -22,7 +22,8 @@ import { MyreservationsComponent } from './components/myreservations/myreservati
 import { RatingModule } from 'ng-starrating';
 import { RatingService } from './services/rating.service';
 import { RoomListService } from './services/room-list.service';
-import {HomepageComponent } from './components/homepage/homepage.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { ViewratingsComponent } from './components/viewratings/viewratings.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import {HomepageComponent } from './components/homepage/homepage.component';
     ReservationComponent,
     EmployeesComponent,
     MyreservationsComponent,
-    JsonPrint, HomepageComponent
+    JsonPrint, HomepageComponent, ViewratingsComponent
 
   ],
   imports: [

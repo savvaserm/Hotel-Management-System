@@ -19,6 +19,8 @@ export class ReservationService {
   cancelRes(reservation: Reservation) {
     console.log(reservation);
     return this.http.post(AppComponent.API_URL + '/users/hotels/reservations/cancel', reservation)
-      .pipe(map( response => console.log(response)));
+      .pipe(map( response => console.log(response)))
+      .subscribe();
+
   }
 }

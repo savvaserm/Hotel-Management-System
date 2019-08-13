@@ -8,6 +8,7 @@ import { EmployeesComponent } from './components/employees/employees.component';
 import { ReservationComponent } from './components/reservation/reservation.component';
 import { MyreservationsComponent } from './components/myreservations/myreservations.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { ViewratingsComponent } from './components/viewratings/viewratings.component';
 
 
 const appRoutes: Routes = [
@@ -20,6 +21,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'myreservations', component: MyreservationsComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'ratings', component: ViewratingsComponent },
 
   // otherwise redirect to profile
   { path: '**', redirectTo: '/homepage' }

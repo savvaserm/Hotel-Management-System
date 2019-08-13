@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import {Reservation} from './model/model.reservation';
+import { Reservation } from './model/model.reservation';
+import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -22,4 +24,6 @@ export class AppComponent {
       this.now = Date.now();
     }, 1);
   }
+
 }
+

@@ -1,0 +1,61 @@
+<mat-sidenav-container class="example-container">
+
+
+  <mat-sidenav #sidenav class="side" style="background-color: #323941" mode="side" [(opened)]="opened">
+
+    <div class="container-fluid">
+
+      <mat-list class="navbar">
+        <a style="color: white; text-decoration: none;" href="/list">
+          <mat-list-item class="item1" style="background-color: #323941; color: white;"><div class="div2">Show customers</div></mat-list-item>
+        </a>
+
+        <a style="color: white; text-decoration: none;" href="/reservations">
+          <mat-list-item class="item3" style="background-color: #323941; color: white;"><div class="div2">Make a reservation</div></mat-list-item>
+        </a>
+
+        <a style="text-decoration: none;" href="/myreservations">
+          <mat-list-item class="item4" style="background-color: #323941; color: white;"><div class="div2">My reservations</div></mat-list-item>
+        </a>
+
+        <a style="text-decoration: none;" href="/ratings">
+          <mat-list-item class="item5" style="background-color: #323941; color: white;"><div class="div2">View ratings</div></mat-list-item>
+        </a>
+
+      </mat-list>
+    </div>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+
+    <p>
+      <button mat-button class="btn btn1" (click)="sidenav.toggle()">
+        <mat-icon class="icon1">menu</mat-icon>
+      </button>
+    </p>
+
+    <table class="table table-striped table-bordered">
+      <thead>
+
+      <tr>
+
+        <th>Room</th>
+
+      </tr>
+
+      </thead>
+
+      <tbody>
+
+      <tr *ngFor="let room of rooms">
+        <td>{{room.roomNumber}}</td>
+
+      </tr>
+
+      </tbody>
+    </table>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

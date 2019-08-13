@@ -104,7 +104,7 @@ body { padding: 0px; }
   color: #263238;
 }
 
-.btn1:hover {
+.btn.btn1:hover {
   color: crimson;
 }
 
