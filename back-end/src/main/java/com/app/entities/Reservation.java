@@ -48,15 +48,14 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(Integer id, String reservation_details, LocalDate checkin, LocalDate checkout, Room room,
+    public Reservation(Integer room_reservationId, String reservation_details, LocalDate checkin, LocalDate checkout, Room room,
                        User customer) {
-        this.setRoom_reservationId(id);
+        this.setRoom_reservationId(room_reservationId);
         this.setReservation_details(reservation_details);
         this.setCheckin(checkin);
         this.setCheckout(checkout);
         this.setRoom(room);
         this.setCustomer(customer);
-        this.setTotal(total);
     }
 
     public Double getTotal() {

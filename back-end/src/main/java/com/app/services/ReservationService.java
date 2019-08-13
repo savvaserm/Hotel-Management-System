@@ -226,30 +226,50 @@ public class ReservationService {
         return reservationRepository.save(reservation);
     }
 
-    @Transactional
-    public Reservation cancelRes(Reservation reservation) {
+//    @Transactional
+//    public Reservation cancelRes(Reservation reservation) {
+//
+//        Optional<Reservation> optRes = reservationRepository.findById(reservation.getRoom_reservationId());
+//        Reservation res = optRes.get();
+//        quantity = res.getRoom().getRoom_roomtype().getQuantity().getAmount();
+//
+//        if (res.getRoom().getCancel()) {
+//
+//            reservationRepository.delete(res);
+//            res.getRoom().setAvailability(true);
+//            res.getRoom().getRoom_roomtype().getQuantity().setAmount(quantity + 1);
+//            System.out.println("\nReservation with id: [" + res.getRoom_reservationId() + "]    cancelled (customer WILL be refunded)!");
+//
+//        } else {
+//
+//            reservationRepository.delete(res);
+//            res.getRoom().setAvailability(true);
+//            res.getRoom().getRoom_roomtype().getQuantity().setAmount(quantity + 1);
+//            System.out.println("\nReservation with id: [" + res.getRoom_reservationId() + "]    cancelled (customer WONT be refunded)!");
+//
+//        }
+//
+//        return res;
+//    }
 
-        Optional<Reservation> optRes = reservationRepository.findById(reservation.getRoom_reservationId());
+    @Transactional
+    public void cancelRes(Integer resId) {
+
+        Optional<Reservation> optRes = reservationRepository.findById(resId);
         Reservation res = optRes.get();
         quantity = res.getRoom().getRoom_roomtype().getQuantity().getAmount();
 
         if (res.getRoom().getCancel()) {
-
-            reservationRepository.delete(res);
+            reservationRepository.deleteById(resId);
             res.getRoom().setAvailability(true);
             res.getRoom().getRoom_roomtype().getQuantity().setAmount(quantity + 1);
             System.out.println("\nReservation with id: [" + res.getRoom_reservationId() + "]    cancelled (customer WILL be refunded)!");
-
         } else {
-
-            reservationRepository.delete(res);
+            reservationRepository.deleteById(resId);
             res.getRoom().setAvailability(true);
             res.getRoom().getRoom_roomtype().getQuantity().setAmount(quantity + 1);
             System.out.println("\nReservation with id: [" + res.getRoom_reservationId() + "]    cancelled (customer WONT be refunded)!");
-
         }
-
-        return res;
     }
 
 }
