@@ -64,3 +64,21 @@ body, html {
   color: crimson;
 }
 
+.card {
+  display: inline-block;
+}
+
+.btn {
+  background-color: #263238;
+  color: white;
+}
+.btn:hover {
+  background-color: #485C73;
+  color:white
+}
+
+.selected {
+  left: 30%;
+  bottom: 1800px;
+  background-color: #263238;
+}

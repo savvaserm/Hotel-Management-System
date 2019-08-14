@@ -96,6 +96,8 @@ export class JsonPrint implements PipeTransform {
       .replace('amenity_name:', '')
       .replace('amenity_name:', '')
       .replace('amenity_name:', '')
-      .replace('amenity_name:', '');
+      .replace('emp_hotelId', 'Hotel')
+      .replace('startShift', 'Start shift')
+      .replace('endShift', 'End shift');
   }
 }
