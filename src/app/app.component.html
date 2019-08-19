@@ -39,15 +39,15 @@
   </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item>
-      <mat-icon class="icon1">dialpad</mat-icon>
+      <mat-icon class="icon1" style="background-color: #263238; color:white;">dialpad</mat-icon>
       <span>Redial</span>
     </button>
     <button mat-menu-item disabled>
-      <mat-icon class="icon2">voicemail</mat-icon>
+      <mat-icon class="icon2" style="background-color: #263238; color:white;">voicemail</mat-icon>
       <span>Check voicemail</span>
     </button>
     <button mat-menu-item>
-      <mat-icon class="icon3">notifications_off</mat-icon>
+      <mat-icon class="icon3" style="background-color: #263238; color:white;">notifications_off</mat-icon>
       <span>Disable alerts</span>
     </button>
   </mat-menu>
@@ -62,15 +62,15 @@
 
     <mat-menu #menu1="matMenu">
       <a style="text-decoration: none;" href="/profile"><button mat-menu-item>
-        <mat-icon style="color: #263238">ballot</mat-icon>
+        <mat-icon class="icons">ballot</mat-icon>
         <span>Show profile</span>
       </button></a>
       <button mat-menu-item>
-        <mat-icon style="color: #263238;">settings</mat-icon>
+        <mat-icon class="icons">settings</mat-icon>
         <span>Settings</span>
       </button>
       <a href="/homepage" style="text-decoration: none;"><button mat-menu-item (click)="logOut()">
-        <mat-icon style="color: #263238">exit_to_app</mat-icon>
+        <mat-icon style=" color: crimson">exit_to_app</mat-icon>
         <span>Logout</span>
       </button></a>
     </mat-menu>

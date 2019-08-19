@@ -47,3 +47,16 @@
 .btn3:hover {
   text-decoration: none;
 }
+
+.icons {
+  background-color: #263238;
+  color: white;
+}
+.icons {
+  color: white;
+}
+
+.mat-menu-item:hover {
+  background-color: #263238;
+  color: crimson;
+}
