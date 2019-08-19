@@ -22,6 +22,11 @@
   color: crimson;
 }
 
+.btn.btn1 {
+  border: 0px;
+  outline: 0px;
+}
+
 .btn1:hover {
   color: crimson;
 }

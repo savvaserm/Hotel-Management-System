@@ -77,15 +77,17 @@
 
       <tr *ngFor="let rating of ratings">
         <div *ngIf="selectedValue.roomID === rating.roomrating_roomId.roomID">
-          <td>Rated by: <strong>{{rating.roomrating_customerId.lastname}}</strong></td>
+          <td><strong>Rated by: </strong>{{rating.roomrating_customerId.lastname}}</td>
           &nbsp;
           &nbsp;
           &nbsp;
-          <td> Rating: {{rating.rating}} / 5</td>
+          <td><strong> Rating:     </strong>{{rating.rating}} / 5 &nbsp;<i class="material-icons" style="position: absolute">
+            star
+          </i></td>
           &nbsp;
           &nbsp;
           &nbsp;
-          <td>Comments: {{rating.comments}}</td>
+          <td><strong>Comments:    </strong>{{rating.comments}}</td>
           &nbsp;
           &nbsp;
           &nbsp;
