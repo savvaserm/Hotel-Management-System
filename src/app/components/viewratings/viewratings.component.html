@@ -7,19 +7,27 @@
 
       <mat-list class="navbar">
         <a style="color: white; text-decoration: none;" href="/list">
-          <mat-list-item class="item1" style="background-color: #323941; color: white;"><div class="div2">Show customers</div></mat-list-item>
+          <mat-list-item class="item1" style="background-color: #323941; color: white;">
+            <div class="div2">Show customers</div>
+          </mat-list-item>
         </a>
 
         <a style="color: white; text-decoration: none;" href="/reservations">
-          <mat-list-item class="item3" style="background-color: #323941; color: white;"><div class="div2">Make a reservation</div></mat-list-item>
+          <mat-list-item class="item3" style="background-color: #323941; color: white;">
+            <div class="div2">Make a reservation</div>
+          </mat-list-item>
         </a>
 
         <a style="text-decoration: none;" href="/myreservations">
-          <mat-list-item class="item4" style="background-color: #323941; color: white;"><div class="div2">My reservations</div></mat-list-item>
+          <mat-list-item class="item4" style="background-color: #323941; color: white;">
+            <div class="div2">My reservations</div>
+          </mat-list-item>
         </a>
 
         <a style="text-decoration: none;" href="/ratings">
-          <mat-list-item class="item5" style="background-color: #323941; color: white;"><div class="div2">View ratings</div></mat-list-item>
+          <mat-list-item class="item5" style="background-color: #323941; color: white;">
+            <div class="div2">View ratings</div>
+          </mat-list-item>
         </a>
 
       </mat-list>
@@ -35,12 +43,31 @@
       </button>
     </p>
 
-    <table class="table table-striped table-bordered">
+
+    <div style="margin: 100px;">
+      <h4 style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 18px;">Choose a room to see the ratings</h4>
+      <mat-form-field>
+        <mat-label>Select room</mat-label>
+        <mat-select [(ngModel)]="selectedValue" name="room">
+          <mat-option>
+            -
+          </mat-option>
+          <mat-option *ngFor="let room of rooms" value={{room.roomNumber}} (click)="onSelect(room)">
+            {{room.roomNumber}}
+          </mat-option>
+
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+    <table class="table table-dark" style="margin: 20px;" *ngIf="selectedValue">
       <thead>
 
       <tr>
 
-        <th>Room</th>
+        <th>ALL RATINGS FOR: {{selectedValue.roomNumber | uppercase }}</th>
+
 
       </tr>
 
@@ -48,13 +75,31 @@
 
       <tbody>
 
-      <tr *ngFor="let room of rooms">
-        <td>{{room.roomNumber}}</td>
-
+      <tr *ngFor="let rating of ratings">
+        <div *ngIf="selectedValue.roomID === rating.roomrating_roomId.roomID">
+          <td>Rated by: <strong>{{rating.roomrating_customerId.lastname}}</strong></td>
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          <td> Rating: {{rating.rating}} / 5</td>
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          <td>Comments: {{rating.comments}}</td>
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          <td> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ </td>
+        </div>
       </tr>
 
       </tbody>
     </table>
+
+
+    <a style="color: black" href="http://localhost:4200/profile">
+      <button mat-raised-button class="back-btn">Go back to profile</button>
+    </a>
 
   </mat-sidenav-content>
 

@@ -16,4 +16,10 @@ export class RatingService {
       .pipe(map(response => console.log(response)));
 
   }
+
+  getRatings() {
+    const ratingURL = AppComponent.API_URL + '/users/hotels/rooms/rating';
+    return this.http.get(ratingURL)
+      .pipe(map(res => res));
+  }
 }
