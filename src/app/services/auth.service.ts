@@ -40,7 +40,7 @@ export class AuthService {
     })
 
       .pipe(map((response: any) => {
-          this.router.navigate(['profile']);
+          this.router.navigate(['homepage']);
           // tslint:disable-next-line:no-shadowed-variable
           const user = response.json().principal.id; // the returned user object is a principal object
           return user;

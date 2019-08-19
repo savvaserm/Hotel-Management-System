@@ -19,10 +19,22 @@ export class AppComponent {
     this.showVar = !this.showVar;
   }
 
-  constructor() {
+  constructor(private authService: AuthService, private router: Router) {
     setInterval(() => {
       this.now = Date.now();
     }, 1);
+  }
+
+  logOut() {
+    this.authService.logOut()
+      .subscribe(
+        data => {
+          this.router.navigate(['/homepage']);
+        },
+        error => {
+
+        });
+    localStorage.removeItem('currentUser');
   }
 
 }

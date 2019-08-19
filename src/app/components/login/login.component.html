@@ -19,7 +19,8 @@
 
           <mat-label for="username">Username</mat-label>
 
-          <input style="background-color: #eceff1; border: none;" matInput placeholder="Enter username" type="text" class="form-control" id="username" name="username"
+          <input style="background-color: #eceff1; border: none;" matInput placeholder="Enter username" type="text"
+                 class="form-control" id="username" name="username"
                  [(ngModel)]="user.username" #username="ngModel" required/>
 
           <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
@@ -34,7 +35,8 @@
 
           <mat-label for="password">Password</mat-label>
 
-          <input style="background-color: #eceff1; border: none; " matInput placeholder="Enter password" type="password" class="form-control" id="password"
+          <input style="background-color: #eceff1; border: none; " matInput placeholder="Enter password" type="password"
+                 class="form-control" id="password"
                  name="password" [(ngModel)]="user.password" #password="ngModel" required/>
 
           <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
@@ -47,11 +49,13 @@
       </button>
     </form>
     <br>
-&nbsp;
-&nbsp;
-&nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
     <p class="text">Are you a new user ?</p>
-    <a href="/register"><button mat-raised-button class="btn btn-link">Register here!</button></a>
+    <a href="/register">
+      <button mat-raised-button class="btn btn-link">Register here!</button>
+    </a>
 
   </div>
 
