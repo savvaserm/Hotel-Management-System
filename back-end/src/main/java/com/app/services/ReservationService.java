@@ -123,6 +123,7 @@ public class ReservationService {
             System.out.println("If reservation is cancelled, customer wont be refunded \n-----------------------");
         }
 
+
         quantity = room.getRoom_roomtype().getQuantity().getAmount();
         if (quantity < 2) {
             extraCost = 40.0;

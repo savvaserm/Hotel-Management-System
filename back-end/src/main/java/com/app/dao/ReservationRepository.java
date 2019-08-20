@@ -2,6 +2,7 @@ package com.app.dao;
 
 import com.app.entities.Reservation;
 import com.app.entities.Room;
+import com.app.entities.Roomtype;
 import com.app.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
