@@ -7,19 +7,27 @@
 
       <mat-list class="navbar">
         <a style="color: white; text-decoration: none;" href="/list">
-          <mat-list-item class="item1" style="background-color: #323941; color: white;"><div class="div1">Show customers</div></mat-list-item>
+          <mat-list-item class="item1" style="background-color: #323941; color: white;">
+            <div class="div1">Show customers</div>
+          </mat-list-item>
         </a>
 
         <a style="color: white; text-decoration: none;" href="/reservations">
-          <mat-list-item class="item3" style="background-color: #323941; color: white;"><div class="div1">Make a reservation</div></mat-list-item>
+          <mat-list-item class="item3" style="background-color: #323941; color: white;">
+            <div class="div1">Make a reservation</div>
+          </mat-list-item>
         </a>
 
         <a style="text-decoration: none;" href="/myreservations">
-          <mat-list-item class="item4" style="background-color: #323941; color: white;"><div class="div1">My reservations</div></mat-list-item>
+          <mat-list-item class="item4" style="background-color: #323941; color: white;">
+            <div class="div1">My reservations</div>
+          </mat-list-item>
         </a>
 
         <a style="text-decoration: none;" href="/ratings">
-          <mat-list-item class="item5" style="background-color: #323941; color: white;"><div class="div1">View ratings</div></mat-list-item>
+          <mat-list-item class="item5" style="background-color: #323941; color: white;">
+            <div class="div1">View ratings</div>
+          </mat-list-item>
         </a>
 
       </mat-list>
@@ -34,233 +42,245 @@
         <mat-icon class="icon1">menu</mat-icon>
       </button>
     </p>
-    <mat-vertical-stepper>
+        <mat-vertical-stepper>
 
-      <mat-step>
-        <ng-template class="label" matStepLabel>Personal information</ng-template>
-        <div class="form0">
-          <h4 style="font-size: 18px;">Guest Info</h4>
-          <form (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
-            <mat-form-field class="f0">
+          <mat-step>
+            <ng-template class="label" matStepLabel>Personal information</ng-template>
+            <div class="form0">
+              <h4 style="font-size: 18px;">Guest Info</h4>
+              <form (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+                <mat-form-field class="f0">
 
-              <mat-label for="Last name">Last name</mat-label>
-              <input style="border: none;" matInput placeholder="Enter Last name" type="text" class="form-control" id="lastname"
-                     name="lastname"
-                     [(ngModel)]="user.lastname" #lastname="ngModel" required/>
-              <div *ngIf="f.submitted" class="help-block">Last name is required</div>
-            </mat-form-field>
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            <mat-form-field class="f1">
+                  <mat-label for="Last name">Last name</mat-label>
+                  <input style="border: none;" matInput placeholder="Enter Last name" type="text" class="form-control" id="lastname"
+                         name="lastname"
+                         [(ngModel)]="user.lastname" #lastname="ngModel" required/>
+                  <div *ngIf="f.submitted" class="help-block">Last name is required</div>
+                </mat-form-field>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                <mat-form-field class="f1">
 
-              <mat-label for="First name">First name</mat-label>
-              <input style="border: none;" matInput placeholder="Enter First name" type="text" class="form-control" id="firstname"
-                     name="firstname" [(ngModel)]="user.firstname" #firstname="ngModel" required/>
-              <div *ngIf="f.submitted" class="help-block">First name is required</div>
-            </mat-form-field>
+                  <mat-label for="First name">First name</mat-label>
+                  <input style="border: none;" matInput placeholder="Enter First name" type="text" class="form-control" id="firstname"
+                         name="firstname" [(ngModel)]="user.firstname" #firstname="ngModel" required/>
+                  <div *ngIf="f.submitted" class="help-block">First name is required</div>
+                </mat-form-field>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                <mat-form-field class="f2">
 
-
-            <h4 style="font-size: 18px;">Hotels / Room types</h4>
-            <mat-form-field>
-              <mat-label>Choose a hotel</mat-label>
-              <mat-select [(ngModel)]="selectedValue" name="hotel">
-                <mat-option>
-                  -
-                </mat-option>
-                <mat-option *ngFor="let hotel of hotels" value="Hotel 1">
-                  {{hotel.hotelName}}
-                </mat-option>
-
-              </mat-select>
-            </mat-form-field>
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            <mat-form-field>
-              <mat-label>Choose room type</mat-label>
-              <mat-select [(ngModel)]="selectedValue2" name="roomtype">
-                <mat-option>
-                  -
-                </mat-option>
-                <mat-option *ngFor="let roomtype of roomtypes" [value]="roomtypes">
-                  {{roomtype.roomType}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </form>
-        </div>
-      </mat-step>
-
-      <mat-step>
-        <ng-template class="label" matStepLabel>Room and date selection</ng-template>
-        <div class="datepicker">
-          <p><strong>Select Dates :</strong></p>
-
-          <aa-animatepicker class="date"
-                            [options]="datepickerOptions"
-                            [(selectedDates)]="dates"></aa-animatepicker>
-        </div>
+                  <mat-label for="Id">Id</mat-label>
+                  <input style="border: none;" matInput placeholder="Enter your Id" type="text" class="form-control" id="Id"
+                         name="Id" [(ngModel)]="user.id" #Ide="ngModel" required/>
+                  <div *ngIf="f.submitted" class="help-block">Id is required</div>
+                </mat-form-field>
 
 
-        <button mat-raised-button class="btn3" (click)="toggleChild()">Show available rooms</button>
-        <div class="rooms" *ngIf="showVar">
+                <h4 style="font-size: 18px;">Hotels / Room types</h4>
+                <mat-form-field>
+                  <mat-label>Choose a hotel</mat-label>
+                  <mat-select [(ngModel)]="selectedValue" name="hotel">
+                    <mat-option>
+                      -
+                    </mat-option>
+                    <mat-option *ngFor="let hotel of hotels" value="Hotel 1">
+                      {{hotel.hotelName}}
+                    </mat-option>
+
+                  </mat-select>
+                </mat-form-field>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                <mat-form-field>
+                  <mat-label>Choose room type</mat-label>
+                  <mat-select [(ngModel)]="selectedValue2" name="roomtype">
+                    <mat-option>
+                      -
+                    </mat-option>
+                    <mat-option *ngFor="let roomtype of roomtypes" [value]="roomtypes">
+                      {{roomtype.roomType}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </form>
+            </div>
+          </mat-step>
+
+          <mat-step>
+            <ng-template class="label" matStepLabel>Room and date selection</ng-template>
+            <div class="datepicker">
+              <p><strong>Select Dates :</strong></p>
+
+              <aa-animatepicker class="date"
+                                [options]="datepickerOptions"
+                                [(selectedDates)]="dates"></aa-animatepicker>
+            </div>
 
 
-          <table class="table-sm table-hover">
-            <thead>
+            <button mat-raised-button class="btn3" (click)="toggleChild()">Show available rooms</button>
+            <div class="rooms" *ngIf="showVar">
 
-            <tr>
-              <th>Room</th>
+
+              <table class="table-sm table-hover">
+                <thead>
+
+                <tr>
+                  <th>Room</th>
+
+                  &nbsp;
+                  &nbsp;
+                  &nbsp;
+                  &nbsp;
+
+                  <th>Available</th>
+                  <th></th>
+                </tr>
+
+                </thead>
+
+                <tbody>
+                <tr *ngFor="let room of rooms">
+
+                  <td>{{ room.roomNumber }}</td>
+
+                  &nbsp;
+                  &nbsp;
+                  &nbsp;
+                  &nbsp;
+
+                  <td>{{ room.availability | jsonprint }}</td>
+
+                  <td> <input class="input1" *ngIf="room.availability" type="button" value="Select" (click)="roomSelected(room)"/></td>
+                </tr>
+                </tbody>
+
+              </table>
+
+
+              <mat-card class="card" *ngIf="showCard">
+                <mat-card-title>Room Info</mat-card-title>
+
+                &nbsp;
+                <mat-card-header class="header"><strong>Hotel/Room :</strong></mat-card-header>
+
+                <pre class="pre"><strong>{{ this.selectedRoom | jsonprint }}</strong></pre>
+
+              </mat-card>
+            </div>
+
+          </mat-step>
+
+          <mat-step [optional]="isOptional">
+            <ng-template class="label" matStepLabel>Extras</ng-template>
+            <div class="extras">
+
+              <p><strong>Select extra services :</strong></p>
+              <mat-form-field>
+                <mat-select [(ngModel)]="selectedAmenities" [multiple]="true">
+                  <mat-option *ngFor="let amenity of amenities" [value]="amenity">
+                    {{ amenity.amenity_name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+          </mat-step>
+
+          <mat-step>
+            <ng-template class="label" matStepLabel>Payment</ng-template>
+            <div class="payment">
+              <p><strong>Payment :</strong></p>
+
+              <form>
+                <mat-form-field>
+                  <mat-label>Choose payment type</mat-label>
+                  <mat-select [(ngModel)]="selectedPayment" name="payment">
+
+                    <mat-option (click)=toggleFalse()>
+                      -
+                    </mat-option>
+                    <mat-option value="Credit Card" (click)=toggleChild2()>
+                      Credit Card
+                    </mat-option>
+                    <mat-option value="Cash" (click)=toggleFalse()>
+                      Cash
+                    </mat-option>
+
+                  </mat-select>
+                </mat-form-field>
+              </form>
+            </div>
+
+
+            <div class="creditcard" *ngIf="show">
+              <mat-form-field>
+                <input matInput placeholder="Card number" required>
+              </mat-form-field>
 
               &nbsp;
               &nbsp;
-              &nbsp;
-              &nbsp;
 
-              <th>Available</th>
-              <th></th>
-            </tr>
-
-            </thead>
-
-            <tbody>
-            <tr *ngFor="let room of rooms">
-
-              <td>{{ room.roomNumber }}</td>
+              <mat-form-field>
+                <input matInput placeholder="CVV" ngModel maxlength="3" required>
+              </mat-form-field>
 
               &nbsp;
               &nbsp;
+
+              <mat-form-field>
+                <input matInput placeholder="Expiration date" ngModel pattern="([0-9]{2}[/]?){2}" required>
+              </mat-form-field>
+            </div>
+            <mat-card class="card2">
+              <mat-card-title>Reservation Summary</mat-card-title>
               &nbsp;
+              <mat-card-header class="header"><strong>Guest info</strong></mat-card-header>
+
+              <pre class="pre"><strong>  First name: {{ user.firstname }} </strong></pre>
+              <pre class="pre"><strong>  Last name: {{ user.lastname }} </strong></pre>
               &nbsp;
+              <mat-card-header class="header"><strong>Hotel/Room info</strong></mat-card-header>
+              <pre class="pre"><strong> {{ this.selectedRoom | jsonprint }} </strong></pre>
 
-              <td>{{ room.availability | jsonprint }}</td>
+              <mat-card-header class="header"><strong>Dates</strong></mat-card-header>
+              <pre class="pre"><strong> {{ this.dates | jsonprint }} </strong></pre>
 
-              <td> <input class="input1" *ngIf="room.availability" type="button" value="Select" (click)="roomSelected(room)"/></td>
-            </tr>
-            </tbody>
-
-          </table>
-
-
-          <mat-card class="card" *ngIf="showCard">
-            <mat-card-title>Room Info</mat-card-title>
-
-            &nbsp;
-            <mat-card-header class="header"><strong>Hotel/Room :</strong></mat-card-header>
-
-            <pre class="pre"><strong>{{ this.selectedRoom | jsonprint }}</strong></pre>
-
-          </mat-card>
-        </div>
-
-      </mat-step>
-
-      <mat-step [optional]="isOptional">
-        <ng-template class="label" matStepLabel>Extras</ng-template>
-        <div class="extras">
-
-          <p><strong>Select extra services :</strong></p>
-          <mat-form-field>
-            <mat-select [(ngModel)]="selectedAmenities" [multiple]="true">
-              <mat-option *ngFor="let amenity of amenities" [value]="amenity">
-                {{ amenity.amenity_name }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-
-        </div>
-      </mat-step>
-
-      <mat-step>
-        <ng-template class="label" matStepLabel>Payment</ng-template>
-        <div class="payment">
-          <p><strong>Payment :</strong></p>
-
-          <form>
-            <mat-form-field>
-              <mat-label>Choose payment type</mat-label>
-              <mat-select [(ngModel)]="selectedPayment" name="payment">
-
-                <mat-option (click)=toggleFalse()>
-                  -
-                </mat-option>
-                <mat-option value="Credit Card" (click)=toggleChild2()>
-                  Credit Card
-                </mat-option>
-                <mat-option value="Cash" (click)=toggleFalse()>
-                  Cash
-                </mat-option>
-
-              </mat-select>
-            </mat-form-field>
-          </form>
-        </div>
+              <mat-card-header class="header"><strong>Extras</strong></mat-card-header>
+              <pre class="pre"><strong> {{ this.selectedAmenities | jsonprint }} </strong></pre>
 
 
-        <div class="creditcard" *ngIf="show">
-          <mat-form-field>
-            <input matInput placeholder="Card number" required>
-          </mat-form-field>
+              <mat-card-header class="header"><strong>Payment method</strong></mat-card-header>
+              <pre class="pre"><strong> {{ this.selectedPayment }} </strong></pre>
+
+
+    <!--          AN DEN EMFANIZEI THN SELIDA SVHSE TO {{ this.getTotal() }}             -->
+              <mat-card-header class="header"><strong>Total</strong></mat-card-header>
+              <pre class="pre"><strong></strong></pre>
+
+            </mat-card>
+
+
+              <button mat-raised-button class="btn" (click)="reserveRoom()">Complete reservation</button>
+
+          </mat-step>
 
           &nbsp;
           &nbsp;
-
-          <mat-form-field>
-            <input matInput placeholder="CVV" ngModel maxlength="3" required>
-          </mat-form-field>
-
+          &nbsp;
+          &nbsp;
           &nbsp;
           &nbsp;
 
-          <mat-form-field>
-            <input matInput placeholder="Expiration date" ngModel pattern="([0-9]{2}[/]?){2}" required>
-          </mat-form-field>
-        </div>
-        <mat-card class="card2">
-          <mat-card-title>Reservation Summary</mat-card-title>
-          &nbsp;
-          <mat-card-header class="header"><strong>Guest info</strong></mat-card-header>
+        </mat-vertical-stepper>
+        <a style="color: black" href="http://localhost:4200/profile">
+          <button mat-raised-button class="btn2">Cancel</button>
+        </a>
 
-          <pre class="pre"><strong>  First name: {{ user.firstname }} </strong></pre>
-          <pre class="pre"><strong>  Last name: {{ user.lastname }} </strong></pre>
-          &nbsp;
-          <mat-card-header class="header"><strong>Hotel/Room info</strong></mat-card-header>
-          <pre class="pre"><strong> {{ this.selectedRoom | jsonprint }} </strong></pre>
-
-          <mat-card-header class="header"><strong>Dates</strong></mat-card-header>
-          <pre class="pre"><strong> {{ this.dates | jsonprint }} </strong></pre>
-
-          <mat-card-header class="header"><strong>Extras</strong></mat-card-header>
-          <pre class="pre"><strong> {{ this.selectedAmenities | jsonprint }} </strong></pre>
+      </mat-sidenav-content>
 
 
-          <mat-card-header class="header"><strong>Payment method</strong></mat-card-header>
-          <pre class="pre"><strong> {{ this.selectedPayment }} </strong></pre>
-
-
-<!--          AN DEN EMFANIZEI THN SELIDA SVHSE TO {{ this.getTotal() }}             -->
-          <mat-card-header class="header"><strong>Total</strong></mat-card-header>
-          <pre class="pre"><strong></strong></pre>
-
-        </mat-card>
-
-
-          <button mat-raised-button class="btn" (click)="reserveRoom()">Complete reservation</button>
-
-      </mat-step>
-
-      &nbsp;
-      &nbsp;
-      &nbsp;
-      &nbsp;
-      &nbsp;
-      &nbsp;
-
-    </mat-vertical-stepper>
-    <a style="color: black" href="http://localhost:4200/profile">
-      <button mat-raised-button class="btn2">Cancel</button>
-    </a>
-
-  </mat-sidenav-content>
 </mat-sidenav-container>
