@@ -38,7 +38,7 @@
     <div class="h2"><h2><strong>Reservations</strong></h2></div>
 
     <div class="div1" style="font-size: 20px;"><strong>Previous Reservations</strong></div>
-    <table class="table">
+    <table class="table table-hover">
       <thead>
 
       <tr>
@@ -50,6 +50,9 @@
         &nbsp;
         &nbsp;
         <th>Rate reservation</th>
+        &nbsp;
+        &nbsp;
+        <th>Edit reservation</th>
         &nbsp;
         &nbsp;
         <th>Cancel reservation</th>
@@ -65,23 +68,32 @@
         &nbsp;
         &nbsp;
         <td>
-          <div class="card" style=" background-color: lightgray; display: inline-block; width: 1500px;">
-            <pre class="pre">{{ reservation.reservation_details }}</pre>
+          <div class="card" style=" background-color: #263238; display: inline-block; width: 1400px;">
+            <pre class="pre" style="color: white; padding: 10px;">{{ reservation.reservation_details }}</pre>
           </div>
         </td>
         &nbsp;
         &nbsp;
         &nbsp;
         <td><button mat-button class="btn-sm" (click)="toggle(reservation)"><i class="material-icons">
-          rate_review
+          comment
         </i></button></td>
         &nbsp;
         &nbsp;
         &nbsp;
-        <td><button mat-button class="btn-cancel" [(ngModel)]="this.reservation.room_reservationId" ngDefaultControl (click)="cancelRes(reservation.room_reservationId)"><i class="material-icons">
+        <td><button mat-button class="update" [(ngModel)]="this.reservation.room_reservationId" ngDefaultControl (click)="updateRes(reservation.room_reservationId)">
+          <i class="material-icons">
+            edit
+          </i>
+        </button> </td>
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        <td><button mat-button class="btn-cancel" [(ngModel)]="this.reservation.room_reservationId" ngDefaultControl (click)="cancelRes(reservation.room_reservationId)">
+          <i class="material-icons">
           cancel_presentation
-        </i></button></td>
-
+        </i>
+        </button></td>
       </tr>
 
       </tbody>

@@ -25,6 +25,7 @@ export class MyreservationsComponent implements OnInit {
   z = 0;
   var = JSON.parse(localStorage.getItem('currentUser'));
   showVar = false;
+  showVar1 = false;
 
   constructor(private listService: ListService, public ratingService: RatingService, private reservationService: ReservationService) {
   }
@@ -74,6 +75,15 @@ export class MyreservationsComponent implements OnInit {
       console.log(res);
       alert('Reservation cancelled!');
     }
+  }
 
+  updateRes(res: Reservation) {
+    this.reservationService.updateRes(res)
+      .subscribe (data => {
+        alert('Reservation updated!');
+        }, error => {
+        alert('Cannot update reservation!');
+        });
+    console.log(res);
   }
 }
