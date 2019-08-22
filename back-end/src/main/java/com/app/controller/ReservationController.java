@@ -53,4 +53,9 @@ public class ReservationController {
         reservationService.cancelRes(resId);
     }
 
+    @RequestMapping(value = "/reservations/update", method = RequestMethod.PUT)
+    public void updateRes(@RequestBody ReservationDto res) {
+        reservationService.updateRes(res);
+    }
+
 }

@@ -2,12 +2,16 @@ package com.app.dto;
 
 import com.app.entities.Amenity;
 
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
 public class ReservationDto {
+
+    @NotNull
+    private Integer id;
 
     @NotNull
     private long roomId;
@@ -21,6 +25,13 @@ public class ReservationDto {
     private Double total;
     private Set<Amenity> amenities;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public LocalDate getCheckin() {
         return checkin;

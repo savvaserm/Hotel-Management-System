@@ -1,10 +1,12 @@
 package com.app.services;
 
+import com.app.dao.AmenityRepository;
 import com.app.dao.ReservationRepository;
 import com.app.dao.RoomRepository;
 import com.app.dao.UserRepository;
 import com.app.dto.ReservationDto;
 import com.app.entities.*;
+import org.apache.tomcat.jni.Local;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class ReservationService {
 
     private static final Logger logger = LoggerFactory.getLogger(ReservationService.class);
 
+
+    @Autowired
+    AmenityRepository amenityRepository;
 
     @Autowired
     ReservationRepository reservationRepository;
@@ -72,7 +77,6 @@ public class ReservationService {
     @Transactional
     public Reservation reserveRoom(ReservationDto reservationDto) {
 
-
         Optional<Room> optRoom = roomRepository.findById((int) reservationDto.getRoomId());
         Room room = optRoom.get();
 
@@ -83,13 +87,18 @@ public class ReservationService {
         LocalDate checkout = reservationDto.getCheckout();
 
 
+
+
         //VALIDATE IF START DATE IS AFTER END DATE AND DISPLAY ERROR MESSAGE AND IF START/END DATE IS BEFORE CURRENT DATE
         DateValidationHelper.dateValidation(checkin, checkout);
         DateValidationHelper.currentDateValidation(localDate, checkin);
 
         Reservation reservation = new Reservation();
 
-        Set<Amenity> amenities;
+//        Optional<Amenity> optAmenities = amenityRepository.findById(reservationDto.getAmenity());
+//        Amenity amenities = optAmenities.get();
+
+//        System.out.println(amenities);
 
         //AN O PELATIS EXEI 3 KAI PANW RESERVATIONS TOTE EINAI REGULAR
         List<Reservation> reservations = reservationRepository.findByCustomer(customer);
@@ -124,7 +133,9 @@ public class ReservationService {
         }
 
 
+        List<Reservation> resForDates = reservationRepository.findByRoomAndDate(room, checkin, checkout);
         quantity = room.getRoom_roomtype().getQuantity().getAmount();
+
         if (quantity < 2) {
             extraCost = 40.0;
         } else if (quantity < 4) {
@@ -166,9 +177,8 @@ public class ReservationService {
             reservation.setCheckout(checkout);
             reservation.getRoom().setAvailability(false);
 
-            amenities = reservation.getAmenities();
-            reservation.setAmenities(amenities);
-
+//            reservation.setAmenities((Set<Amenity>) amenities);
+//            System.out.println(amenities);
             room.getRoom_roomtype().getQuantity().setAmount(quantity - 1);
 
             message = "Room booked!";
@@ -198,11 +208,13 @@ public class ReservationService {
             reservation.setCustomer(customer);
             reservation.setCheckin(checkin);
             reservation.setCheckout(checkout);
+
+//            reservation.setAmenities((Set<Amenity>) amenities);
+//            System.out.println(amenities);
             reservation.getRoom().setAvailability(false);
+
             room.getRoom_roomtype().getQuantity().setAmount(quantity - 1);
 
-            amenities = reservation.getAmenities();
-            reservation.setAmenities(amenities);
 
             price = (double) reservation.getNights() * room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice();
             total = price - discount2 * price - discount3 * price + extraCost + highSeasonExtra * price;
@@ -273,4 +285,23 @@ public class ReservationService {
         }
     }
 
+    @Transactional
+    public void updateRes(ReservationDto res) {
+
+        Optional<Reservation> optRes = reservationRepository.findById(res.getId());
+        Reservation res2 = optRes.get();
+
+        LocalDate checkin = res.getCheckin();
+        LocalDate checkout = res.getCheckout();
+//        Set<Amenity> amenities = res.getAmenity();
+
+        res2.setCheckin(checkin);
+        res2.setCheckout(checkin);
+//        res2.setAmenities(amenities);
+
+        reservationRepository.save(res2);
+
+        System.out.println("Reservation updated!" + "\n" + "Changed checkin date to: " + checkin + "and checkout date to: " + checkout);
+
+    }
 }
