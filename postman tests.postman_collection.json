@@ -315,7 +315,8 @@
 						"reservations",
 						"update"
 					]
-				}
+				},
+				"description": "Update a reservation by changing the chin and checkout dates, adding or removing amenities etc."
 			},
 			"response": []
 		}
