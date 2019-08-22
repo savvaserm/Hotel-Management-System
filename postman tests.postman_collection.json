@@ -282,6 +282,42 @@
 				"description": "Call rateRoom function to rate a room with rating (0-5) and comments about the rom"
 			},
 			"response": []
+		},
+		{
+			"name": "http://localhost:8080/users/hotels/reservations/update",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 289,\n\t\"checkin\": \"2019-11-11\",\n\t\"checkout\": \"2019-11-11\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/hotels/reservations/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"hotels",
+						"reservations",
+						"update"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
