@@ -87,8 +87,6 @@ public class ReservationService {
         LocalDate checkout = reservationDto.getCheckout();
 
 
-
-
         //VALIDATE IF START DATE IS AFTER END DATE AND DISPLAY ERROR MESSAGE AND IF START/END DATE IS BEFORE CURRENT DATE
         DateValidationHelper.dateValidation(checkin, checkout);
         DateValidationHelper.currentDateValidation(localDate, checkin);
@@ -133,111 +131,161 @@ public class ReservationService {
         }
 
 
-        List<Reservation> resForDates = reservationRepository.findByRoomAndDate(room, checkin, checkout);
-        quantity = room.getRoom_roomtype().getQuantity().getAmount();
+        List<Reservation> resForDates = reservationRepository.findByDate(checkin, checkout);
 
-        if (quantity < 2) {
-            extraCost = 40.0;
-        } else if (quantity < 4) {
-            extraCost = 20.0;
+        if (room.getRoom_roomtype().getRoomTypeID().equals(1)) {
+            quantity = 8;
+        } else if (room.getRoom_roomtype().getRoomTypeID().equals(2)) {
+            quantity = 4;
+        } else if (room.getRoom_roomtype().getRoomTypeID().equals(3)) {
+            quantity = 6;
         } else {
-            extraCost = 0.0;
-        }
-
-        if (checkin.isAfter(date1) && checkin.isBefore(date2)) {
-            highSeasonExtra = 0.15;
-            System.out.println("Reservations made for Summer (" + date1 + " to " + date2 + ")" + " are more expensive due to high demand: " + highSeasonExtra);
-        } else if (checkin.isAfter(date3) && checkin.isBefore(date4)) {
-            highSeasonExtra = 0.20;
-            System.out.println("Reservations made during Christmas period( " + date3 + " to " + date4 + ")" + " are more expensive due to hgh demand: " + highSeasonExtra);
-        } else {
-            highSeasonExtra = 0.0;
+            quantity = 2;
         }
 
 
-        //DEN VRISKEI TO ROOM ID, CHECKAREI MONO TIS HMEROMHNIES KAI STELNEI PISW OLA TA RESERVATIONS GIAYTES TIS HMEROMHNIES
-        List<Reservation> checkRes = reservationRepository.findByRoomAndDate(room, checkin, checkout);
-        if (checkRes.size() >= 1) {
-            System.out.println("Reservations for given dates: " + checkRes.size());
-        } else {
-            room.setAvailability(true);
-        }
+//        quantity = room.getRoom_roomtype().getQuantity().getAmount();
 
-        if (!room.getAvailability()) {
+        int cnt = 0;
 
-            message = "Room is not available at given dates!";
-            System.out.println(message);
+//        if (resForDates.size() == 0) {
+//            throw new RuntimeException("List is empty!");
+//        } else {
 
-            //15% DISCOUNT STOUS REGULAR PELATES
-        } else if (customer.getType().equals("REGULAR")) {
 
-            reservation.setRoom(room);
-            reservation.setCustomer(customer);
-            reservation.setCheckin(checkin);
-            reservation.setCheckout(checkout);
-            reservation.getRoom().setAvailability(false);
+        // CHECK AN YPARXOUN KRATHSEIS GIA AYTHN THN PERIODO GIA DWMATIA AYTOU TOU TYPOU KAI AFAIRESE TA APTO QUANTITY
+
+            for (int i = 0; i <= resForDates.size(); i++) {
+                try {
+                    if (resForDates.get(i).getRoom().getRoom_roomtype().getRoomTypeID().equals(room.getRoom_roomtype().getRoomTypeID())) {
+                        cnt++;
+                    }
+                } catch (RuntimeException handlerException) {
+                    break;
+                }
+            }
+
+            System.out.println("Reservations for this type of room @ given dates: " + cnt);
+
+            int tempQuantity = quantity - cnt;
+
+            System.out.println("Available rooms of selected room type for selected dates: " + tempQuantity);
+
+            if (tempQuantity <= 2) {
+                extraCost = 40.0;
+            } else if (tempQuantity < 4) {
+                extraCost = 20.0;
+            } else {
+                extraCost = 0.0;
+            }
+
+            if (checkin.isAfter(date1) && checkin.isBefore(date2)) {
+                highSeasonExtra = 0.15;
+                System.out.println("Reservations made for Summer (" + date1 + " to " + date2 + ")" + " are more expensive due to high demand: " + highSeasonExtra);
+            } else if (checkin.isAfter(date3) && checkin.isBefore(date4)) {
+                highSeasonExtra = 0.20;
+                System.out.println("Reservations made during Christmas period( " + date3 + " to " + date4 + ")" + " are more expensive due to hgh demand: " + highSeasonExtra);
+            } else {
+                highSeasonExtra = 0.0;
+            }
+
+
+            //DEN VRISKEI TO ROOM ID, CHECKAREI MONO TIS HMEROMHNIES KAI STELNEI PISW OLA TA RESERVATIONS GIAYTES TIS HMEROMHNIES
+            List<Reservation> checkRes = reservationRepository.findByRoomAndDate(room, checkin, checkout);
+            if (checkRes.size() >= 1) {
+                System.out.println("All reservations for given dates: " + checkRes.size());
+            } else {
+                room.setAvailability(true);
+            }
+
+            if (!room.getAvailability()) {
+
+                message = "Room is not available at given dates!";
+                System.out.println(message);
+
+                //15% DISCOUNT STOUS REGULAR PELATES
+            } else if (customer.getType().equals("REGULAR")) {
+
+                reservation.setRoom(room);
+                reservation.setCustomer(customer);
+                reservation.setCheckin(checkin);
+                reservation.setCheckout(checkout);
+                reservation.getRoom().setAvailability(false);
 
 //            reservation.setAmenities((Set<Amenity>) amenities);
 //            System.out.println(amenities);
-            room.getRoom_roomtype().getQuantity().setAmount(quantity - 1);
-
-            message = "Room booked!";
-            quantity = room.getRoom_roomtype().getQuantity().getAmount();
-            price = (double) reservation.getNights() * room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice();
-            discount = 15 * price / 100 + discount2 * price + discount3 * price;
-            total = price - discount + extraCost + highSeasonExtra * price;
-
-            reservation.setTotal(total);
-            reservation.setReservation_details("Your ID is: " + customer.getId() + "\nHotel: " + room.getRoom_hotelId().getHotelName() + ", room id and room number: [ " + room.getRoomID() + ", " + room.getRoomNumber() + " ] , customer: " + customer.getLastname() + ", checkin: " + checkin +
-                    ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
 
 
-            System.out.println("Total discount: " + 0.15 + " (REGULAR customer), " + discount2 + " (for early reservations), " + discount3 + " (if room is NOT cancelable)");
-
-            System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + quantity + ", extra cost(depends on the availability): " + extraCost + " $, " + highSeasonExtra + " (for reservations in high season)\n-----------------------");
-
-            System.out.println(reservation.getReservation_details() + "\n-----------------------");
-
-            System.out.println(message);
+//                room.getRoom_roomtype().getQuantity().setAmount(quantity - 1);
 
 
-            //NO DISCOUNT STOUS NEW PELATES
-        } else if (customer.getType().equals("NEW")) {
+                message = "Room booked!";
 
-            reservation.setRoom(room);
-            reservation.setCustomer(customer);
-            reservation.setCheckin(checkin);
-            reservation.setCheckout(checkout);
+
+//                quantity = room.getRoom_roomtype().getQuantity().getAmount();
+
+
+                price = (double) reservation.getNights() * room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice();
+                discount = 15 * price / 100 + discount2 * price + discount3 * price;
+                total = price - discount + extraCost + highSeasonExtra * price;
+
+                reservation.setTotal(total);
+                reservation.setReservation_details("Your ID is: " + customer.getId() + "\nHotel: " + room.getRoom_hotelId().getHotelName() + ", room id and room number: [ " + room.getRoomID() + ", " + room.getRoomNumber() + " ] , customer: " + customer.getLastname() + ", checkin: " + checkin +
+                        ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
+
+
+                System.out.println("Total discount: " + 0.15 + " (REGULAR customer), " + discount2 + " (for early reservations), " + discount3 + " (if room is NOT cancelable)");
+
+                System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + tempQuantity + ", extra cost(depends on the availability): " + extraCost + " $, " + highSeasonExtra + " (for reservations in high season)\n-----------------------");
+
+                System.out.println(reservation.getReservation_details() + "\n-----------------------");
+
+                System.out.println(message);
+
+
+                //NO DISCOUNT STOUS NEW PELATES
+            } else if (customer.getType().equals("NEW")) {
+
+                reservation.setRoom(room);
+                reservation.setCustomer(customer);
+                reservation.setCheckin(checkin);
+                reservation.setCheckout(checkout);
 
 //            reservation.setAmenities((Set<Amenity>) amenities);
 //            System.out.println(amenities);
-            reservation.getRoom().setAvailability(false);
-
-            room.getRoom_roomtype().getQuantity().setAmount(quantity - 1);
+                reservation.getRoom().setAvailability(false);
 
 
-            price = (double) reservation.getNights() * room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice();
-            total = price - discount2 * price - discount3 * price + extraCost + highSeasonExtra * price;
-            reservation.setTotal(total);
-            message = "Room booked!";
+//                room.getRoom_roomtype().getQuantity().setAmount(quantity - 1);
 
-            reservation.setReservation_details("Your ID is: " + customer.getId() + "\nHotel: " + room.getRoom_hotelId().getHotelName() + ", room id and room number: [ " +room.getRoomID() + ", " + room.getRoomNumber() + " ], customer: " + customer.getLastname() + ", checkin: " + checkin +
-                    ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
 
-            quantity = room.getRoom_roomtype().getQuantity().getAmount();
 
-            System.out.println("Total discount: " + 0.0 + " (NEW customer), " + discount2 + " (for early reservations), " + discount3 + " (if room is NOT cancelable)\n-----------------------");
+                price = (double) reservation.getNights() * room.getRoom_roomtype().getPrice() + room.getRoom_roomtype().getPrice();
+                total = price - discount2 * price - discount3 * price + extraCost + highSeasonExtra * price;
+                reservation.setTotal(total);
+                message = "Room booked!";
 
-            System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + quantity + ", extra cost(depends on the availability): " + extraCost + " $, " +
-                    highSeasonExtra + " (for reservations in high season)\n-----------------------");
+                reservation.setReservation_details("Your ID is: " + customer.getId() + "\nHotel: " + room.getRoom_hotelId().getHotelName() + ", room id and room number: [ " + room.getRoomID() + ", " + room.getRoomNumber() + " ], customer: " + customer.getLastname() + ", checkin: " + checkin +
+                        ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
+//
 
-            System.out.println(reservation.getReservation_details() + "\n-----------------------");
+//                quantity = room.getRoom_roomtype().getQuantity().getAmount();
 
-            System.out.println(message);
+
+                System.out.println("Total discount: " + 0.0 + " (NEW customer), " + discount2 + " (for early reservations), " + discount3 + " (if room is NOT cancelable)\n-----------------------");
+
+                System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + tempQuantity + ", extra cost(depends on the availability): " + extraCost + " $, " +
+                        highSeasonExtra + " (for reservations in high season)\n-----------------------");
+
+                System.out.println(reservation.getReservation_details() + "\n-----------------------");
+
+                System.out.println(message);
+            }
+
+            tempQuantity = 0;
+            return reservationRepository.save(reservation);
         }
 
-        return reservationRepository.save(reservation);
-    }
 
 //    @Transactional
 //    public Reservation cancelRes(Reservation reservation) {
@@ -294,14 +342,32 @@ public class ReservationService {
         LocalDate checkin = res.getCheckin();
         LocalDate checkout = res.getCheckout();
 //        Set<Amenity> amenities = res.getAmenity();
+        Room room = res2.getRoom();
 
-        res2.setCheckin(checkin);
-        res2.setCheckout(checkin);
+        List<Reservation> checkRes = reservationRepository.findByRoomAndDate(room, checkin, checkout);
+        if (checkRes.size() >= 1) {
+            System.out.println("Reservations for given dates: " + checkRes.size());
+        } else {
+            room.setAvailability(true);
+        }
+
+        if (!room.getAvailability()) {
+
+            System.out.println("Room not available at given dates!");
+        } else {
+
+            res2.setCheckin(checkin);
+            res2.setCheckout(checkout);
 //        res2.setAmenities(amenities);
+            double roomPrice = res2.getRoom().getRoom_roomtype().getPrice();
+            System.out.println("Room price: " + roomPrice);
+            System.out.println("Nights to stay: " + res2.getNights());
+            double total = roomPrice + res2.getNights() * roomPrice;
+            res2.setTotal(total);
+            reservationRepository.save(res2);
 
-        reservationRepository.save(res2);
-
-        System.out.println("Reservation updated!" + "\n" + "Changed checkin date to: " + checkin + "and checkout date to: " + checkout);
-
+            System.out.println("The new total price is: " + total + ", excluding the discounts!");
+            System.out.println("Reservation updated!" + "\n" + "Changed checkin date to: " + checkin + " and checkout date to: " + checkout);
+        }
     }
 }
