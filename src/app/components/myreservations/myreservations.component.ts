@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ListService } from '../../services/list-service.service';
-import { Reservation } from '../../model/model.reservation';
-import { Rating } from '../../model/model.rating';
-import { RatingService } from '../../services/rating.service';
-import { ReservationService } from '../../services/reservation.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ListService} from '../../services/list-service.service';
+import {Reservation} from '../../model/model.reservation';
+import {Rating} from '../../model/model.rating';
+import {RatingService} from '../../services/rating.service';
+import {ReservationService} from '../../services/reservation.service';
 
 @Component({
   selector: 'app-myreservations',
@@ -14,16 +14,15 @@ export class MyreservationsComponent implements OnInit {
 
 
   selectedRes: Reservation;
+  selectedRes1 = new Reservation();
   rating = new Rating();
   noReservationsMessage: string;
   errorMessage: string;
   reservations: Reservation[] = [];
+  reservations2: Reservation[] = [];
   opened: boolean;
   now = new Date();
-  res: Reservation;
   x = 0;
-  z = 0;
-  var = JSON.parse(localStorage.getItem('currentUser'));
   showVar = false;
   showVar1 = false;
 
@@ -31,7 +30,7 @@ export class MyreservationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getPastReservations();
+    this.getReservations();
   }
 
   toggle(selectedItem: Reservation) {
@@ -39,31 +38,50 @@ export class MyreservationsComponent implements OnInit {
     this.selectedRes = selectedItem;
   }
 
+  toggle1(selectedItem: Reservation) {
+    this.showVar1 = true;
+    this.selectedRes1 = selectedItem;
+  }
+
   setRating() {
     this.ratingService.createRating(this.rating)
       .subscribe(data => {
-      alert('Rating submitted');
-    }, error => {
-      alert('Cannot submit rating');
-    });
+        alert('Rating submitted');
+      }, error => {
+        alert('Cannot submit rating');
+      });
   }
 
-  getPastReservations() {
-    this.listService.getReservations()
-      .subscribe((data: Array<Reservation>) => {
-        console.log(data[this.x].customer.username);
-        console.log(this.now);
-        console.log(this.var.username);
-        for (this.x; this.x < data.length; this.x++) {
-          if (data[this.x].customer.username === this.var.username) {
-            this.reservations[this.x] = data[this.x];
-            } else {
-              return this.noReservationsMessage = 'No reservations found!';
+  // TA FILTRARW STO FRONT ANTI GIA TO BACKEND ME REPOSITORY METHOD (findResByUsername sto repo kai reservationRepository.findByCustomer(userRepository.findByUsername(username)))
 
-          }
+
+  // getPastReservations() {
+  //   this.listService.getReservations()
+  //     .subscribe((data: Array<Reservation>) => {
+  //       console.log(data[this.x].customer.username);
+  //       console.log(this.now);
+  //       console.log(this.var.username);
+  //       for (this.x; this.x < data.length; this.x++) {
+  //         if (data[this.x].customer.username === this.var.username) {
+  //           this.reservations[this.x] = data[this.x];
+  //           }
+  //       }
+  //       console.log(this.var.username);
+  //       console.log(this.reservations);
+  //     }, error => {
+  //       this.errorMessage = error;
+  //     });
+  // }
+
+  getReservations() {
+    this.listService.getReservationsByUsername()
+      .subscribe((data: Array<Reservation>) => {
+        if (data) {
+          this.reservations = data;
+        } else {
+          this.noReservationsMessage = 'No reservations found!';
+          console.log(this.noReservationsMessage);
         }
-        console.log(this.var.username);
-        console.log(this.reservations);
       }, error => {
         this.errorMessage = error;
       });
@@ -79,11 +97,27 @@ export class MyreservationsComponent implements OnInit {
 
   updateRes(res: Reservation) {
     this.reservationService.updateRes(res)
-      .subscribe (data => {
-        alert('Reservation updated!');
-        }, error => {
+      .subscribe(data => {
+        alert('Reservation updated!' + '\n' + res.reservation_details);
+      }, error => {
         alert('Cannot update reservation!');
-        });
+      });
     console.log(res);
   }
+
+  // getPastReservations() {
+  //   this.listService.getReservationsByUsername()
+  //     .subscribe((data: Array<Reservation>) => {
+  //       for (this.x; this.x < data.length; this.x++) {
+  //         if (data[this.x].checkout < this.now) {
+  //           this.reservations2[this.x] = data[this.x];
+  //         }
+  //       }
+  //     }, error => {
+  //       this.errorMessage = error;
+  //     });
+  //
+  // }
+
 }
+

@@ -7,19 +7,27 @@
 
       <mat-list class="navbar">
         <a style="color: white; text-decoration: none;" href="/list">
-          <mat-list-item class="item1" style="background-color: #323941; color: white;"><div class="div2">Show customers</div></mat-list-item>
+          <mat-list-item class="item1" style="background-color: #323941; color: white;">
+            <div class="div2">Show customers</div>
+          </mat-list-item>
         </a>
 
         <a style="color: white; text-decoration: none;" href="/reservations">
-          <mat-list-item class="item3" style="background-color: #323941; color: white;"><div class="div2">Make a reservation</div></mat-list-item>
+          <mat-list-item class="item3" style="background-color: #323941; color: white;">
+            <div class="div2">Make a reservation</div>
+          </mat-list-item>
         </a>
 
         <a style="text-decoration: none;" href="/myreservations">
-          <mat-list-item class="item4" style="background-color: #323941; color: white;"><div class="div2">My reservations</div></mat-list-item>
+          <mat-list-item class="item4" style="background-color: #323941; color: white;">
+            <div class="div2">My reservations</div>
+          </mat-list-item>
         </a>
 
         <a style="text-decoration: none;" href="/ratings">
-          <mat-list-item class="item5" style="background-color: #323941; color: white;"><div class="div2">View ratings</div></mat-list-item>
+          <mat-list-item class="item5" style="background-color: #323941; color: white;">
+            <div class="div2">View ratings</div>
+          </mat-list-item>
         </a>
 
       </mat-list>
@@ -37,7 +45,7 @@
 
     <div class="h2"><h2><strong>Reservations</strong></h2></div>
 
-    <div class="div1" style="font-size: 20px;"><strong>Previous Reservations</strong></div>
+    <div class="div1" style="font-size: 20px;"><strong>All Reservations</strong></div>
     <table class="table table-hover">
       <thead>
 
@@ -75,25 +83,32 @@
         &nbsp;
         &nbsp;
         &nbsp;
-        <td><button mat-button class="btn-sm" (click)="toggle(reservation)"><i class="material-icons">
-          comment
-        </i></button></td>
+        <td>
+          <button mat-button class="btn-sm" (click)="toggle(reservation)"><i class="material-icons">
+            comment
+          </i></button>
+        </td>
         &nbsp;
         &nbsp;
         &nbsp;
-        <td><button mat-button class="update" [(ngModel)]="this.reservation.room_reservationId" ngDefaultControl (click)="updateRes(reservation.room_reservationId)">
-          <i class="material-icons">
-            edit
-          </i>
-        </button> </td>
+        <td>
+          <button mat-button class="update" (click)="toggle1(reservation)">
+            <i class="material-icons">
+              edit
+            </i>
+          </button>
+        </td>
         &nbsp;
         &nbsp;
         &nbsp;
-        <td><button mat-button class="btn-cancel" [(ngModel)]="this.reservation.room_reservationId" ngDefaultControl (click)="cancelRes(reservation.room_reservationId)">
-          <i class="material-icons">
-          cancel_presentation
-        </i>
-        </button></td>
+        <td>
+          <button mat-button class="btn-cancel" [(ngModel)]="this.reservation.room_reservationId" ngDefaultControl
+                  (click)="cancelRes(reservation.room_reservationId)">
+            <i class="material-icons">
+              cancel_presentation
+            </i>
+          </button>
+        </td>
       </tr>
 
       </tbody>
@@ -103,25 +118,61 @@
       <hr class="style1">
     </div>
 
-      <form class="f1" (ngSubmit)="setRating()">
-        <ng-container *ngIf="showVar"><p style="text-decoration: underline; font-size: 20px;"><i>Enter rating for <strong>{{selectedRes.room.roomNumber}}</strong></i></p>
-      <br/>
-          <mat-form-field><input [(ngModel)]="this.rating.roomId" name="roomId" id="roomId" matInput="number"  placeholder="Enter room id"/></mat-form-field>
-          <br/>
-          <mat-form-field><input [(ngModel)]="this.rating.customerId" name="customerId" id="customerId" matInput="number"  placeholder="Enter your id"/></mat-form-field>
-          <br/>
-          <mat-form-field><input [(ngModel)]="this.rating.rating" name="rating" id="rating" matInput="number"  placeholder="Rate (0-5)"/></mat-form-field>
-          <br/>
-          <mat-form-field><input [(ngModel)]="this.rating.comments" name="comments" id="comments" matInput="text" placeholder="Enter your comments" /></mat-form-field>
-          <br/>
-          <button mat-button class="btn" type="submit">Submit</button>
-          &nbsp;
-          &nbsp;
-          &nbsp;
-          <button mat-button class="btn2" (click)="showVar = false">Cancel</button>
-        </ng-container>
-      </form>
+    <form class="f1" (ngSubmit)="setRating()">
+      <ng-container *ngIf="showVar"><p style="text-decoration: underline; font-size: 20px;"><i>Enter rating for
+        <strong>{{selectedRes.room.roomNumber}}</strong></i></p>
+        <br/>
+        <mat-form-field><input [(ngModel)]="this.rating.roomId" name="roomId" id="roomId" matInput="number"
+                               placeholder="Enter room id"/></mat-form-field>
+        <br/>
+        <mat-form-field><input [(ngModel)]="this.rating.customerId" name="customerId" id="customerId" matInput="number"
+                               placeholder="Enter your id"/></mat-form-field>
+        <br/>
+        <mat-form-field><input [(ngModel)]="this.rating.rating" name="rating" id="rating" matInput="number"
+                               placeholder="Rate (0-5)"/></mat-form-field>
+        <br/>
+        <mat-form-field><input [(ngModel)]="this.rating.comments" name="comments" id="comments" matInput="text"
+                               placeholder="Enter your comments"/></mat-form-field>
+        <br/>
+        <button mat-button class="btn" type="submit">Submit</button>
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        <button mat-button class="btn2" (click)="showVar = false">Cancel</button>
+      </ng-container>
+    </form>
 
+    <div *ngIf="showVar1" style="color: black;">
+      <hr class="style1">
+    </div>
+    <form class="f2" (ngSubmit)="updateRes(this.selectedRes1)">
+      <ng-container *ngIf="showVar1"><p
+        style="text-decoration: underline; font-size: 20px; font-family: Helvetica, Arial, sans-serif;"><i>Change
+        reservation dates</i></p>
+        <br/>
+
+        <mat-form-field>
+          <input matInput  [(ngModel)]="this.selectedRes1.room_reservationId" name="id" id="id"
+                 placeholder="Reservation Id">
+        </mat-form-field>
+        <br/>
+        <mat-form-field>
+          <input matInput [(ngModel)]="this.selectedRes1.checkin" name="checkin" id="checkin"
+                               placeholder="Enter new checkin date">
+        </mat-form-field>
+        <br/>
+        <mat-form-field>
+          <input matInput [(ngModel)]="this.selectedRes1.checkout" name="checkout" id="checkout"
+                               placeholder="Enter new checkout date">
+        </mat-form-field>
+        <br/>
+        <button mat-button class="btn" type="submit">Update</button>
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        <button mat-button class="btn2" (click)="showVar1 = false">Cancel</button>
+      </ng-container>
+    </form>
 
 
     <br/>
