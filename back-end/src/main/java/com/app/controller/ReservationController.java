@@ -20,6 +20,12 @@ public class ReservationController {
     @GetMapping("/reservations")
     public List<Reservation> getReservations() { return reservationService.getReservations(); }
 
+    @GetMapping("/reservations/{username}")
+    public List<Reservation> getReservations(@PathVariable(name = "username") String username)
+    {
+        return reservationService.getReservationsByUsername(username);
+    }
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //    @RequestMapping(value = "/reserveroom", method = RequestMethod.POST)
@@ -53,7 +59,7 @@ public class ReservationController {
         reservationService.cancelRes(resId);
     }
 
-    @RequestMapping(value = "/reservations/update", method = RequestMethod.PUT)
+    @RequestMapping(value = "/reservations/update", method = RequestMethod.POST)
     public void updateRes(@RequestBody ReservationDto res) {
         reservationService.updateRes(res);
     }

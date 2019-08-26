@@ -345,6 +345,7 @@ public class ReservationService {
         Room room = res2.getRoom();
 
         List<Reservation> checkRes = reservationRepository.findByRoomAndDate(room, checkin, checkout);
+//        if (room.getRoomID().equals(res.getRoomId()))
         if (checkRes.size() >= 1) {
             System.out.println("Reservations for given dates: " + checkRes.size());
         } else {
@@ -358,16 +359,24 @@ public class ReservationService {
 
             res2.setCheckin(checkin);
             res2.setCheckout(checkout);
+
 //        res2.setAmenities(amenities);
+
             double roomPrice = res2.getRoom().getRoom_roomtype().getPrice();
             System.out.println("Room price: " + roomPrice);
             System.out.println("Nights to stay: " + res2.getNights());
             double total = roomPrice + res2.getNights() * roomPrice;
             res2.setTotal(total);
+//            res2.setReservation_details("Your ID is: " + customer.getId() + "\nHotel: " + room.getRoom_hotelId().getHotelName() + ", room id and room number: [ " + room.getRoomID() + ", " + room.getRoomNumber() + " ], customer: " + customer.getLastname() + ", checkin: " + checkin +
+//                    ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
             reservationRepository.save(res2);
 
             System.out.println("The new total price is: " + total + ", excluding the discounts!");
-            System.out.println("Reservation updated!" + "\n" + "Changed checkin date to: " + checkin + " and checkout date to: " + checkout);
+            System.out.println("Reservation updated!" + "\n" + "Changed checkin date to: " + checkin + " and checkout date to: " + checkout + "\n---------------------------------------");
         }
+    }
+
+    public List<Reservation> getReservationsByUsername(String username) {
+        return reservationRepository.findByCustomer(userRepository.findOneByUsername(username));
     }
 }

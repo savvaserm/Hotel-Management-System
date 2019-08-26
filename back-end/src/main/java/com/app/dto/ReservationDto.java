@@ -1,6 +1,9 @@
 package com.app.dto;
 
 import com.app.entities.Amenity;
+import com.app.entities.Room;
+import com.app.entities.User;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
@@ -24,6 +27,16 @@ public class ReservationDto {
     private String reservation_details;
     private Double total;
     private Set<Amenity> amenities;
+
+    public ReservationDto() {
+    }
+
+    public ReservationDto(Integer id, String reservation_details, LocalDate checkin, LocalDate checkout) {
+        this.setId(id);
+        this.setReservation_details(reservation_details);
+        this.setCheckin(checkin);
+        this.setCheckout(checkout);
+    }
 
     public Integer getId() {
         return id;
