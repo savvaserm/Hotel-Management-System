@@ -25,7 +25,7 @@ export class ReservationService {
 
   updateRes(res: Reservation) {
     console.log(JSON.stringify(res));
-    return this.http.put(AppComponent.API_URL + '/users/hotels/reservations/update', res)
+    return this.http.post(AppComponent.API_URL + '/users/hotels/reservations/update', res)
       .pipe(map(response => console.log(response)));
   }
 }

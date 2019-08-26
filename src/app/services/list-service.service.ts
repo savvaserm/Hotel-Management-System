@@ -11,6 +11,9 @@ export class ListService {
     'Content-type': 'application/json'
   });
 
+  var = JSON.parse(localStorage.getItem('currentUser'));
+  username = this.var.username;
+
   constructor(private http: HttpClient) { }
 
 
@@ -45,8 +48,15 @@ export class ListService {
       .pipe(map(res => res));
   }
 
-  getReservations() {
-    const reservationsUrl = AppComponent.API_URL + '/users/hotels/reservations';
+  // getReservations() {
+  //   const reservationsUrl = AppComponent.API_URL + '/users/hotels/reservations';
+  //   return this.http.get(reservationsUrl)
+  //     .pipe(map( res => res));
+  // }
+
+  getReservationsByUsername() {
+    const reservationsUrl = AppComponent.API_URL + '/users/hotels/reservations/' + this.username;
+    console.log(this.username);
     return this.http.get(reservationsUrl)
       .pipe(map( res => res));
   }
