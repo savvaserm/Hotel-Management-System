@@ -73,8 +73,8 @@
                 <mat-form-field class="f2">
 
                   <mat-label for="Id">Id</mat-label>
-                  <input style="border: none;" matInput placeholder="Enter your Id" type="text" class="form-control" id="Id"
-                         name="Id" [(ngModel)]="user.id" #Ide="ngModel" required/>
+                  <input style="border: none;" matInput placeholder="Enter your Id" type="number" class="form-control" id="Id"
+                         name="Id" [(ngModel)]="this.reservation.customerId" #Id="ngModel" required/>
                   <div *ngIf="f.submitted" class="help-block">Id is required</div>
                 </mat-form-field>
 
@@ -101,7 +101,7 @@
                     <mat-option>
                       -
                     </mat-option>
-                    <mat-option *ngFor="let roomtype of roomtypes" [value]="roomtypes">
+                    <mat-option *ngFor="let roomtype of roomtypes" [value]="roomtypes" (click)="assign(roomtype)">
                       {{roomtype.roomType}}
                     </mat-option>
                   </mat-select>
@@ -117,11 +117,11 @@
 
               <aa-animatepicker class="date"
                                 [options]="datepickerOptions"
-                                [(selectedDates)]="dates"></aa-animatepicker>
+                                [(selectedDates)]="dates" (click)="getDates()"></aa-animatepicker>
             </div>
 
 
-            <button mat-raised-button class="btn3" (click)="toggleChild()">Show available rooms</button>
+            <button mat-raised-button class="btn3" (click)="getRooms(this.selectedValue2.roomTypeID)">Show available rooms</button>
             <div class="rooms" *ngIf="showVar">
 
 

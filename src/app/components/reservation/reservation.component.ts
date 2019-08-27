@@ -37,7 +37,7 @@ export class ReservationComponent implements OnInit {
   nights: number;
   amenities: Amenities;
   isOptional = true;
-  rooms: Room;
+  rooms: Room[] = [];
   @Input() showMePartially: boolean;
   roomtypes: Roomtype;
   hotels: any;
@@ -50,6 +50,8 @@ export class ReservationComponent implements OnInit {
   noRoomtypesMessage: string;
   noRoomsMessage: string;
   dates: Date[];
+  checkin = new Date();
+  checkout = new Date();
   show: boolean;
   user: User = new User();
   showVar: boolean;
@@ -64,11 +66,6 @@ export class ReservationComponent implements OnInit {
       this.totalCost = this.amenities.cost;
     }
     return this.totalCost;
-  }
-
-
-  toggleChild() {
-    this.showVar = !this.showVar;
   }
 
   toggleChild2() {
@@ -87,7 +84,6 @@ export class ReservationComponent implements OnInit {
   ngOnInit() {
     this.getHotels();
     this.getRoomtypes();
-    this.getRooms();
     this.getAmenities();
     this.getTotal();
   }
@@ -119,13 +115,17 @@ export class ReservationComponent implements OnInit {
   }
 
 
-  getRooms() {
-    this.roomListService.getRooms()
-      .subscribe((data: Room) => {
+  getRooms(id: number) {
+    this.showVar = !this.showVar;
+    console.log(id);
+    this.roomListService.getRoomsByRoomtype(id)
+      .subscribe((data: Array<Room>) => {
+        console.log(data);
         if (data) {
           this.rooms = data;
         } else {
           this.noRoomsMessage = 'No rooms available';
+          console.log(this.noRoomsMessage);
         }
       }, error => {
         this.errorMessage = error;
@@ -146,13 +146,18 @@ export class ReservationComponent implements OnInit {
   roomSelected(room: Room) {
     this.selectedRoom = room;
     this.showCard = true;
+    console.log(this.selectedRoom.roomID);
   }
 
   reserveRoom() {
+    this.reservation.roomId = this.selectedRoom.roomID;
+    this.reservation.checkin = this.checkin;
+    this.reservation.checkout = this.checkout;
+    console.log(this.reservation);
     this.reservationService.createReservation(this.reservation)
       .subscribe(data => {
           this.router.navigate(['/profile']);
-          alert('Room booked' + this.reservation.details);
+          alert('Room booked' + this.reservation.reservation_details);
         }, error => {
           alert('Cannot book this room');
         }
@@ -162,6 +167,18 @@ export class ReservationComponent implements OnInit {
   getTotal() {
     this.total = this.selectedRoom.roomtype.price + this.sum();
     return this.total;
+  }
+
+  assign(roomtype: Roomtype) {
+    this.selectedValue2 = roomtype;
+    console.log(this.selectedValue2);
+  }
+
+  getDates() {
+    this.checkin = this.dates[0];
+    this.checkout = this.dates[1];
+    console.log(this.checkin);
+    console.log(this.checkout);
   }
 }
 

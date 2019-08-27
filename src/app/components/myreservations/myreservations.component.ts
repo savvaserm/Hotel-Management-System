@@ -98,7 +98,7 @@ export class MyreservationsComponent implements OnInit {
   updateRes(res: Reservation) {
     this.reservationService.updateRes(res)
       .subscribe(data => {
-        alert('Reservation updated!' + '\n' + res.reservation_details);
+        alert('Reservation updated!' + '\n' + res);
       }, error => {
         alert('Cannot update reservation!');
       });
