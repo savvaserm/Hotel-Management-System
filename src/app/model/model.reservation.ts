@@ -4,7 +4,7 @@ import { Room } from './model.room';
 export class Reservation {
 
   id: number;
-  room: Room;
+  roomId: Room;
   customer: User;
   checkin: Date;
   checkout: Date;
