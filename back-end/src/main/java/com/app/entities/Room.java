@@ -19,8 +19,8 @@ public class Room {
 //    private Collection<Reservation> reservations;
 
     @ManyToOne
-    @JoinColumn(name = "room_roomtypeId", referencedColumnName = "room_typeId")
-    private Roomtype room_roomtypeId;
+    @JoinColumn(name = "roomtypeId", referencedColumnName = "room_typeId")
+    private Roomtype roomtypeId;
 
     @ManyToOne
     @JoinColumn(name = "room_hotelId", referencedColumnName = "hotelId")
@@ -43,11 +43,11 @@ public class Room {
     }
 
     public Roomtype getRoom_roomtype() {
-        return room_roomtypeId;
+        return roomtypeId;
     }
 
-    public void setRoom_roomtype(Roomtype room_roomtypeId) {
-        this.room_roomtypeId = room_roomtypeId;
+    public void setRoom_roomtype(Roomtype roomtypeId) {
+        this.roomtypeId = roomtypeId;
     }
 
     public Hotel getRoom_hotelId() {
