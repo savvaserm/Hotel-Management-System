@@ -319,6 +319,31 @@
 				"description": "Update a reservation by changing the chin and checkout dates, adding or removing amenities etc."
 			},
 			"response": []
+		},
+		{
+			"name": "http://localhost:8080/users/hotels/rooms/1",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/hotels/rooms/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"hotels",
+						"rooms",
+						"1"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
