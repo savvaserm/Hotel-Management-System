@@ -157,7 +157,7 @@ export class ReservationComponent implements OnInit {
     this.reservationService.createReservation(this.reservation)
       .subscribe(data => {
           this.router.navigate(['/profile']);
-          alert('Room booked' + this.reservation.reservation_details);
+          alert('Room booked');
         }, error => {
           alert('Cannot book this room');
         }

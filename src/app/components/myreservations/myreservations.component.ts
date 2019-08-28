@@ -25,6 +25,7 @@ export class MyreservationsComponent implements OnInit {
   x = 0;
   showVar = false;
   showVar1 = false;
+  id: number;
 
   constructor(private listService: ListService, public ratingService: RatingService, private reservationService: ReservationService) {
   }
@@ -38,9 +39,9 @@ export class MyreservationsComponent implements OnInit {
     this.selectedRes = selectedItem;
   }
 
-  toggle1(selectedItem: Reservation) {
+  toggle1(resId: number) {
     this.showVar1 = true;
-    this.selectedRes1 = selectedItem;
+    this.id = resId;
   }
 
   setRating() {
@@ -52,7 +53,8 @@ export class MyreservationsComponent implements OnInit {
       });
   }
 
-  // TA FILTRARW STO FRONT ANTI GIA TO BACKEND ME REPOSITORY METHOD (findResByUsername sto repo kai reservationRepository.findByCustomer(userRepository.findByUsername(username)))
+  // TA FILTRARW STO FRONT ANTI GIA TO BACKEND ME REPOSITORY METHOD (findResByUsername sto repo kai
+  // reservationRepository.findByCustomer(userRepository.findByUsername(username)))
 
 
   // getPastReservations() {
@@ -96,9 +98,11 @@ export class MyreservationsComponent implements OnInit {
   }
 
   updateRes(res: Reservation) {
+    // res.id = this.selectedRes1.room_reservationId;
+    res.id = this.id;
     this.reservationService.updateRes(res)
       .subscribe(data => {
-        alert('Reservation updated!' + '\n' + res);
+        alert('Reservation ' + res.id + ' updated!');
       }, error => {
         alert('Cannot update reservation!');
       });

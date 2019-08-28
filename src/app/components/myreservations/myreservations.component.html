@@ -92,7 +92,7 @@
         &nbsp;
         &nbsp;
         <td>
-          <button mat-button class="update" (click)="toggle1(reservation)">
+          <button mat-button class="update" (click)="toggle1(reservation.room_reservationId)">
             <i class="material-icons">
               edit
             </i>
@@ -148,14 +148,14 @@
     <form class="f2" (ngSubmit)="updateRes(this.selectedRes1)">
       <ng-container *ngIf="showVar1"><p
         style="text-decoration: underline; font-size: 20px; font-family: Helvetica, Arial, sans-serif;"><i>Change
-        reservation dates</i></p>
+        checkin/checkout dates for reservation {{selectedRes1.room_reservationId}}</i></p>
         <br/>
 
-        <mat-form-field>
-          <input matInput  [(ngModel)]="this.selectedRes1.room_reservationId" name="id" id="id"
-                 placeholder="Reservation Id">
-        </mat-form-field>
-        <br/>
+<!--        <mat-form-field>-->
+<!--          <input matInput  [(ngModel)]="this.selectedRes1.room_reservationId" name="id" id="id"-->
+<!--                 placeholder="Reservation Id">-->
+<!--        </mat-form-field>-->
+<!--        <br/>-->
         <mat-form-field>
           <input matInput [(ngModel)]="this.selectedRes1.checkin" name="checkin" id="checkin"
                                placeholder="Enter new checkin date">
