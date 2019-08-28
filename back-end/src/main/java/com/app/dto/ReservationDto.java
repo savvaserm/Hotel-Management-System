@@ -26,7 +26,7 @@ public class ReservationDto {
     private LocalDate checkout;
     private String reservation_details;
     private Double total;
-    private Set<Amenity> amenities;
+    private Integer amenities;
 
     public ReservationDto() {
     }
@@ -94,11 +94,11 @@ public class ReservationDto {
         this.reservation_details = reservation_details;
     }
 
-    public Set<Amenity> getAmenity() {
+    public Integer getAmenity() {
         return amenities;
     }
 
-    public void setAmenity(Set<Amenity> amenities) {
+    public void setAmenity(Integer amenities) {
         this.amenities = amenities;
     }
 

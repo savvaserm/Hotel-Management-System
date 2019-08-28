@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.swing.JOptionPane;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -93,15 +95,15 @@ public class ReservationService {
 
         Reservation reservation = new Reservation();
 
-//        Optional<Amenity> optAmenities = amenityRepository.findById(reservationDto.getAmenity());
-//        Amenity amenities = optAmenities.get();
+        Optional<Amenity> optAmenities = amenityRepository.findById(reservationDto.getAmenity());
+        Amenity amenities = optAmenities.get();
 
 //        System.out.println(amenities);
 
         //AN O PELATIS EXEI 3 KAI PANW RESERVATIONS TOTE EINAI REGULAR
         List<Reservation> reservations = reservationRepository.findByCustomer(customer);
         int count = reservations.size() + 1;
-        System.out.println("\nReservations made by " + customer.getLastname() + ": " + count + "\n-----------------------");
+        System.out.println("\nReservations made by " + customer.getLastname() + ": " + count + "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         if (count >= 3) {
             customer.setType("REGULAR");
         } else {
@@ -109,7 +111,7 @@ public class ReservationService {
         }
 
         difference = checkin.getDayOfYear() - localDate.getDayOfYear();
-        System.out.println("Days until checkin: " + difference + "\n-----------------------");
+        System.out.println("Days until checkin: " + difference + "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
 
         //AN TO KLEINEI 90 MERES NWRITERA EXEI 0% EKPTWSH, GIA 90 MEXRI 140 10%,GIA >140 20%
@@ -123,11 +125,11 @@ public class ReservationService {
 
         if (room.getCancel()) {
             discount3 = 0.0;
-            System.out.println("If reservation is cancelled, customer will be refunded \n-----------------------");
+            System.out.println("If reservation is cancelled, customer will be refunded \n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
         } else {
             discount3 = 0.25;
-            System.out.println("If reservation is cancelled, customer wont be refunded \n-----------------------");
+            System.out.println("If reservation is cancelled, customer wont be refunded \n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
 
 
@@ -212,8 +214,8 @@ public class ReservationService {
                 reservation.setCheckout(checkout);
                 reservation.getRoom().setAvailability(false);
 
-//            reservation.setAmenities((Set<Amenity>) amenities);
-//            System.out.println(amenities);
+                reservation.setAmenities((Set<Amenity>) amenities);
+                System.out.println(amenities);
 
 
 //                room.getRoom_roomtype().getQuantity().setAmount(quantity - 1);
@@ -230,15 +232,15 @@ public class ReservationService {
                 total = price - discount + extraCost + highSeasonExtra * price;
 
                 reservation.setTotal(total);
-                reservation.setReservation_details("Your ID is: " + customer.getId() + "\nHotel: " + room.getRoom_hotelId().getHotelName() + ", room id and room number: [ " + room.getRoomID() + ", " + room.getRoomNumber() + " ] , customer: " + customer.getLastname() + ", checkin: " + checkin +
-                        ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
+                reservation.setReservation_details("Your ID is: " + customer.getId() + "\nHotel: " + room.getRoom_hotelId().getHotelName() + ", room id and room number: [ " + room.getRoomID() + ", " + room.getRoomNumber() + " ] , customer: " + customer.getLastname() + "\nCheckin: " + checkin + ", checkout: " + checkout +
+                        ", reserved for " + reservation.getNights() + " nights" + "\nTotal price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
 
 
                 System.out.println("Total discount: " + 0.15 + " (REGULAR customer), " + discount2 + " (for early reservations), " + discount3 + " (if room is NOT cancelable)");
 
-                System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + tempQuantity + ", extra cost(depends on the availability): " + extraCost + " $, " + highSeasonExtra + " (for reservations in high season)\n-----------------------");
+                System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + tempQuantity + ", extra cost(depends on the availability): " + extraCost + " $, " + highSeasonExtra + " (for reservations in high season)\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
-                System.out.println(reservation.getReservation_details() + "\n-----------------------");
+                System.out.println(reservation.getReservation_details() + "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
                 System.out.println(message);
 
@@ -251,8 +253,9 @@ public class ReservationService {
                 reservation.setCheckin(checkin);
                 reservation.setCheckout(checkout);
 
-//            reservation.setAmenities((Set<Amenity>) amenities);
-//            System.out.println(amenities);
+                reservation.setAmenities((Set<Amenity>) amenities);
+                System.out.println(amenities);
+
                 reservation.getRoom().setAvailability(false);
 
 
@@ -265,24 +268,22 @@ public class ReservationService {
                 reservation.setTotal(total);
                 message = "Room booked!";
 
-                reservation.setReservation_details("Your ID is: " + customer.getId() + "\nHotel: " + room.getRoom_hotelId().getHotelName() + ", room id and room number: [ " + room.getRoomID() + ", " + room.getRoomNumber() + " ], customer: " + customer.getLastname() + ", checkin: " + checkin +
-                        ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
+                reservation.setReservation_details("Your ID is: " + customer.getId() + "\nHotel: " + room.getRoom_hotelId().getHotelName() + ", room id and room number: [ " + room.getRoomID() + ", " + room.getRoomNumber() + " ], customer: " + customer.getLastname() + "\nCheckin: " + checkin + ", checkout: " + checkout +
+                        ", reserved for " + reservation.getNights() + " nights" + "\nTotal price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
 //
 
 //                quantity = room.getRoom_roomtype().getQuantity().getAmount();
 
 
-                System.out.println("Total discount: " + 0.0 + " (NEW customer), " + discount2 + " (for early reservations), " + discount3 + " (if room is NOT cancelable)\n-----------------------");
+                System.out.println("Total discount: " + 0.0 + " (NEW customer), " + discount2 + " (for early reservations), " + discount3 + " (if room is NOT cancelable)\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
                 System.out.println(room.getRoom_roomtype().getRoomType() + " left: " + tempQuantity + ", extra cost(depends on the availability): " + extraCost + " $, " +
-                        highSeasonExtra + " (for reservations in high season)\n-----------------------");
+                        highSeasonExtra + " (for reservations in high season)\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
-                System.out.println(reservation.getReservation_details() + "\n-----------------------");
+                System.out.println(reservation.getReservation_details() + "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
                 System.out.println(message);
             }
-
-            tempQuantity = 0;
             return reservationRepository.save(reservation);
         }
 
@@ -343,6 +344,7 @@ public class ReservationService {
         LocalDate checkout = res.getCheckout();
 //        Set<Amenity> amenities = res.getAmenity();
         Room room = res2.getRoom();
+        User customer = res2.getCustomer();
 
         List<Reservation> checkRes = reservationRepository.findByRoomAndDate(room, checkin, checkout);
 //        if (room.getRoomID().equals(res.getRoomId()))
@@ -363,16 +365,16 @@ public class ReservationService {
 //        res2.setAmenities(amenities);
 
             double roomPrice = res2.getRoom().getRoom_roomtype().getPrice();
-            System.out.println("Room price: " + roomPrice);
+            System.out.println("Room price: " + roomPrice + " $");
             System.out.println("Nights to stay: " + res2.getNights());
             double total = roomPrice + res2.getNights() * roomPrice;
             res2.setTotal(total);
-//            res2.setReservation_details("Your ID is: " + customer.getId() + "\nHotel: " + room.getRoom_hotelId().getHotelName() + ", room id and room number: [ " + room.getRoomID() + ", " + room.getRoomNumber() + " ], customer: " + customer.getLastname() + ", checkin: " + checkin +
-//                    ", reserved for " + reservation.getNights() + " nights" + ", total price: " + reservation.getTotal() + " $, " + "\nRefund if cancelled: " + room.getCancel());
+            res2.setReservation_details("Your ID is: " + customer.getId() + "\nHotel: " + room.getRoom_hotelId().getHotelName() + ", room id and room number: [" + room.getRoomID() + ", " + room.getRoomNumber() + "], customer: " + customer.getLastname() + "\nNew checkin date: " + res.getCheckin() + ", new checkout date: " + res2.getCheckout() + ", reserved for: " + res2.getNights() + " nights" + "\nNew total cost: " + res2.getTotal() + " $");
             reservationRepository.save(res2);
 
-            System.out.println("The new total price is: " + total + ", excluding the discounts!");
-            System.out.println("Reservation updated!" + "\n" + "Changed checkin date to: " + checkin + " and checkout date to: " + checkout + "\n---------------------------------------");
+            System.out.println("The new total price is: " + total + " $, excluding the discounts!");
+            System.out.println("Reservation updated!" + "\n" + "Changed checkin date to: " + checkin + " and checkout date to: " + checkout + "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
         }
     }
 
