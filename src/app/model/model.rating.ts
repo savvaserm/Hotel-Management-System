@@ -6,7 +6,7 @@ export class Rating {
   ratingId: number;
   rating: number;
   comments: string;
-  roomId: Room;
-  customerId: User;
+  roomId: number;
+  customerId: number;
 
 }

@@ -13,7 +13,7 @@ export class RatingService {
 
   createRating(rating: Rating) {
     return this.http.post(AppComponent.API_URL + '/users/hotels/rooms/rateroom', rating)
-      .pipe(map(response => console.log(response)));
+      .pipe(map(response => response));
 
   }
 

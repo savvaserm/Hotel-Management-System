@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   errorMessage: string;
+  var = JSON.parse(localStorage.getItem('currentUser'));
+  username = this.var.username;
 
   constructor(public http: HttpClient, public router: Router) {
   }
@@ -70,4 +72,12 @@ export class AuthService {
         localStorage.removeItem('currentUser');
       }));
   }
+
+  getId() {
+    const userURL = AppComponent.API_URL + '/users/list/' + this.username;
+    console.log(this.username);
+    return this.http.get(userURL)
+      .pipe(map( res => res));
+  }
+
 }
