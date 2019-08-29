@@ -10,6 +10,7 @@ import { Amenities } from '../../model/model.amenities';
 import { Roomtype } from '../../model/model.roomtype';
 import { Room } from '../../model/model.room';
 import { reduce } from 'rxjs/operators';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-reservation',
@@ -60,6 +61,7 @@ export class ReservationComponent implements OnInit {
   showCard: boolean;
   selectedAmenities = [];
   selectedRoom: Room;
+  currUser: User;
 
   sum() {
     for (const i of this.selectedAmenities) {
@@ -77,11 +79,12 @@ export class ReservationComponent implements OnInit {
   }
 
 
-  constructor(private listService: ListService, private roomListService: RoomListService,
+  constructor(private authService: AuthService, private listService: ListService, private roomListService: RoomListService,
               private reservationService: ReservationService, private router: Router) {
   }
 
   ngOnInit() {
+    // this.getId();
     this.getHotels();
     this.getRoomtypes();
     this.getAmenities();
@@ -150,6 +153,7 @@ export class ReservationComponent implements OnInit {
   }
 
   reserveRoom() {
+    this.reservation.customer.id = this.currUser.id;
     this.reservation.roomId = this.selectedRoom.roomID;
     this.reservation.checkin = this.checkin;
     this.reservation.checkout = this.checkout;
@@ -179,6 +183,19 @@ export class ReservationComponent implements OnInit {
     this.checkout = this.dates[1];
     console.log(this.checkin);
     console.log(this.checkout);
+  }
+
+  getId() {
+    this.authService.getId()
+      .subscribe((data: User) => {
+        console.log(data);
+        if (data) {
+          this.currUser = data;
+          console.log(this.currUser.id);
+        }
+      }, error => {
+        this.errorMessage = error;
+      });
   }
 }
 

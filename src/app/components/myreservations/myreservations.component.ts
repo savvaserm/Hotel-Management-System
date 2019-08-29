@@ -44,14 +44,18 @@ export class MyreservationsComponent implements OnInit {
     this.id = resId;
   }
 
-  setRating() {
-    this.ratingService.createRating(this.rating)
-      .subscribe(data => {
-        alert('Rating submitted');
-      }, error => {
-        alert('Cannot submit rating');
-      });
-  }
+  setRating(roomid: number) {
+      this.rating.roomId = roomid;
+      console.log(this.rating.roomId);
+      this.rating.customerId = this.selectedRes.customer.id;
+      console.log(this.rating.customerId);
+      this.ratingService.createRating(this.rating)
+        .subscribe(data => {
+          alert('Rating submitted');
+        }, error => {
+          alert('Cannot submit rating');
+        });
+    }
 
   // TA FILTRARW STO FRONT ANTI GIA TO BACKEND ME REPOSITORY METHOD (findResByUsername sto repo kai
   // reservationRepository.findByCustomer(userRepository.findByUsername(username)))

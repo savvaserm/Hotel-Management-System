@@ -118,15 +118,9 @@
       <hr class="style1">
     </div>
 
-    <form class="f1" (ngSubmit)="setRating()">
+    <form class="f1" (ngSubmit)="setRating(this.selectedRes1.roomId)">
       <ng-container *ngIf="showVar"><p style="text-decoration: underline; font-size: 20px;"><i>Enter rating for
         <strong>{{selectedRes.room.roomNumber}}</strong></i></p>
-        <br/>
-        <mat-form-field><input [(ngModel)]="this.rating.roomId" name="roomId" id="roomId" matInput="number"
-                               placeholder="Enter room id"/></mat-form-field>
-        <br/>
-        <mat-form-field><input [(ngModel)]="this.rating.customerId" name="customerId" id="customerId" matInput="number"
-                               placeholder="Enter your id"/></mat-form-field>
         <br/>
         <mat-form-field><input [(ngModel)]="this.rating.rating" name="rating" id="rating" matInput="number"
                                placeholder="Rate (0-5)"/></mat-form-field>

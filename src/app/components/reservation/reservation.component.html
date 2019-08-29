@@ -67,17 +67,6 @@
                          name="firstname" [(ngModel)]="user.firstname" #firstname="ngModel" required/>
                   <div *ngIf="f.submitted" class="help-block">First name is required</div>
                 </mat-form-field>
-                &nbsp;
-                &nbsp;
-                &nbsp;
-                <mat-form-field class="f2">
-
-                  <mat-label for="Id">Id</mat-label>
-                  <input style="border: none;" matInput placeholder="Enter your Id" type="number" class="form-control" id="Id"
-                         name="Id" [(ngModel)]="this.reservation.customerId" #Id="ngModel" required/>
-                  <div *ngIf="f.submitted" class="help-block">Id is required</div>
-                </mat-form-field>
-
 
                 <h4 style="font-size: 18px;">Hotels / Room types</h4>
                 <mat-form-field>
