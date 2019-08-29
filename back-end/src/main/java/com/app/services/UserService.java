@@ -78,4 +78,9 @@ public class UserService {
         return userRepository.saveAndFlush(newUser);
     }
 
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+
 }

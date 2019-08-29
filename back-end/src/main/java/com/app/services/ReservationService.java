@@ -95,8 +95,8 @@ public class ReservationService {
 
         Reservation reservation = new Reservation();
 
-        Optional<Amenity> optAmenities = amenityRepository.findById(reservationDto.getAmenity());
-        Amenity amenities = optAmenities.get();
+//        Optional<Amenity> optAmenities = amenityRepository.findById(reservationDto.getAmenity());
+//        Amenity amenities = optAmenities.get();
 
 //        System.out.println(amenities);
 
@@ -214,8 +214,8 @@ public class ReservationService {
                 reservation.setCheckout(checkout);
                 reservation.getRoom().setAvailability(false);
 
-                reservation.setAmenities((Set<Amenity>) amenities);
-                System.out.println(amenities);
+//                reservation.setAmenities((Set<Amenity>) amenities);
+//                System.out.println(amenities);
 
 
 //                room.getRoom_roomtype().getQuantity().setAmount(quantity - 1);
@@ -246,6 +246,7 @@ public class ReservationService {
 
 
                 //NO DISCOUNT STOUS NEW PELATES
+
             } else if (customer.getType().equals("NEW")) {
 
                 reservation.setRoom(room);
@@ -253,8 +254,8 @@ public class ReservationService {
                 reservation.setCheckin(checkin);
                 reservation.setCheckout(checkout);
 
-                reservation.setAmenities((Set<Amenity>) amenities);
-                System.out.println(amenities);
+//                reservation.setAmenities((Set<Amenity>) amenities);
+//                System.out.println(amenities);
 
                 reservation.getRoom().setAvailability(false);
 

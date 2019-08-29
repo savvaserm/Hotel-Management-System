@@ -73,6 +73,11 @@ public class UserController {
         return principal;
     }
 
+    @GetMapping("/list/{username}")
+    public User getUserByUsername(@PathVariable(name = "username") String username) {
+        return userService.findByUsername(username);
+    }
+
     @RequestMapping(value="/logout", method = RequestMethod.POST)
     public String logoutPage(HttpServletRequest request, HttpServletResponse response){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
