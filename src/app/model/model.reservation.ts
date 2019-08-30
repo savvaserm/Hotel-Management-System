@@ -5,7 +5,7 @@ export class Reservation {
 
   id: number;
   roomId: number;
-  customer: User;
+  customerId: number;
   checkin: Date;
   checkout: Date;
   details: string;
