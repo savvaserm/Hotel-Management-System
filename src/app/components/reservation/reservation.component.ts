@@ -84,7 +84,7 @@ export class ReservationComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.getId();
+    this.getId();
     this.getHotels();
     this.getRoomtypes();
     this.getAmenities();
@@ -153,7 +153,8 @@ export class ReservationComponent implements OnInit {
   }
 
   reserveRoom() {
-    this.reservation.customer.id = this.currUser.id;
+    console.log(this.currUser);
+    this.reservation.customerId = this.currUser.id;
     this.reservation.roomId = this.selectedRoom.roomID;
     this.reservation.checkin = this.checkin;
     this.reservation.checkout = this.checkout;
