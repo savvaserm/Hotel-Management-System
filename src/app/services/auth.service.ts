@@ -11,7 +11,10 @@ export class AuthService {
 
   errorMessage: string;
   var = JSON.parse(localStorage.getItem('currentUser'));
-  username = this.var.username;
+
+  // AYTO PROKALEI SFALMA KAI DEN EMFANIZEI THN SELIDA -----------------------------------------------------
+
+  // username = this.var.username;
 
   constructor(public http: HttpClient, public router: Router) {
   }
@@ -19,7 +22,7 @@ export class AuthService {
   // ----------------------------------------------------------------------------------------
   //
   // public isAuthenticated(): boolean {
-  //   const token = localStorage.getItem('currentUser');
+  //   const token = localStorage.getItem('currentUser');1
   //
   //   // Check whether the token is expired and return true or false
   //   if (token == null) {
@@ -42,7 +45,7 @@ export class AuthService {
     })
 
       .pipe(map((response: any) => {
-          this.router.navigate(['homepage']);
+          this.router.navigate(['profile']);
           // tslint:disable-next-line:no-shadowed-variable
           const user = response.json().principal.id; // the returned user object is a principal object
           return user;
@@ -74,8 +77,8 @@ export class AuthService {
   }
 
   getId() {
-    const userURL = AppComponent.API_URL + '/users/list/' + this.username;
-    console.log(this.username);
+    const userURL = AppComponent.API_URL + '/users/list/' + this.var.username;
+    console.log(this.var.username);
     return this.http.get(userURL)
       .pipe(map( res => res));
   }
