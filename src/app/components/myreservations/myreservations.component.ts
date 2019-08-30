@@ -45,6 +45,7 @@ export class MyreservationsComponent implements OnInit {
   }
 
   setRating(roomid: number) {
+      console.log(this.selectedRes);
       this.rating.roomId = roomid;
       console.log(this.rating.roomId);
       this.rating.customerId = this.selectedRes.customer.id;
