@@ -1,3 +1,9 @@
+A hotel management system implemented with Spring framework, Angular 8, JavaScript, HTML, CSS.
+REST architecture, basic auth implementation with OAuth.
+APIs tested with Postman.
+
+
+
 # FrontEnd
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
